@@ -1,0 +1,26 @@
+@import '../abstracts/variables';
+
+/**************************** Utility Classes ****************************/
+
+/* Colors */
+.color-primary{ color: var(--color-primary); }
+
+/* Backgrounds */
+.background-primary { background-color: var(--color-primary); }
+
+/* Positionings */
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+
+/* Visibilities */
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+/* Overflows */
+.overflow-auto { overflow: auto; }
+.overflow-hidden { overflow: hidden; }
+
+/* Width and Height */
+.width-full{ width: 100%; }
+.height-full{ height: 100%; }

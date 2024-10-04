@@ -1,0 +1,55 @@
+@import '../abstracts/variables';
+
+/* Border */
+.border { border: $border-width $border-style $border-color; }
+.border-top { border-top: $border-width $border-style $border-color; }
+.border-right { border-right: $border-width $border-style $border-color; }
+.border-bottom { border-bottom: $border-width $border-style $border-color; }
+.border-left { border-left: $border-width $border-style $border-color; }
+
+/* Border-radius */
+.border-rounded { border-radius: $border-radius; }
+.border-rounded-top {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+.border-rounded-right {
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+.border-rounded-bottom {
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+.border-rounded-left {
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+.border-rounded-circle { border-radius: 50%; }
+.border-rounded-none { border-radius: 0; }
+
+/* Border-color */
+.border-primary { border-color: $primary-color; }
+.border-secondary { border-color: $secondary-color; }
+
+/* Border-width */
+$border-widths: (
+  0: 0,
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+);
+
+@each $size, $width in $border-widths {
+  .border-#{$size} { border-width: $width; }
+}
+
+/* Responsive borders */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .border-#{$breakpoint} { border: $border-width $border-style $border-color; }
+    .border-#{$breakpoint}-0 { border: 0; }
+  }
+}

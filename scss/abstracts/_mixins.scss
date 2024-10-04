@@ -1,0 +1,63 @@
+@mixin flexbox($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+  }
+  
+  @mixin responsive($breakpoint) {
+    @if $breakpoint == phone {
+      @media (max-width: #{$breakpoint-phone}) {
+        @content;
+      }
+    }
+    @else if $breakpoint == phone-horizontal {
+      @media (min-width: #{$breakpoint-phone + 1px}) and (max-width: #{$breakpoint-phone-horizontal}) {
+        @content;
+      }
+    }
+    @else if $breakpoint == tablet {
+      @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-tablet-horizontal - 1px}) {
+        @content;
+      }
+    }
+    @else if $breakpoint == tablet-horizontal {
+      @media (min-width: #{$breakpoint-tablet-horizontal}) and (max-width: #{$breakpoint-desktop - 1px}) {
+        @content;
+      }
+    }
+    @else if $breakpoint == desktop {
+      @media (min-width: #{$breakpoint-desktop}) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin font-style($size: $font-size-base, $weight: $font-weight-normal, $line-height: $line-height-base) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $line-height;
+  }
+  
+  @mixin box-shadow($shadow: $box-shadow) {
+    box-shadow: $shadow;
+  }
+  
+  @mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
+    transition: $property $duration $timing;
+  }
+  
+  @mixin absolute($top: $position-top, $right: $position-right, $bottom: $position-bottom, $left: $position-left) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+  }
+  
+  @mixin truncate($width: $truncate-width) {
+    max-width: $width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

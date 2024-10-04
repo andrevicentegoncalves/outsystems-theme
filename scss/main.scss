@@ -1,0 +1,34 @@
+// Import OutSystems UI for reference (won't be compiled)
+@import 'vendor/outsystems-ui';
+
+// Abstracts
+@import 'abstracts/variables';
+@import 'abstracts/custom-properties';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+// Base
+@import 'base/global';
+@import 'base/reset';
+@import 'base/typography';
+
+// Components
+@import 'components/buttons';
+@import 'components/forms';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// Pages
+@import 'pages/home';
+
+// Themes
+@import 'themes/theme';
+
+// Utilities
+@import 'utilities/borders';
+@import 'utilities/spacing';
+@import 'utilities/flex';
+@import 'utilities/utility-classes';

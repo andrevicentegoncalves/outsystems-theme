@@ -1,0 +1,82 @@
+  @import 'variables';
+
+:root {
+
+  /* Colors */
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-success: #{$color-success};
+  --color-danger: #{$color-danger};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+  --color-light: #{$color-light};
+  --color-dark: #{$color-dark};
+
+  /* Typography */
+  --font-family-base: #{$font-family-base};
+  --font-size-base: #{$font-size-base};
+  --line-height-base: #{$line-height-base};
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-semi-bold: #{$font-weight-semi-bold};
+  --font-weight-bold: #{$font-weight-bold};
+  
+  /* Spacing */
+  --spacing-unit: #{$spacing-unit};
+
+  /* Breakpoints */
+  --breakpoint-phone: #{$breakpoint-phone};
+  --breakpoint-phone-horizontal: #{$breakpoint-phone-horizontal};
+  --breakpoint-tablet: #{$breakpoint-tablet};
+  --breakpoint-tablet-horizontal: #{$breakpoint-tablet-horizontal};
+  --breakpoint-desktop: #{$breakpoint-desktop};
+
+  /* Layout */
+  --layout-max-width: #{$layout-max-width};
+
+  /* Z-index */
+  --z-index-dropdown: #{$z-index-dropdown};
+  --z-index-sticky: #{$z-index-sticky};
+  --z-index-fixed: #{$z-index-fixed};
+  --z-index-modal-backdrop: #{$z-index-modal-backdrop};
+  --z-index-modal: #{$z-index-modal};
+  --z-index-popover: #{$z-index-popover};
+  --z-index-tooltip: #{$z-index-tooltip}; 
+
+  /* Transitions */
+  --transition-base: #{$transition-base};
+
+  /* Borders */
+  --border-width: #{$border-width};
+  --border-color: #{$border-color};
+  --border-radius: #{$border-radius};
+
+  /* Shadows */
+  --box-shadow: #{$box-shadow};
+
+  /* Truncation (for text overflow) */
+  --truncate-width: #{$truncate-width};
+
+  /* Positioning */
+  --position-top: #{$position-top};
+  --position-right: #{$position-right};
+  --position-bottom: #{$position-bottom};
+  --position-left: #{$position-left};
+
+  /* Grid */
+  --grid-columns: #{$grid-columns};
+  --grid-gutter-width: #{$grid-gutter-width};
+  --grid-container-padding: calc(var(--grid-gutter-width) / 2);
+
+  /* Breakpoints  */
+  @each $breakpoint, $value in $grid-breakpoints {
+    --breakpoint-#{$breakpoint}: #{$value};
+  }
+
+  /* Grid container max-widths  */
+  @each $breakpoint, $value in $grid-container-max-widths {
+    --grid-container-max-width-#{$breakpoint}: #{$value};
+  }
+  
+} 
+
