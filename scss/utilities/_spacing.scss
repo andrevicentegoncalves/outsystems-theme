@@ -14,18 +14,17 @@ $size-map: (
 
 $spacer: 1rem;
 
+/* Margins and Paddings */
 @each $size, $multiplier in $size-map {
-    /* Margins */
     .margin-#{$size} { margin: $spacer * $multiplier; }
     .margin-top-#{$size} { margin-top: $spacer * $multiplier; }
     .margin-bottom-#{$size} { margin-bottom: $spacer * $multiplier; }
     .margin-left-#{$size} { margin-left: $spacer * $multiplier; }
     .margin-right-#{$size} { margin-right: $spacer * $multiplier; }
 
-    /* Paddings */
     .padding-#{$size} { padding: $spacer * $multiplier; }
     .padding-top-#{$size} { padding-top: $spacer * $multiplier; }
     .padding-bottom-#{$size} { padding-bottom: $spacer * $multiplier; }
     .padding-left-#{$size} { padding-left: $spacer * $multiplier; }
-    .padding-right-#{$size} { padding-right: $spacer * $multiplier; }
+    .padding-right-#{$size} { padding-right: $spacer * $multiplier; } 
 }

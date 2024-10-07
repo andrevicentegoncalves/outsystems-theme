@@ -29,27 +29,18 @@
 .border-rounded-none { border-radius: 0; }
 
 /* Border-color */
-.border-primary { border-color: $primary-color; }
-.border-secondary { border-color: $secondary-color; }
+.border-primary { border-color: $color-primary; }
+.border-secondary { border-color: $color-secondary; }
 
 /* Border-width */
-$border-widths: (
-  0: 0,
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px
-);
-
 @each $size, $width in $border-widths {
   .border-#{$size} { border-width: $width; }
 }
 
 /* Responsive borders */
 @each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
+  @include responsive($breakpoint) {
     .border-#{$breakpoint} { border: $border-width $border-style $border-color; }
-    .border-#{$breakpoint}-0 { border: 0; }
+    .border-#{$breakpoint}-0 { border: 0; } 
   }
 }

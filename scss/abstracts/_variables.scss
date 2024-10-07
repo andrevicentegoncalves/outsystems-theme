@@ -22,8 +22,17 @@ $font-weight-bold: 700;
 // Border
 $border-width: 1px;
 $border-style: solid;
-$border-color: $light-color;
-$border-radius: 0.25rem;
+$border-color: $color-light;
+$border-radius: 0.25rem; 
+
+$border-widths: (
+  0: 0,
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+);
 
 // Breakpoints
 $breakpoint-phone: 480px;

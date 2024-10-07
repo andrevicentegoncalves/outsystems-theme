@@ -1,7 +1,7 @@
-// Import OutSystems UI for reference (won't be compiled)
-@import 'vendor/outsystems-ui';
+// Reference OutSystems UI without compiling it
+// @import 'vendor/outsystems/scss/O11.OutSystemsUI.scss';
 
-// Abstracts
+// Your custom imports
 @import 'abstracts/variables';
 @import 'abstracts/custom-properties';
 @import 'abstracts/mixins';
