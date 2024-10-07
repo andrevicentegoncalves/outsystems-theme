@@ -1,0 +1,39 @@
+/**************************** Layout ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+// General layout styles
+.layout {
+  .footer.ThemeGrid_Container {
+    padding: var(--space-xs) var(--space-xl);
+  }
+
+  .footer-content.ThemeGrid_Container {
+    padding: var(--space-base) var(--space-xl);
+  }
+}
+
+// Common container styles
+.header .ThemeGrid_Container,
+.info-bar.ThemeGrid_Container,
+.wide-bar.ThemeGrid_Container,
+.breadcrumbs-bar.ThemeGrid_Container,
+.footer-content.ThemeGrid_Container,
+.footer .ThemeGrid_Container {
+  padding: var(--space-none) var(--space-xl);
+}
+
+// Responsive styles for phone-sized screens
+.phone {
+  .header .ThemeGrid_Container,
+  .info-bar.ThemeGrid_Container,
+  .wide-bar.ThemeGrid_Container,
+  .breadcrumbs-bar.ThemeGrid_Container,
+  .footer-content.ThemeGrid_Container,
+  .footer .ThemeGrid_Container {
+    padding-left: calc(var(--os-safe-area-left) + var(--space-base));
+    padding-right: calc(var(--os-safe-area-right) + var(--space-base));
+  }
+}

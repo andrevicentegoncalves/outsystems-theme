@@ -1,51 +1,59 @@
 // Color Palette
-$color-primary: #007bff;
-$color-secondary: #6c757d;
+$color-primary: #72BE44;
 $color-success: #28a745;
 $color-danger: #dc3545;
 $color-warning: #ffc107;
+$color-warning-light: #FEFBCD;
 $color-info: #17a2b8;
 $color-light: #f8f9fa;
 $color-dark: #343a40;
 
+// Layout 
+$layout-max-width: rem(1440);
+
+// Login
+$login-form-width: rem(432);
+$login-background-image: url(/TapAgents_TH/img/TapAgents_TH.Login_Background.jpg);
+
+// Image
+$image-width-captcha: 286px;
+$image-height-captcha: 40px;
+$image-star-alliance: 270px;
+$logo-max-width: 180px;
+
 // Typography
 $font-family-base: 'Arial', sans-serif;
-$font-size-base: 16px;
+$font-size-xxs: rem(10);
 $line-height-base: 1.5;
 
 // Font Weights
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-semi-bold: 600;
-$font-weight-bold: 700;
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+
+// Icons
+$icon-font-path: '/TapAgents_TH/';
+$icon-font-family: 'MegasisIconsFont';
+
+// Components
+$size-checkbox-s: rem(12);
 
 // Border
-$border-width: 1px;
+$border-width: 0.3px;
 $border-style: solid;
-$border-color: $color-light;
-$border-radius: 0.25rem; 
-
-$border-widths: (
-  0: 0,
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px
-);
+$border-color: $color-primary;
+$border-radius-extra-soft: 15px;
 
 // Breakpoints
 $breakpoint-phone: 480px;
 $breakpoint-phone-horizontal: 767px;
 $breakpoint-tablet: 768px;
 $breakpoint-tablet-horizontal: 1024px;
-$breakpoint-desktop: 1025px;
-
-// Spacing
-$spacing-unit: 8px;
+$breakpoint-desktop: 1200px;
 
 // Grid
 $grid-columns: 12;
+$grid-columns-standard: 4;
+$grid-gap: 25px;
 $grid-gutter-width: 30px;
 $grid-breakpoints: (
   xs: 0,
@@ -87,5 +95,3 @@ $position-right: 0;
 $position-bottom: 0;
 $position-left: 0;
 
-// Layout 
-$layout-max-width: 1440px;

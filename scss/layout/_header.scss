@@ -1,0 +1,10 @@
+/**************************** Header ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.header .app-logo {
+    max-width: var(--logo-max-width);
+}
+  

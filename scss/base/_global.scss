@@ -1,5 +1,10 @@
 /**************************** Global ****************************/
 
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* Base HTML element styles */
 html {
     font-size: var( --font-family-base);
     line-height: var(--line-height-base);

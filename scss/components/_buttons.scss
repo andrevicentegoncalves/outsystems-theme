@@ -1,19 +1,21 @@
-.btn {
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
-    line-height: var(--line-height-base);
-    padding: var(--spacer-2) var(--spacer-3);
-    border-radius: var(--border-radius);
-    transition: var(--transition-base);
-  }
-  
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-light);
-  }
-  
-  .btn-secondary {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-  }
+/**************************** Buttons ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* Button styles */
+.btn.btn-transparent{
+  background-color: transparent;
+  padding: 0px 10px;
+}
+
+.btn.btn-border-neutral-4{
+  border-color: var(--color-neutral-4);
+}
+
+.btn,
+.tablet .btn, 
+.phone .btn{
+  height: 35px;
+}

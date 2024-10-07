@@ -1,0 +1,21 @@
+/**************************** Submenus ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* Submenu styles */
+.submenu-clean {
+    &.osui-submenu__header__icon:before {
+      height: 10px;
+      width: 10px;
+    }
+  
+    &-item:hover {
+      background-color: var(--color-neutral-3);
+    }
+  }
+  
+  .desktop .osui-submenu__header:hover {
+    border-bottom: none;
+  }

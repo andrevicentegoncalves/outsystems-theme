@@ -1,0 +1,14 @@
+/**************************** Search ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.osui-search .search-tap.form-control[data-input] {
+    background-position: right var(--space-base) center;
+    padding-left: var(--space-base);
+    padding-right: var(--space-xl);
+    min-width: 300px;
+    border: var(--border-size-s) solid var(--color-neutral-0);
+    height: 35px;
+  }

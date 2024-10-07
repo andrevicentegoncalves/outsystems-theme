@@ -1,11 +1,11 @@
-// Reference OutSystems UI without compiling it
-// @import 'vendor/outsystems/scss/O11.OutSystemsUI.scss';
-
-// Your custom imports
+// Abstract
+@import 'abstracts/functions';
 @import 'abstracts/variables';
 @import 'abstracts/custom-properties';
 @import 'abstracts/mixins';
-@import 'abstracts/functions';
+
+//Vendor
+@import 'vendor/outsystemsUI';
 
 // Base
 @import 'base/global';
@@ -15,14 +15,21 @@
 // Components
 @import 'components/buttons';
 @import 'components/forms';
+@import 'components/submenus';
+@import 'components/checkboxes';
+@import 'components/icons';
+@import 'components/images';
+@import 'components/search';
 
 // Layout
+@import 'layout/layout';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/grid';
 
 // Pages
 @import 'pages/home';
+@import 'pages/login';
 
 // Themes
 @import 'themes/theme';

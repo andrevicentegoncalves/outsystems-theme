@@ -1,11 +1,15 @@
-@use "sass:math";
+/******************************* Grid  *********************************/
 
-/**************************** Grid ****************************/
 
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* Fixed-width container */
 .grid-container {
     width: 100%;
-    padding-right: math.div($grid-gutter-width, 2);
-    padding-left: math.div($grid-gutter-width, 2);
+    padding-right: $grid-gutter-width / 2;
+    padding-left: $grid-gutter-width / 2;
     margin-right: auto;
     margin-left: auto;
 
@@ -18,15 +22,63 @@
     }
 }
 
+/* Full-width container */
 .grid-container-fluid {
     width: 100%;
-    padding-right: math.div($grid-gutter-width, 2);
-    padding-left: math.div($grid-gutter-width, 2);
+    padding-right: $grid-gutter-width / 2;
+    padding-left: $grid-gutter-width / 2;
     margin-right: auto;
     margin-left: auto;
 }
 
-/* Grid Utilities */
+/* Basic grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: $grid-gutter-width;
+}
+
+/* Row within grid */
+.row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: inherit;
+}
+
+/* Generate column span classes */
+@for $i from 1 through 12 {
+    .col-#{$i} { grid-column: span $i; }
+}
+
+/* Fractional grid classes */
+.grid-fourth { grid-column: span 3; }
+.grid-third { grid-column: span 4; }
+.grid-half { grid-column: span 6; }
+.grid-two-thirds { grid-column: span 8; }
+.grid-three-fourths { grid-column: span 9; }
+
+/* Grid start classes */
+.grid-start-first { grid-column-start: 1; }
+.grid-start-fourth { grid-column-start: 4; }
+.grid-start-third { grid-column-start: 5; }
+.grid-start-half { grid-column-start: 7; }
+.grid-start-two-thirds { grid-column-start: 9; }
+.grid-start-three-fourths { grid-column-start: 10; }
+
+/* Gap size classes */
+.gap-05 { gap: 0.5rem; }
+.gap-1 { gap: 1rem; }
+.gap-2 { gap: 2rem; }
+.gap-3 { gap: 3rem; }
+
+/* Alignment classes */
+.grid-align-center { align-items: center; }
+.grid-justify-center { justify-items: center; }
+
+/* Dense auto flow */
+.grid-auto-flow-dense { grid-auto-flow: dense; }
+
+/* Remove gutters from grid */
 .no-gutters {
     margin-right: 0;
     margin-left: 0;
@@ -37,3 +89,9 @@
         padding-left: 0;
     }
 }
+
+/* Grid item as a card */
+.card.grid-item { padding: 0; }
+
+/* Nested grid */
+.grid .grid { grid-column: 1 / -1; }

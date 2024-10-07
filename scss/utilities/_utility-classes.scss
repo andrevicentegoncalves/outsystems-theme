@@ -1,26 +1,46 @@
-@import '../abstracts/variables';
-
 /**************************** Utility Classes ****************************/
 
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
 /* Colors */
-.color-primary{ color: var(--color-primary); }
+.color-primary{
+    color: var(--color-primary);
+}
 
-/* Backgrounds */
-.background-primary { background-color: var(--color-primary); }
+.background-primary{
+    background-color: var(--color-primary);
+}
 
-/* Positionings */
-.position-relative { position: relative; }
-.position-absolute { position: absolute; }
-.position-fixed { position: fixed; }
+.background-warning-light{
+    background-color: var(--color-warning-light);
+}
 
-/* Visibilities */
-.visible { visibility: visible; }
-.invisible { visibility: hidden; }
+.color-warning-light{
+    color: var(--color-warning-light);
+}
 
-/* Overflows */
-.overflow-auto { overflow: auto; }
-.overflow-hidden { overflow: hidden; }
+/* Layout */
+.width-max {
+    max-width: var(--width-max);
+}
 
-/* Width and Height */
-.width-full{ width: 100%; }
-.height-full{ height: 100%; }
+/* Opacity */
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.bg-opacity-40 {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-opacity-30 {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Scrolling */
+.scrollable-y {
+    height: 100vh;
+    overflow-y: auto;
+}

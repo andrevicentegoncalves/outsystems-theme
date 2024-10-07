@@ -1,17 +1,45 @@
 /**************************** Typography ****************************/
 
-/* Text Alignment */
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
 
-/* Text Transform */
-.text-lowercase { text-transform: lowercase; }
-.text-uppercase { text-transform: uppercase; }
-.text-capitalize { text-transform: capitalize; }
+/* Font sizes */
+.font-size-xxs {
+    font-size: var(--font-size-xxs);
+}
 
-/* Font Weight */
-.font-weight-light { font-weight: var(--font-weight-light); }
-.font-weight-normal { font-weight: var(--font-weight-normal); }
-.font-weight-semi-bold { font-weight: var(--font-weight-semi-bold); }
-.font-weight-bold { font-weight: var(--font-weight-bold); }
+/* Font weight */
+.font-weight-thin{
+    font-weight: var(--font-weight-thin);
+}
+
+.font-weight-extra-light{
+    font-weight: var(--font-weight-extra-light);
+}
+
+/* Text styles */
+.text-underline {
+    text-decoration: underline;
+}
+
+.line-height-reduced {
+    line-height: 1;
+}
+
+/* Text truncation */
+.text-truncate-parent {
+    overflow: hidden;
+    flex: 1;
+}
+
+.text-truncate {
+    @include truncate();
+}
+
+/* Responsive typography */
+.tablet, .phone {
+    .btn.btn-tap-small {
+        font-size: var(--font-size-xs);
+    }
+}

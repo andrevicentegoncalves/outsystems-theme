@@ -1,0 +1,35 @@
+/**************************** Images ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* App Images */
+.img-star-alliance{
+    width: var(--image-star-aliance);
+}
+
+.img-captcha{
+    width: var(--image-width-captcha);
+    height: var(--image-height-captcha);
+}
+
+/* General image styles */
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Background images */
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Responsive background images */
+.bg-responsive {
+    @include responsive('tablet') {
+      background-image: none;
+    }
+}

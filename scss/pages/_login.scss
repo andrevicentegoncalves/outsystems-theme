@@ -1,0 +1,42 @@
+/**************************** Login ****************************/
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.login-wrapper {
+  position: relative; 
+  background-image: var(--login-background-image);
+  background-size: cover;
+  height: calc(100vh - 60px); 
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.form-wrapper {
+  min-height: 100vh;
+  max-height: 100vh;
+  background-image: var(--login-background-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  padding: var(--space-xl) var(--space-m) var(--space-xxl); 
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.form-centered {
+  width: 100%;
+  max-width: var(--login-form-width);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: var(--border-radius-extra-soft);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: var(--space-m);
+  margin: auto;
+  margin-bottom: 80px; 
+}
+
+.login-form-width {
+  width: var(--login-form-width);
+}

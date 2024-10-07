@@ -1,5 +1,10 @@
 /**************************** Reset ****************************/
 
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/* Basic reset for consistent styling across browsers */
 * {
     margin: 0;
     padding: 0;

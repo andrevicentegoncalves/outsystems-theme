@@ -1,28 +1,48 @@
-  @import 'variables';
-
 :root {
-
-  /* Colors */
+  /* Color Palette */
   --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
   --color-success: #{$color-success};
   --color-danger: #{$color-danger};
   --color-warning: #{$color-warning};
+  --color-warning-light: #{$color-warning-light};
   --color-info: #{$color-info};
   --color-light: #{$color-light};
   --color-dark: #{$color-dark};
 
+  /* Layout */
+  --layout-max-width: #{$layout-max-width};
+
+  /* Login */
+  --login-form-width: #{$login-form-width};
+  --login-background-image: #{$login-background-image};
+
+  /* Image */
+  --image-width-captcha: #{$image-width-captcha};
+  --image-height-captcha: #{$image-height-captcha};
+  --image-star-alliance: #{$image-star-alliance};
+  --logo-max-width: #{$logo-max-width};
+
   /* Typography */
   --font-family-base: #{$font-family-base};
-  --font-size-base: #{$font-size-base};
+  --font-size-xxs: #{$font-size-xxs};
   --line-height-base: #{$line-height-base};
-  --font-weight-light: #{$font-weight-light};
-  --font-weight-normal: #{$font-weight-normal};
-  --font-weight-semi-bold: #{$font-weight-semi-bold};
-  --font-weight-bold: #{$font-weight-bold};
-  
-  /* Spacing */
-  --spacing-unit: #{$spacing-unit};
+
+  /* Font Weights */
+  --font-weight-thin: #{$font-weight-thin};
+  --font-weight-extra-light: #{$font-weight-extra-light};
+
+  /* Icons */
+  --icon-font-path: #{$icon-font-path};
+  --icon-font-family: #{$icon-font-family};
+
+  /* Components */
+  --size-checkbox-s: #{$size-checkbox-s};
+
+  /* Border */
+  --border-width: #{$border-width};
+  --border-style: #{$border-style};
+  --border-color: #{$border-color};
+  --border-radius-extra-soft: #{$border-radius-extra-soft};
 
   /* Breakpoints */
   --breakpoint-phone: #{$breakpoint-phone};
@@ -31,8 +51,11 @@
   --breakpoint-tablet-horizontal: #{$breakpoint-tablet-horizontal};
   --breakpoint-desktop: #{$breakpoint-desktop};
 
-  /* Layout */
-  --layout-max-width: #{$layout-max-width};
+  /* Grid */
+  --grid-columns: #{$grid-columns};
+  --grid-columns-standard: #{$grid-columns-standard};
+  --grid-gutter-width: #{$grid-gutter-width};
+  --grid-gap: #{$grid-gap};
 
   /* Z-index */
   --z-index-dropdown: #{$z-index-dropdown};
@@ -41,20 +64,15 @@
   --z-index-modal-backdrop: #{$z-index-modal-backdrop};
   --z-index-modal: #{$z-index-modal};
   --z-index-popover: #{$z-index-popover};
-  --z-index-tooltip: #{$z-index-tooltip}; 
+  --z-index-tooltip: #{$z-index-tooltip};
 
   /* Transitions */
   --transition-base: #{$transition-base};
 
-  /* Borders */
-  --border-width: #{$border-width};
-  --border-color: #{$border-color};
-  --border-radius: #{$border-radius}; 
-
   /* Shadows */
   --box-shadow: #{$box-shadow};
 
-  /* Truncation (for text overflow) */
+  /* Truncation */
   --truncate-width: #{$truncate-width};
 
   /* Positioning */
@@ -62,21 +80,4 @@
   --position-right: #{$position-right};
   --position-bottom: #{$position-bottom};
   --position-left: #{$position-left};
-
-  /* Grid */
-  --grid-columns: #{$grid-columns};
-  --grid-gutter-width: #{$grid-gutter-width};
-  --grid-container-padding: calc(var(--grid-gutter-width) / 2);
-
-  /* Breakpoints  */
-  @each $breakpoint, $value in $grid-breakpoints {
-    --breakpoint-#{$breakpoint}: #{$value};
-  }
-
-  /* Grid container max-widths  */
-  @each $breakpoint, $value in $grid-container-max-widths {
-    --grid-container-max-width-#{$breakpoint}: #{$value};
-  }
-  
-} 
-
+}
