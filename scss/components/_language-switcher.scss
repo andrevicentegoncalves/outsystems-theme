@@ -1,0 +1,82 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Language Switcher ****************************/
+
+.language-switcher {
+    position: relative;
+    
+    .osui-submenu__header {
+        padding: 0;
+        margin: 0;
+        border: none;
+        outline: none;
+        display: flex; 
+        align-items: center;
+        position: relative;
+        z-index: $z-index-dropdown + 1;
+        
+        &:hover {
+            cursor: pointer;
+        }
+        
+        .header-truncate {
+            @include truncate(25ch);
+            display: inline-block;
+        }
+    }
+    
+    .osui-submenu__items {
+        position: absolute;
+        z-index: $z-index-dropdown;
+        min-width: 100%;
+        padding: 0;
+        background-color: $color-neutral-0;
+        border: 1px solid rgba($color-neutral-10, 0.15);
+        box-shadow: 0 2px 5px rgba($color-neutral-10, 0.15);
+        
+        &.active {
+            display: block;
+        }
+    }
+    
+    @media (max-width: $breakpoint-phone) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: $font-size-xs;
+        
+        .osui-submenu__header {
+            width: auto;
+            max-width: 100%;
+            position: relative;
+            background-color: transparent;
+            text-align: left;
+            
+            .header-truncate {
+                max-width: 10ch;
+            }
+        }
+        
+        .osui-submenu__items {
+            top: 100%;
+            left: 0;
+        }
+    }
+}
+
+.language-switcher-wrapper {
+    position: relative;
+    z-index: $z-index-dropdown;
+    
+    @media (max-width: $breakpoint-phone) {
+        margin-right: $space-s;
+    }
+}
+
+// Add this to ensure proper stacking in the header
+.header-content {
+    position: relative;
+    z-index: $z-index-dropdown - 1;
+}

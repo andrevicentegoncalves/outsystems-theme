@@ -1,0 +1,226 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Content Loading Placeholder ****************************/
+
+// Variables
+$empty-state-background: $color-neutral-4;
+$empty-state-background-negative: rgba(255, 255, 255, 0.12);
+$line-height-standard: rem(35);
+
+// Shimmer colors
+$shimmer-light: rgba(255, 255, 255, 0.3);
+$shimmer-dark: rgba(0, 0, 0, 0.2);
+
+// Linear glow animation
+@keyframes linearGlow {
+    0% {
+        transform: translateX(-150%); 
+    }
+    100% {
+        transform: translateX(150%); 
+    }
+}
+
+// Radial glow animation
+@keyframes radialGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Base shimmer overlay mixins */
+@mixin shimmerOverlay($theme: 'light') {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        if($theme == 'light', $shimmer-light, $shimmer-dark) 50%,
+        transparent 100%
+    );
+}
+
+/* Base element styles mixin */
+@mixin baseElement($theme: 'light') {
+    background-color: if($theme == 'light', $empty-state-background, $empty-state-background-negative);
+    opacity: if($theme == 'light', 0.8, 1);
+}
+
+/* Empty state variations */
+.empty-state {
+    /* Line styles */
+    .line {
+        @include baseElement('light');
+        border-radius: 0.5rem;
+        display: block;
+        height: 1rem;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+
+        &:before {
+            @include shimmerOverlay('light');
+        }
+    }
+
+    /* Rectangle styles */
+    .rectangle {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+
+        &:before {
+            @include baseElement('light');
+            border-radius: 2px;
+            content: "";
+            display: block;
+            padding-bottom: 60%;
+        }
+
+        &:after {
+            @include shimmerOverlay('light');
+        }
+
+        &.hasHeight:before {
+            height: 100%;
+            padding-bottom: 0;
+        }
+    }
+
+    /* Square styles */
+    .square {
+        overflow: hidden;
+        position: relative;
+        width: 5em;
+
+        &:before {
+            @include baseElement('light');
+            border-radius: 0.5em;
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        &:after {
+            @include shimmerOverlay('light');
+            border-radius: 0.5em;
+        }
+    }
+
+    /* Circle styles */
+    .circle {
+        overflow: hidden;
+        position: relative;
+        width: 5em;
+
+        &:before {
+            @include baseElement('light');
+            border-radius: 50%;
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        &:after {
+            @include shimmerOverlay('light');
+            border-radius: 50%;
+        }
+    }
+
+    /* Negative theme */
+    &.negative {
+        .line {
+            @include baseElement('dark');
+            &:before {
+                @include shimmerOverlay('dark');
+            }
+        }
+
+        .rectangle {
+            &:before {
+                @include baseElement('dark');
+            }
+            &:after {
+                @include shimmerOverlay('dark');
+            }
+        }
+
+        .square {
+            &:before {
+                @include baseElement('dark');
+            }
+            &:after {
+                @include shimmerOverlay('dark');
+            }
+        }
+
+        .circle {
+            &:before {
+                @include baseElement('dark');
+            }
+            &:after {
+                @include shimmerOverlay('dark');
+            }
+        }
+    }
+
+    /* Animation styles */
+    &.animation {
+        // Linear animations for rectangular elements
+        .content-block:before,
+        .line:before,
+        .square:after,
+        .rectangle:after {
+            animation: linearGlow 2s infinite;
+        }
+
+        // Radial animations only for circles and explicitly rounded squares
+        .circle:after,
+        .square.rounded:after {
+            animation: radialGlow 2s infinite linear;
+            mask-image: linear-gradient(
+                90deg,
+                transparent,
+                black 20%,
+                black 80%,
+                transparent
+            );
+            -webkit-mask-image: linear-gradient(
+                90deg,
+                transparent,
+                black 20%,
+                black 80%,
+                transparent
+            );
+        }
+    }
+}
+
+/* Phone styles */
+.phone td {
+    flex-direction: column;
+}
+
+/* Standard variations */
+.line-list-standard {
+    .line {
+        height: $line-height-standard;
+        border-radius: $border-radius-extra-soft;
+    }
+}
+
+.rectangle-list-standard {
+    .rectangle {
+        border-radius: $border-radius-extra-soft;
+    }
+}

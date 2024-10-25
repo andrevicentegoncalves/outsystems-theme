@@ -1,0 +1,173 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Badges ****************************/
+
+// Color variations
+.badge--primary { background-color: $color-primary; }
+.badge--success { background-color: $color-success; }
+.badge--danger { background-color: $color-danger; }
+.badge--warning { background-color: $color-warning; }
+.badge--info { background-color: $color-info; }
+.badge--grey-light { background-color: $color-neutral-5; }
+.badge--grey-dark { background-color: $color-neutral-7; }
+
+// Outline variants
+.badge--outline-primary {
+    background-color: transparent;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+}
+
+// Badge List
+.badge-list {
+    --badge-max-width: 240px;
+
+    a, a:hover, a:focus, a:active {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &-item {
+        display: flex;
+        align-items: center;
+        padding: $space-base;
+        background-color: $color-neutral-3;
+        border-radius: $border-radius-extra-soft;
+        margin-bottom: $space-s;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: var(--color-neutral-4);
+        }
+    }
+
+    &-category {
+        display: flex;
+        align-items: center;
+        margin-right: $space-m;
+    }
+
+    &-light,
+    &-dark,
+    &-state {
+        max-width: var(--badge-max-width);
+    }
+
+    &-dark {
+        margin-left: $space-m;
+    }
+
+    &-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0 $space-m;
+        @include truncate;
+    }
+
+    &-arrow {
+        margin-left: $space-base;
+    }
+}
+
+.badge {
+    display: flex;
+    justify-content: center; // Center the badge content horizontally
+    align-items: center; // Center the badge content vertically
+    padding: $space-base;
+    border-radius: $border-radius-extra-soft;
+    font-size: $font-size-xs;
+    line-height: 1;
+    max-width: 100%;
+
+    &__content {
+        display: flex;
+        justify-content: center; // Center the inner content
+        align-items: center; // Center the inner content vertically
+        width: 100%;
+        max-width: 100%;
+    }
+
+    &__text {
+        @include truncate;
+        max-width: 100%;
+        text-align: center; // Center text within the badge
+        flex: 1; // Allow the text to grow
+    }
+
+    &--grey-light {
+        background-color: $color-neutral-5;
+        color: $color-neutral-10;
+    }
+
+    &--grey-dark {
+        background-color: $color-neutral-7;
+        color: $color-neutral-0;
+    }
+
+    &--danger {
+        background-color: $color-danger;
+        color: $color-neutral-0;
+    }
+}
+
+.text-truncate-parent {
+    max-width: 100%;
+    @include truncate;
+}
+
+.text-truncate-child {
+    @include truncate;
+    max-width: 100%;
+}
+
+@media (max-width: $breakpoint-phone-horizontal) {
+    .badge-list {
+        --badge-max-width: 100%;
+
+        &-item {
+            flex-direction: column;
+            align-items: stretch;
+            padding-right: calc(#{$space-base * 2} + #{$space-m});
+            position: relative;
+        }
+
+        &-category {
+            flex-direction: column;
+            align-items: stretch;
+            margin-right: 0;
+            width: 100%;
+        }
+
+        &-light,
+        &-dark,
+        &-state {
+            width: 100%;
+            max-width: none;
+            margin-bottom: $space-xs;
+        }
+
+        &-dark {
+            margin-left: 0;
+        }
+
+        &-title {
+            width: 100%;
+            margin: $space-s 0 0 0;
+            order: 1;
+        }
+
+        &-arrow {
+            position: absolute;
+            right: $space-base;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .badge {
+        width: 100%;
+        max-width: none;
+    }
+}

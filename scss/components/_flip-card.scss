@@ -1,0 +1,168 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/****************************** Flip Card *******************************/
+
+$flip-card-height: 240px;
+$flip-card-expanded-height: 480px;
+
+.flip-grid-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  .flip-card-list {
+    display: grid;
+    gap: 20px;
+
+    // Default to 1 column for mobile
+    grid-template-columns: 1fr;
+
+    // Responsive grid layout
+    @include responsive(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include responsive(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include responsive(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.flip-card {
+  width: 100%;
+  height: $flip-card-height;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: height 0.6s;
+  position: relative;
+
+  &.expanded {
+    height: $flip-card-expanded-height;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  &:hover .flip-card-inner,
+  &:focus .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background-color: #f1f1f1;
+    z-index: 2;
+  }
+
+  .flip-card-back {
+    background-color: #e0e0e0;
+    transform: rotateY(180deg);
+    z-index: 1;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .display-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .flex1 {
+    flex: 1;
+  }
+
+  .content-text-title {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .content-text-light {
+    display: block;
+    opacity: 0.7;
+  }
+
+  .flip-card-content {
+    padding: 15px;
+  }
+
+  .flip-card-content-title,
+  .flip-card-content-subtitle {
+    text-align: center;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+// Responsive utilities
+@include responsive(sm) {
+  .tablet-and-phone {
+    display: none;
+  }
+}
+
+// Additional styles for better visual appearance
+.flip-card-content-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.flip-card-content-subtitle {
+  font-size: 1em;
+  color: #666;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+// Ensure proper sizing for images
+.flip-card-front img,
+.flip-card-back img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

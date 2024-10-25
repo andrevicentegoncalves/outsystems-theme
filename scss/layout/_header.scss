@@ -1,10 +1,100 @@
-/**************************** Header ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-.header .app-logo {
-    max-width: var(--logo-max-width);
+/******************************* Header *********************************/
+
+.header-top {
+  padding: $space-s $space-m;
+
+  @media (max-width: $breakpoint-phone) {
+    padding: $space-xs $space-s;
+  }
 }
-  
+
+.header-content {
+  @include flexbox(row, space-between, center);
+  flex-wrap: nowrap;
+
+  @media (max-width: $breakpoint-phone) {
+    gap: 0;
+  }
+}
+
+.application-name {
+  flex-shrink: 0;
+
+  .app-logo {
+    width: auto;
+    height: rem(30.59);
+    max-width: $logo-max-width;
+
+    @media (max-width: $breakpoint-phone) {
+      height: rem(18);
+    }
+  }
+}
+
+.menu-wrapper {
+  @media (max-width: $breakpoint-phone) {
+    margin-right: $space-s;
+    @include font-style($font-size-xs);
+  }
+}
+
+.page-links-container {
+  @media (max-width: $breakpoint-phone) {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+.app-menu-content {
+  flex-grow: 1;
+  @include flex-center;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 100%;
+    order: 3;
+    margin-top: $space-s;
+  }
+
+  &.menu-hidden {
+    display: none !important;
+  }
+}
+
+.app-menu-links {
+  @include flexbox;
+  gap: $space-m;
+
+  @media (max-width: $breakpoint-phone) {
+    flex-direction: column;
+    align-items: center;
+    gap: $space-s;
+  }
+
+  a {
+    display: block !important;
+    text-decoration: none;
+    color: $color-neutral-10;
+    @include font-style(rem(20), 500);
+    @include transition(color);
+
+    @media (max-width: $breakpoint-phone) {
+      @include font-style($font-size-xs);
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.language-switcher-wrapper {
+  margin-left: auto;
+}
+
+.user-info-wrapper {
+  margin-left: $space-xs;
+}

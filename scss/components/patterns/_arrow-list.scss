@@ -1,0 +1,28 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** ArrowList ****************************/
+
+.arrow-list-content {
+    .grid-item {
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.02);
+        }
+        
+        .flex1 {
+            @include truncate-parent;
+        }
+        
+        .content-text-title,
+        .content-text-light {
+            @include truncate(90%);
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    }
+ }

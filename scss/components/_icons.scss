@@ -1,20 +1,20 @@
-/**************************** Icons ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
+/**************************** Icons ****************************/
+
 /* Icon font definition */
 @font-face {
-    font-family: megasisiconsfont;
-    src: url(var(--icon-font-path) + 'MegasisIconsFont.eot');
-    src: url(var(--icon-font-path) + 'MegasisIconsFont.eot') format('embedded-opentype'),
-         url(var(--icon-font-path) + 'MegasisIconsFont.ttf') format('truetype'),
-         url(var(--icon-font-path) + 'MegasisIconsFont.woff') format('woff'),
-         url(var(--icon-font-path) + 'MegasisIconsFont.svg') format('svg');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: megasisiconsfont;
+  src: url("/TapAgents_TH/MegasisIconsFont.eot");
+  src: url("/TapAgents_TH/MegasisIconsFont.eot") 
+format("embedded-opentype"), 
+        url("/TapAgents_TH/MegasisIconsFont.ttf") format("truetype"), 
+        url("/TapAgents_TH/MegasisIconsFont.woff") format("woff"), 
+        url("/TapAgents_TH/MegasisIconsFont.svg") format("svg");
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Base icon styles */
@@ -30,7 +30,6 @@
 
     &:before {
         font-family: var(--icon-font-family);
-        speak: none; // Prevents screen readers from reading the icon
         font-style: normal;
         font-weight: normal;
         line-height: 1;

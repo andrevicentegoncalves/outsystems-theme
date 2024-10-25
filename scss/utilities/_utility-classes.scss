@@ -1,8 +1,8 @@
-/**************************** Utility Classes ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
+
+/**************************** Utility Classes ****************************/
 
 /* Colors */
 .color-primary{
@@ -43,4 +43,91 @@
 .scrollable-y {
     height: 100vh;
     overflow-y: auto;
+}
+
+/* Device-specific display classes */
+.desktop-only {
+    @media (max-width: $breakpoint-tablet-horizontal) {
+        display: none !important;
+    }
+}
+
+.tablet-only {
+    @media (max-width: $breakpoint-phone-horizontal), (min-width: $breakpoint-desktop) {
+        display: none !important;
+    }
+}
+
+.phone-only {
+    @media (min-width: $breakpoint-tablet) {
+        display: none !important;
+    }
+}
+
+.desktop-and-tablet {
+    @media (max-width: $breakpoint-phone-horizontal) {
+        display: none !important;
+    }
+}
+
+.tablet-and-phone {
+    @media (min-width: $breakpoint-desktop) {
+        display: none !important;
+    }
+}
+
+/* Visibility classes */
+.hide-on-desktop {
+    @media (min-width: $breakpoint-desktop) {
+        display: none !important;
+    }
+}
+
+.hide-on-tablet {
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet-horizontal) {
+        display: none !important;
+    }
+}
+
+.hide-on-phone {
+    @media (max-width: $breakpoint-phone-horizontal) {
+        display: none !important;
+    }
+}
+
+/* Show classes */
+.show-on-desktop {
+    @media (max-width: $breakpoint-tablet-horizontal) {
+        display: none !important;
+    }
+}
+
+.show-on-tablet {
+    @media (max-width: $breakpoint-phone-horizontal), (min-width: $breakpoint-desktop) {
+        display: none !important;
+    }
+}
+
+.show-on-phone {
+    @media (min-width: $breakpoint-tablet) {
+        display: none !important;
+    }
+}
+
+.opacity-s{
+    opacity: var(--opacity-s);
+}
+
+.opacity-m{
+    opacity: var(--opacity-m);
+}
+
+.opacity-l{
+    opacity: var(--opacity-l);
+}
+
+.background-image-center{
+    background-position: center;
+    background-size: cover;
+    height: 100%;
 }

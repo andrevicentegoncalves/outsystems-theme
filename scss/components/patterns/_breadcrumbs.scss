@@ -1,0 +1,75 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Breadcrumbs ****************************/
+
+// Breadcrumbs specific variables
+$breadcrumbs-image-height: rem(30);
+$breadcrumbs-text-max-width: rem(130);
+
+.breadcrumbs-image-height {
+    height: $breadcrumbs-image-height;
+}
+
+.breadcrumbs {
+    &-content {
+        display: flex;
+        align-items: center;
+    }
+
+    &-item {
+        .icon.fa {
+            font-size: inherit;
+            color: inherit;
+        }
+
+        .title {
+            overflow: hidden;
+            flex: 1;
+            display: flex;  
+            align-items: center;
+
+            @media (max-width: $breakpoint-phone-horizontal) {
+                padding-right: 0;
+            }
+        }
+        
+        [data-expression] {
+            display: block;
+            font-size: $font-size-base;
+            
+            @media (max-width: $breakpoint-phone-horizontal) {
+                font-size: $font-size-xs;
+                max-width: $breadcrumbs-text-max-width;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .margin-left-m {
+        margin-left: $space-s;
+        
+        @media (max-width: $breakpoint-phone-horizontal) {
+            margin-left: $space-xs;
+        }
+    }
+
+    .margin-left-base {
+        margin-left: $space-xs;
+        
+        @media (max-width: $breakpoint-phone-horizontal) {
+            margin-left: $space-xs;
+        }
+    }
+
+    .margin-right-s {
+        margin-right: $space-xs;
+        
+        @media (max-width: $breakpoint-phone-horizontal) {
+            margin-right: $space-xs;
+        }
+    }
+}

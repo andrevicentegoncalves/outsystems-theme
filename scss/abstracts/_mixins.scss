@@ -1,63 +1,190 @@
+@mixin apply-font($font-family, $font-weight) {
+  @if $font-family == 'roboto' {
+      @if $font-weight == 'thin' {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 100;
+      } @else if $font-weight == 'light' {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 300;
+      } @else if $font-weight == 'regular' {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+      } @else if $font-weight == 'bold' {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 700;
+      }
+  } @else if $font-family == 'lato' {
+      @if $font-weight == 'thin' {
+          font-family: 'Lato', sans-serif;
+          font-weight: 100;
+      } @else if $font-weight == 'light' {
+          font-family: 'Lato', sans-serif;
+          font-weight: 300;
+      } @else if $font-weight == 'regular' {
+          font-family: 'Lato', sans-serif;
+          font-weight: 400;
+      } @else if $font-weight == 'bold' {
+          font-family: 'Lato', sans-serif;
+          font-weight: 700;
+      }
+  } @else if $font-family == 'montserrat' {
+      @if $font-weight == 'thin' {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 100;
+      } @else if $font-weight == 'light' {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 300;
+      } @else if $font-weight == 'regular' {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+      } @else if $font-weight == 'bold' {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+      }
+  }
+}
+
+
 @mixin flexbox($direction: row, $justify: center, $align: center) {
     display: flex;
     flex-direction: $direction;
     justify-content: $justify;
     align-items: $align;
-  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
-  @mixin responsive($breakpoint) {
-    @if $breakpoint == phone {
-      @media (max-width: #{$breakpoint-phone}) {
-        @content;
-      }
-    }
-    @else if $breakpoint == phone-horizontal {
-      @media (min-width: #{$breakpoint-phone + 1px}) and (max-width: #{$breakpoint-phone-horizontal}) {
-        @content;
-      }
-    }
-    @else if $breakpoint == tablet {
-      @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-tablet-horizontal - 1px}) {
-        @content;
-      }
-    }
-    @else if $breakpoint == tablet-horizontal {
-      @media (min-width: #{$breakpoint-tablet-horizontal}) and (max-width: #{$breakpoint-desktop - 1px}) {
-        @content;
-      }
-    }
-    @else if $breakpoint == desktop {
-      @media (min-width: #{$breakpoint-desktop}) {
-        @content;
-      }
+  
+@mixin responsive($breakpoint) {
+  @if $breakpoint == xs {
+    @content;
+  }
+  @else if $breakpoint == sm {
+    @media (min-width: #{$breakpoint-phone}) {
+      @content;
     }
   }
-  
-  @mixin font-style($size: $font-size-base, $weight: $font-weight-normal, $line-height: $line-height-base) {
-    font-size: $size;
-    font-weight: $weight;
-    line-height: $line-height;
+  @else if $breakpoint == md {
+    @media (min-width: #{$breakpoint-tablet}) {
+      @content;
+    }
   }
-  
-  @mixin box-shadow($shadow: $box-shadow) {
-    box-shadow: $shadow;
+  @else if $breakpoint == lg {
+    @media (min-width: #{$breakpoint-tablet-horizontal}) {
+      @content;
+    }
   }
-  
-  @mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
-    transition: $property $duration $timing;
+  @else if $breakpoint == xl {
+    @media (min-width: #{$breakpoint-desktop}) {
+      @content;
+    }
   }
-  
-  @mixin absolute($top: $position-top, $right: $position-right, $bottom: $position-bottom, $left: $position-left) {
-    position: absolute;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
+}
+
+@mixin generate-grid-columns($breakpoints, $grid-columns) {
+    @each $breakpoint, $min-width in $breakpoints {
+      @media (min-width: $min-width) {
+        @for $i from 1 through $grid-columns {
+          .row .col-#{$breakpoint}-#{$i} { 
+            grid-column: span $i;
+          }
+        }
+      }
+    }
   }
-  
-  @mixin truncate($width: $truncate-width) {
-    max-width: $width;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+// Mixin to handle default full-width columns (i.e., .col-12)
+@mixin default-grid-columns($grid-columns) {
+  @for $i from 1 through $grid-columns {
+    .col-#{$i} {
+      grid-column: span $i;
+    }
   }
+}
+  
+@mixin font-style($size: $font-size-base, $weight: $font-weight-normal, $line-height: $line-height-base) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin box-shadow($shadow: $box-shadow) {
+  box-shadow: $shadow;
+}
+
+@mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}
+
+@mixin absolute($top: $position-top, $right: $position-right, $bottom: $position-bottom, $left: $position-left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin truncate($width: $truncate-width, $mobile-width: null) {
+  max-width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $mobile-width {
+    @media (max-width: $breakpoint-phone) {
+      max-width: $mobile-width;
+    }
+  }
+}
+
+@mixin truncate-parent {
+  overflow: hidden;
+  flex: 1;
+  display: flex;  
+  align-items: center; 
+}
+
+@mixin create-grid($class, $columns) {
+  .grid-#{$class} {
+    display: grid;
+    gap: $grid-gap;
+
+    @each $breakpoint, $column-count in $columns {
+      @if $breakpoint == 'xs' {
+        grid-template-columns: repeat($column-count, minmax(0, 1fr));
+        // Fallback for IE
+        -ms-grid-columns: repeat($column-count, 1fr); 
+      } @else {
+        @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+          grid-template-columns: repeat($column-count, minmax(0, 1fr));
+          // Fallback for IE
+          -ms-grid-columns: repeat($column-count, 1fr); 
+        }
+      }
+    }
+  }
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin glow-animation($speed: 3s, $opacity: 0.9) { 
+  animation: glow $speed linear infinite;
+  background: linear-gradient(to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(0, 0, 0, 0.3) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  bottom: 0;
+  content: "";
+  left: 0;
+  opacity: $opacity;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

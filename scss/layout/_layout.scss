@@ -1,31 +1,70 @@
-/**************************** Layout ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-// General layout styles
-.layout {
-  .footer.ThemeGrid_Container {
-    padding: var(--space-xs) var(--space-xl);
-  }
+/**************************** Layout ****************************/
 
-  .footer-content.ThemeGrid_Container {
-    padding: var(--space-base) var(--space-xl);
+/* ThemeGrid Base Container */
+.ThemeGrid_Container {
+  margin: $space-none auto;
+  width: 100%;
+  max-width: $layout-max-width;
+  box-sizing: border-box;
+  
+  @include responsive(xl) {
+    width: 90%;
+  }
+  
+  @include responsive(md) {
+    width: 95%;
   }
 }
 
-// Common container styles
+/* Layout Structure */
+.layout {
+  .header .ThemeGrid_Container {
+    padding: $space-none $space-xl;
+    max-width: $layout-max-width;
+  }
+
+  .main-content.ThemeGrid_Container {
+    padding: $space-xl;
+    max-width: $layout-max-width;
+  }
+
+  .footer.ThemeGrid_Container {
+    padding: $space-base $space-xl;
+    max-width: $layout-max-width;
+  }
+}
+
+/* Common Container Styles */
 .header .ThemeGrid_Container,
 .info-bar.ThemeGrid_Container,
 .wide-bar.ThemeGrid_Container,
 .breadcrumbs-bar.ThemeGrid_Container,
 .footer-content.ThemeGrid_Container,
 .footer .ThemeGrid_Container {
-  padding: var(--space-none) var(--space-xl);
+  padding: $space-none $space-xl;
+  max-width: $layout-max-width;
 }
 
-// Responsive styles for phone-sized screens
+/* Tablet Responsive */
+.tablet {
+  .header .ThemeGrid_Container {
+    padding: $space-none $space-m;
+  }
+
+  .main-content.ThemeGrid_Container {
+    padding: $space-m;
+  }
+
+  .footer.ThemeGrid_Container {
+    padding: $space-base $space-m;
+  }
+}
+
+/* Phone Responsive */
 .phone {
   .header .ThemeGrid_Container,
   .info-bar.ThemeGrid_Container,
@@ -33,7 +72,40 @@
   .breadcrumbs-bar.ThemeGrid_Container,
   .footer-content.ThemeGrid_Container,
   .footer .ThemeGrid_Container {
-    padding-left: calc(var(--os-safe-area-left) + var(--space-base));
-    padding-right: calc(var(--os-safe-area-right) + var(--space-base));
+    padding-left: calc(var(--os-safe-area-left) + #{$space-base});
+    padding-right: calc(var(--os-safe-area-right) + #{$space-base});
+  }
+
+  .main-content.ThemeGrid_Container {
+    padding: $space-base;
+    padding-left: calc(var(--os-safe-area-left) + #{$space-base});
+    padding-right: calc(var(--os-safe-area-right) + #{$space-base});
+  }
+}
+
+/* Full Width Sections */
+.full-width-section {
+  position: relative;
+
+  .ThemeGrid_Container {
+    padding: $space-none $space-xl;
+    max-width: $layout-max-width;
+  }
+}
+
+.section-content {
+  position: relative;
+}
+
+.section-background {
+  @include absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

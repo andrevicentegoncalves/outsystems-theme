@@ -1,54 +1,94 @@
-/******************************* Grid  *********************************/
-
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-/* Fixed-width container */
+/****************************** Grid *******************************/
+
+
+// Grid container
 .grid-container {
     width: 100%;
-    padding-right: $grid-gutter-width / 2;
-    padding-left: $grid-gutter-width / 2;
-    margin-right: auto;
-    margin-left: auto;
-
-    @each $breakpoint, $width in $grid-breakpoints {
-        @media (min-width: $width) {
-            @if map-has-key($grid-container-max-widths, $breakpoint) {
-                max-width: map-get($grid-container-max-widths, $breakpoint);
-            }
+    max-width: $layout-max-width;
+    margin: 0 auto;
+    padding: 0 $space-base;
+    
+    script {
+        display: none !important;
+        visibility: hidden !important;
+        height: $space-none !important;
+        width: $space-none !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        z-index: -1 !important;
+        opacity: $space-none !important;
+    }
+ }
+ 
+ @each $breakpoint, $width in $grid-container-max-widths {
+    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+        .grid-container {
+            max-width: $width;
         }
     }
-}
+ }
+ 
+ .grid-item {
+    overflow: hidden;
+    -webkit-transition: $transition-base;
+    transition: $transition-base;
+    height: auto !important;
+    min-height: unset !important;
+    display: flex !important;
+    flex-direction: column !important;
+ 
+    &[style*="height: 0px"] {
+        height: auto !important;
+        min-height: unset !important;
+        margin: $space-none !important;
+    }
+ }
+ 
+ .grid-item-content {
+    padding: $space-base;
+ }
 
-/* Full-width container */
-.grid-container-fluid {
-    width: 100%;
-    padding-right: $grid-gutter-width / 2;
-    padding-left: $grid-gutter-width / 2;
-    margin-right: auto;
-    margin-left: auto;
-}
+// Create grid classes
+@include create-grid(2, (
+  xs: 1,
+  sm: 2,
+  md: 2,
+  lg: 2,
+  xl: 2
+));
 
-/* Basic grid layout */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: $grid-gutter-width;
-}
+@include create-grid(3, (
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 3,
+  xl: 3
+));
+
+@include create-grid(4, (
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 4,
+  xl: 4
+));
 
 /* Row within grid */
 .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: inherit;
+    grid-auto-flow: row;
 }
 
-/* Generate column span classes */
-@for $i from 1 through 12 {
-    .col-#{$i} { grid-column: span $i; }
-}
+// Define columns for each breakpoint
+@include generate-grid-columns($grid-breakpoints, $grid-columns);
+
+// Default columns
+@include default-grid-columns($grid-columns);
 
 /* Fractional grid classes */
 .grid-fourth { grid-column: span 3; }
@@ -57,7 +97,7 @@
 .grid-two-thirds { grid-column: span 8; }
 .grid-three-fourths { grid-column: span 9; }
 
-/* Grid start classes */
+/* Grid Positioning */
 .grid-start-first { grid-column-start: 1; }
 .grid-start-fourth { grid-column-start: 4; }
 .grid-start-third { grid-column-start: 5; }
@@ -65,24 +105,33 @@
 .grid-start-two-thirds { grid-column-start: 9; }
 .grid-start-three-fourths { grid-column-start: 10; }
 
-/* Gap size classes */
+@each $breakpoint, $width in $grid-breakpoints {
+    @include responsive($breakpoint) {
+        @for $i from 1 through ($grid-columns - 1) {
+            .grid-start-#{$breakpoint}-#{$i} { grid-column-start: $i; }
+        }
+    }
+}
+
+/* Gap Utilities */
 .gap-05 { gap: 0.5rem; }
 .gap-1 { gap: 1rem; }
 .gap-2 { gap: 2rem; }
 .gap-3 { gap: 3rem; }
 
-/* Alignment classes */
+/* Alignment Utilities */
 .grid-align-center { align-items: center; }
 .grid-justify-center { justify-items: center; }
 
-/* Dense auto flow */
+/* Grid Flow */
 .grid-auto-flow-dense { grid-auto-flow: dense; }
 
-/* Remove gutters from grid */
+/* No Gutters */
 .no-gutters {
     margin-right: 0;
     margin-left: 0;
-    
+    gap: 0;
+
     > .col,
     > [class*="col-"] {
         padding-right: 0;
@@ -90,8 +139,31 @@
     }
 }
 
-/* Grid item as a card */
+/* Special Cases */
 .card.grid-item { padding: 0; }
-
-/* Nested grid */
 .grid .grid { grid-column: 1 / -1; }
+
+/* Responsive Utilities */
+@each $breakpoint, $width in $grid-breakpoints {
+    @media (min-width: $width) {
+        .hidden-#{$breakpoint}-up {
+            display: none !important;
+        }
+    }
+}
+
+@each $breakpoint, $width in $grid-breakpoints {
+    $breakpoint-names: map-keys($grid-breakpoints);
+    $breakpoint-index: index($breakpoint-names, $breakpoint);
+    
+    @if $breakpoint-index < length($breakpoint-names) {
+        $next-breakpoint: nth($breakpoint-names, $breakpoint-index + 1);
+        $next-width: map-get($grid-breakpoints, $next-breakpoint);
+        
+        @media (max-width: ($next-width - 0.02)) {
+            .hidden-#{$breakpoint}-down {
+                display: none !important;
+            }
+        }
+    }
+}

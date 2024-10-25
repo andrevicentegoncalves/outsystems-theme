@@ -1,0 +1,192 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Carousel ****************************/
+
+/* News banner carousel tab */
+.news-banner-wrapper {
+  position: relative;
+  height: $banner-height;
+  z-index: 1;
+
+  @media (max-width: $breakpoint-phone) {
+    height: $banner-height-phone;
+
+    .wide-bar.ThemeGrid_Container,
+    .info-bar.ThemeGrid_Container {
+      padding-left: var(--space-none); 
+      padding-right: var(--space-none); 
+    }
+
+    .news-banner-content-container {
+      padding-left: calc(var(--os-safe-area-left) + var(--space-base));
+      padding-right: calc(var(--os-safe-area-right) + var(--space-base));
+    }
+  }
+
+  .banner-background-image {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    &__image {
+      position: absolute;
+      top: $position-top;
+      left: $position-left;
+      right: $position-right;
+      bottom: $position-bottom;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: $z-index-dropdown;
+      transition: $transition-base;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: $position-top;
+      left: $position-left;
+      right: $position-right;
+      bottom: $position-bottom;
+      background: rgba($color-neutral-10, $banner-overlay-opacity);
+      z-index: $z-index-sticky;
+    }
+
+    > * {
+      position: relative;
+      z-index: $z-index-fixed;
+    }
+  }
+
+  .news-banner-content-container {
+    position: relative;
+    z-index: $z-index-fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .news-tab-content-title,
+    .news-tab-content-subtitle,
+    .news-tab-content-button {
+      position: relative;
+      z-index: $z-index-fixed;
+    }
+    
+    .btn-primary {
+      opacity: $opaque;
+    }
+  }
+
+  .carousel-tabs-content-width {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-tabs-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: $z-index-modal;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: $breakpoint-phone) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .carousel-tabs-list {
+    display: flex;
+    height: 100%;
+    transition: left 0.3s ease;
+    position: relative;
+    width: max-content;
+
+    @media (max-width: $breakpoint-phone) {
+      width: calc(100% + 40px);
+      margin-left: -20px;
+    }
+  }
+
+  .carousel-tabs-item {
+    flex: 0 0 auto;
+    width: 210px;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-neutral-0;
+    text-align: center;
+    transition: background-color 0.3s ease, border-top 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    @media (max-width: $breakpoint-phone) {
+      width: 33.33%;
+      min-width: 100px;
+    }
+
+    &.carousel-tab-selected {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-top: 3px solid $color-primary;
+    }
+
+    &.inactive {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: $position-top;
+      left: $position-left;
+      right: $position-right;
+      bottom: $position-bottom;
+      z-index: 1;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .text-truncate-parent {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .carousel-tabs-item-text {
+    display: inline-block;
+    max-width: 100%;
+  }
+}
+
+.banner-height {
+  height: $banner-height;
+
+  @media (max-width: $breakpoint-phone) {
+    height: $banner-height-phone;
+  }
+}
+
+.carousel-tabs-container:not(.is-draggable) {
+  .carousel-tabs-list {
+    cursor: default;
+    transition: none;
+  }
+
+  .carousel-tabs-item {
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

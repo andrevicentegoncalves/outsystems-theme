@@ -1,15 +1,15 @@
-/**************************** Images ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
+/**************************** Images ****************************/
+
 /* App Images */
-.img-star-alliance{
-    width: var(--image-star-aliance);
+.image-star-alliance{
+    width: var(--image-star-alliance);
 }
 
-.img-captcha{
+.image-captcha{
     width: var(--image-width-captcha);
     height: var(--image-height-captcha);
 }

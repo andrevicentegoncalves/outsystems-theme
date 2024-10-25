@@ -1,3 +1,30 @@
+// Import the Sass math module to use division
+@use "sass:math";
+
+// Define the base font size for the project
+$font-size--base: 16px;
+
+
+// Strips the unit from a number
+ 
+@function strip-unit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+// Converts a pixel value to rem 
 @function rem($pixels) {
-    @return ($pixels / 16) * 1rem;
+  // Ensure $pixels is unitless
+  $pixels: strip-unit($pixels);
+  @return math.div($pixels, strip-unit($font-size--base)) * 1rem;
+}
+
+// Converts a pixel value to em
+@function em($pixels, $context: $font-size--base) {
+  // Ensure both $pixels and $context are unitless
+  @return math.div(strip-unit($pixels), strip-unit($context)) * 1em;
+}
+
+// Lighten a color by a specified percentage
+@function lighten-color($color, $percent) {
+  @return mix(white, $color, $percent);
 }

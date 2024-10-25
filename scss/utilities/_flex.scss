@@ -1,8 +1,8 @@
-/**************************** Flex ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
+
+/**************************** Flex ****************************/
 
 /* Flex grow */
 .flex-grow-0 { flex-grow: 0; }
@@ -21,7 +21,7 @@
       flex-direction: column;
     }
   }
-  
+
 /* Flex grid */
 
 .flex-grid {

@@ -1,3 +1,5 @@
+$is_main: true;
+
 // Abstract
 @import 'abstracts/functions';
 @import 'abstracts/variables';
@@ -17,9 +19,12 @@
 @import 'components/forms';
 @import 'components/submenus';
 @import 'components/checkboxes';
-@import 'components/icons';
+@import 'components/flip-card';
+@import 'components/language-switcher';
 @import 'components/images';
 @import 'components/search';
+@import 'components/icons';
+@import 'components/badges';
 
 // Layout
 @import 'layout/layout';

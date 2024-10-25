@@ -1,29 +1,51 @@
+@import '../abstracts/functions';
+
 // Color Palette
 $color-primary: #72BE44;
+
 $color-success: #28a745;
 $color-danger: #dc3545;
 $color-warning: #ffc107;
 $color-warning-light: #FEFBCD;
 $color-info: #17a2b8;
-$color-light: #f8f9fa;
-$color-dark: #343a40;
+
+$color-neutral-0:#ffffff;
+$color-neutral-1:#f8f9fa;
+$color-neutral-2:#f1f3f5;
+$color-neutral-3:#e9ecef;
+$color-neutral-4:#dee2e6;
+$color-neutral-5:#ced4da;
+$color-neutral-6:#adb5bd;
+$color-neutral-7:#6a7178;
+$color-neutral-8:#4f575e;
+$color-neutral-9:#272b30;
+$color-neutral-10:#101213;
+
+$color-light: $color-neutral-1;
+$color-dark: $color-neutral-9;
+
+$color-footer: #333333;
+$color-footer-section: #2C2C2C;
 
 // Layout 
 $layout-max-width: rem(1440);
+$layout-half-max-width: rem(720);
 
 // Login
 $login-form-width: rem(432);
 $login-background-image: url(/TapAgents_TH/img/TapAgents_TH.Login_Background.jpg);
 
 // Image
-$image-width-captcha: 286px;
-$image-height-captcha: 40px;
-$image-star-alliance: 270px;
-$logo-max-width: 180px;
+$image-width-captcha: rem(286);
+$image-height-captcha: rem(40);
+$image-star-alliance: rem(270);
+$logo-max-width: rem(180);
 
 // Typography
 $font-family-base: 'Arial', sans-serif;
 $font-size-xxs: rem(10);
+$font-size-xs: rem(12);
+$font-size-base: rem(16);
 $line-height-base: 1.5;
 
 // Font Weights
@@ -31,13 +53,14 @@ $font-weight-thin: 100;
 $font-weight-extra-light: 200;
 
 // Icons
-$icon-font-path: '/TapAgents_TH/';
 $icon-font-family: 'MegasisIconsFont';
 
 // Components
 $size-checkbox-s: rem(12);
 
 // Border
+$border-size-s: 1px;
+$border-width-selected: 3px;
 $border-width: 0.3px;
 $border-style: solid;
 $border-color: $color-primary;
@@ -57,10 +80,10 @@ $grid-gap: 25px;
 $grid-gutter-width: 30px;
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
+  sm: $breakpoint-phone,
+  md: $breakpoint-tablet,
+  lg: $breakpoint-tablet-horizontal,
+  xl: $breakpoint-desktop
 );
 
 $grid-container-max-widths: (
@@ -89,9 +112,36 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 // Truncation
 $truncate-width: 100%;
 
+// Spacing
+$space-none: 0;
+$space-xs: rem(4);
+$space-s: rem(8);
+$space-base: rem(16);
+$space-m: rem(24);
+$space-xl: rem(40);
+$space-xxl: rem(48);
+
+// Dimensions
+$banner-height: rem(400);
+$banner-height-phone: rem(309);
+$bottom-tab-width: 170px;
+$bottom-tab-height: 60px;
+
 // Positioning
 $position-top: 0;
 $position-right: 0;
 $position-bottom: 0;
 $position-left: 0;
 
+// Opacity
+$banner-overlay-opacity: 0.4;
+$opacity-s: 40%;
+$opacity-m: 60%;
+$opacity-l: 80%;
+$opacity-xl: 90%;
+$opaque: 1;
+
+// Flip card
+$flip-card-height: 240px;
+$flip-card-expanded-height: 480px;
+$flip-card-transition-time: 0.6s;

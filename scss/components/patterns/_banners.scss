@@ -1,0 +1,93 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Banners ****************************/
+
+// News banner
+.news-banner-wrapper {
+  position: relative;
+  height: $banner-height;
+
+    @media (max-width: $breakpoint-phone) {
+      .phone .wide-bar.ThemeGrid_Container{
+      padding-left: var(--space-none);
+      padding-right: var(--space-none);
+    }
+  }
+  
+
+  @media (max-width: $breakpoint-phone) {
+    height: $banner-height-phone;
+  }
+
+  .banner-background-image {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    &__image {
+      position: absolute;
+      top: $position-top;
+      left: $position-left;
+      right: $position-right;
+      bottom: $position-bottom;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: $z-index-dropdown;
+      transition: $transition-base;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: $position-top;
+      left: $position-left;
+      right: $position-right;
+      bottom: $position-bottom;
+      background: rgba($color-neutral-10, $banner-overlay-opacity);
+      z-index: $z-index-sticky;
+    }
+
+    > * {
+      position: relative;
+      z-index: $z-index-fixed;
+    }
+  }
+
+  .news-banner-content-container {
+    position: relative;
+    z-index: $z-index-fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .news-tab-content-title,
+    .news-tab-content-subtitle,
+    .news-tab-content-button {
+      position: relative;
+      z-index: $z-index-fixed;
+    }
+    
+    .btn-primary {
+      opacity: $opaque;
+    }
+  }
+}
+
+.banner-height {
+  height: $banner-height;
+
+  @media (max-width: $breakpoint-phone) {
+    height: $banner-height-phone;
+  }
+}
+
+// Shifts background image on mobile
+@media (max-width: 767px) {
+  .banner-background-image {
+    background-position: 35% center;
+  }
+}

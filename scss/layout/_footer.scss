@@ -1,0 +1,19 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/****************************** Footer *******************************/
+
+.separator-footer-section {
+    border-left: $border-style 2px $color-neutral-6;
+    margin: $space-none 1%;
+    height: rem(104);
+  }
+  
+  .background-footer {
+    background: $color-footer;
+  }
+  
+  .background-footer-section {
+    background: $color-footer-section;
+  }

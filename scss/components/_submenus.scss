@@ -1,8 +1,8 @@
-/**************************** Submenus ****************************/
-
 @import '../abstracts/functions';
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
+
+/**************************** Submenus ****************************/
 
 /* Submenu styles */
 .submenu-clean {
@@ -19,3 +19,11 @@
   .desktop .osui-submenu__header:hover {
     border-bottom: none;
   }
+
+  .osui-submenu__header__icon {
+    user-select: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none; 
+    cursor: pointer; 
+}

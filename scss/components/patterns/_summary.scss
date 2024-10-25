@@ -1,0 +1,75 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Summary ****************************/
+
+
+.summary-list {
+    @include flexbox(row, flex-start, stretch);
+    gap: 0;
+    width: 100%;
+  
+    @media screen and (max-width: $breakpoint-tablet) {
+      flex-direction: column;
+      display: block;
+    }
+  
+    > [data-container] {
+      @include flexbox;
+      padding: rem(16);
+      width: 20%;
+  
+      @media screen and (max-width: $breakpoint-tablet) {
+        width: 100%;
+        display: block;
+      }
+    }
+  
+    a {
+      text-decoration: none;
+      color: $color-neutral-0;
+      @include truncate-parent;
+  
+      span {
+        @include truncate(25ch, 100%);
+      }
+    }
+  }
+  
+  .footer-section-container {
+    @include flex-column;
+    width: 100%;
+  }
+  
+  .summary-section-title {
+    @include truncate(23ch, 100%);
+  
+    @media screen and (max-width: $breakpoint-tablet) {
+      margin-top: rem(24);
+    }
+  }
+  
+  .summary-section-list-item {
+    @include truncate-parent;
+  
+    @media screen and (max-width: $breakpoint-tablet) {
+      margin-top: rem(4);
+    }
+  }
+  
+  .separator-summary-section {
+    width: rem(1);
+    background-color: $color-neutral-0;
+    height: auto;
+    min-height: 100%;
+    margin: 0 rem(20);
+    align-self: stretch;
+  
+    @media screen and (max-width: $breakpoint-tablet) {
+      width: 100%;
+      height: rem(1);
+      margin: 0;
+      display: block;
+    }
+  }
