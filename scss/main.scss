@@ -19,12 +19,16 @@ $is_main: true;
 @import 'components/forms';
 @import 'components/submenus';
 @import 'components/checkboxes';
-@import 'components/flip-card';
+@import 'components/dropdowns';
 @import 'components/language-switcher';
 @import 'components/images';
 @import 'components/search';
 @import 'components/icons';
 @import 'components/badges';
+@import 'components/user-info';
+@import 'components/responsive-grid';
+@import 'components/popups';
+
 
 // Layout
 @import 'layout/layout';

@@ -4,53 +4,102 @@
 
 /**************************** Carousel ****************************/
 
-/* News banner carousel tab */
+.responsive-carousel-wrapper .osui-carousel .splide.splide--loop.splide--ltr.splide--draggable.is-active .splide__arrows.splide__arrows--ltr .splide__arrow {
+  background: none;
+  border: none;
+  box-shadow: none;
+  bottom: rem(-32) !important;
+  top: auto !important;
+  cursor: pointer;
+  position: absolute;
+  transform: none !important;
+  height: rem(19);
+  width: rem(19);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.splide__arrow--prev {
+    left: calc(50% - rem(120)) !important;
+    right: auto !important;
+  }
+  
+  &.splide__arrow--next {
+    right: calc(50% - rem(120)) !important;
+    left: auto !important;
+  }
+
+  &:hover {
+    background: none;
+    
+    svg path {
+      fill: $color-primary;
+    }
+  }
+}
+
+/* Carousel News Banner */
 .news-banner-wrapper {
   position: relative;
   height: $banner-height;
   z-index: 1;
+  overflow: hidden;
 
-  @media (max-width: $breakpoint-phone) {
-    height: $banner-height-phone;
+  // Banner content
+  .news-banner-content-container {
+    position: relative;
+    z-index: $z-index-fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 60px;
 
-    .wide-bar.ThemeGrid_Container,
-    .info-bar.ThemeGrid_Container {
-      padding-left: var(--space-none); 
-      padding-right: var(--space-none); 
-    }
+    .news-tab-content {
+      &-title {
+        font-size: var(--font-size-h1);
+        line-height: 1.2;
+        color: $color-neutral-0;
+        margin-bottom: $space-base;
+      }
 
-    .news-banner-content-container {
-      padding-left: calc(var(--os-safe-area-left) + var(--space-base));
-      padding-right: calc(var(--os-safe-area-right) + var(--space-base));
+      &-subtitle {
+        font-size: var(--font-size-h6);
+        color: $color-neutral-0;
+        margin-bottom: $space-l;
+      }
+
+      &-button .btn-primary {
+        opacity: $opaque;
+        transition: opacity 0.2s ease;
+        &:hover { opacity: 0.9; }
+      }
     }
   }
 
+  // Background handling
   .banner-background-image {
     position: relative;
     height: 100%;
     width: 100%;
     overflow: hidden;
+    @include gpu-accelerate;
 
     &__image {
       position: absolute;
-      top: $position-top;
-      left: $position-left;
-      right: $position-right;
-      bottom: $position-bottom;
+      inset: 0;
       background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+      background-position: center;
       z-index: $z-index-dropdown;
-      transition: $transition-base;
+      @include gpu-accelerate;
     }
 
     &::before {
       content: "";
       position: absolute;
-      top: $position-top;
-      left: $position-left;
-      right: $position-right;
-      bottom: $position-bottom;
+      inset: 0;
       background: rgba($color-neutral-10, $banner-overlay-opacity);
       z-index: $z-index-sticky;
     }
@@ -60,133 +109,138 @@
       z-index: $z-index-fixed;
     }
   }
+}
 
-  .news-banner-content-container {
-    position: relative;
-    z-index: $z-index-fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+// Carousel tabs
+.carousel-tabs-container {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 0;
+  height: 60px;
+  width: 100%;
+  z-index: $z-index-modal;
+  box-sizing: border-box;
+  overflow: hidden;
+  touch-action: pan-x pinch-zoom;
+  -webkit-tap-highlight-color: transparent;
+  @include gpu-accelerate;
 
-    .news-tab-content-title,
-    .news-tab-content-subtitle,
-    .news-tab-content-button {
-      position: relative;
-      z-index: $z-index-fixed;
-    }
-    
-    .btn-primary {
-      opacity: $opaque;
-    }
-  }
-
-  .carousel-tabs-content-width {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .carousel-tabs-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    z-index: $z-index-modal;
-    width: 100%;
-    box-sizing: border-box;
-
-    @media (max-width: $breakpoint-phone) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
-
+  // Optimized list
   .carousel-tabs-list {
     display: flex;
     height: 100%;
-    transition: left 0.3s ease;
     position: relative;
     width: max-content;
-
-    @media (max-width: $breakpoint-phone) {
-      width: calc(100% + 40px);
-      margin-left: -20px;
+    left: 0;
+    transition: left 0.3s ease;
+    @include gpu-accelerate;
+    
+    &.is-dragging {
+      transition: none;
+      * { pointer-events: none; }
     }
   }
 
+  // Optimized tab items
   .carousel-tabs-item {
-    flex: 0 0 auto;
-    width: 210px;
-    height: 100%;
-    padding: 0 20px;
+    height: $bottom-tab-height;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $color-neutral-0;
-    text-align: center;
-    transition: background-color 0.3s ease, border-top 0.3s ease;
-    position: relative;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba($color-neutral-10, 0.4);
+    border-top: $border-width solid transparent;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+    padding: 0 $space-s;
+    @include gpu-accelerate;
 
-    @media (max-width: $breakpoint-phone) {
-      width: 33.33%;
+    // States
+    &.carousel-tab-selected {
+      background-color: rgba($color-neutral-10, 0.7);
+      border-top-color: $color-primary;
+      border-top-width: $border-width-selected;
+    }
+
+    &:not(.carousel-tab-selected):hover {
+      background-color: rgba($color-neutral-10, 0.6);
+    }
+
+    &:active {
+      transform: scale(0.98) translate3d(0, 0, 0);
+    }
+  }
+
+  // Optimized text
+  .carousel-tabs-item-text {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: $font-size-base;
+    font-weight: 500;
+    padding: 0 $space-s;
+    user-select: none;
+    text-align: center;
+  }
+
+  // Draggable states
+  &.is-draggable {
+    .carousel-tabs-list {
+      cursor: grab;
+      &.is-dragging { cursor: grabbing; }
+    }
+  }
+}
+
+// Mobile optimizations
+@media (max-width: $breakpoint-phone) {
+  .news-banner-wrapper {
+    height: $banner-height-phone;
+
+    .news-banner-content-container {
+      padding-left: calc(var(--os-safe-area-left) + #{$space-base});
+      padding-right: calc(var(--os-safe-area-right) + #{$space-base});
+      padding-top: calc(var(--os-safe-area-right) - #{$space-base});
+      
+      .news-tab-content-title {
+        font-size: var(--font-size-h2);
+      }
+      
+      .news-tab-content-subtitle {
+        font-size: var(--font-size-base);
+      }
+    }
+  }
+
+  .carousel-tabs-container {
+
+    left:0;
+
+    .carousel-tabs-item {
       min-width: 100px;
     }
-
-    &.carousel-tab-selected {
-      background-color: rgba(0, 0, 0, 0.7);
-      border-top: 3px solid $color-primary;
-    }
-
-    &.inactive {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: $position-top;
-      left: $position-left;
-      right: $position-right;
-      bottom: $position-bottom;
-      z-index: 1;
-    }
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-
-  .text-truncate-parent {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .carousel-tabs-item-text {
-    display: inline-block;
-    max-width: 100%;
   }
 }
 
-.banner-height {
-  height: $banner-height;
-
-  @media (max-width: $breakpoint-phone) {
-    height: $banner-height-phone;
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .carousel-tabs-container * {
+    transition: none !important;
   }
 }
 
-.carousel-tabs-container:not(.is-draggable) {
-  .carousel-tabs-list {
-    cursor: default;
-    transition: none;
+// Print styles
+@media print {
+  .carousel-tabs-container {
+    display: none;
   }
+}
 
-  .carousel-tabs-item {
-    &:first-child {
-      margin-left: 0;
-    }
-  }
+// No JS fallback
+.no-js .carousel-tabs-container {
+  display: none;
 }

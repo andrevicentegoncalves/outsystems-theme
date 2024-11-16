@@ -12,6 +12,11 @@
 @import 'components/patterns/summary';
 @import 'components/patterns/arrow-list';
 @import 'components/patterns/content_loading_placeholder';
+@import 'components/patterns/suggestions';
+@import 'components/patterns/grid-flip-card';
+@import 'components/patterns/lists';
 
-// App Exclusive
-@import 'components/patterns/article';
+// App Specific
+@import 'app-specific/tap-agents/article';
+@import 'app-specific/tap-agents/signup';
+@import 'app-specific/tap-agents/main-ckeditor';

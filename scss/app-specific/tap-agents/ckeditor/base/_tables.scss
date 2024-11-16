@@ -1,0 +1,81 @@
+.cke_editable td p,
+.ArticleDiv td p,
+.NewsletterDiv td p {
+    margin: 0;
+}
+
+.cke_editable table[cellSpacing],
+.ArticleDiv table[cellSpacing],
+.NewsletterDiv table[cellSpacing] {
+    border-collapse: collapse;
+}
+
+.cke_editable table,
+.cke_editable table tr,
+.cke_editable table td,
+.ArticleDiv table,
+.ArticleDiv table tr,
+.ArticleDiv table td,
+.NewsletterDiv table,
+.NewsletterDiv table tr,
+.NewsletterDiv table td {
+    border: solid $border-size-s $color-neutral-5;
+    border-collapse: collapse;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: $font-size-s;
+}
+
+.cke_editable th,
+.ArticleDiv th,
+.NewsletterDiv th,
+table.Newsletter table th {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: $font-size-s;
+    font-weight: 700;
+    text-align: center;
+    color: $color-footer-section;
+    background-color: $color-primary;
+    padding: $space-s;
+}
+
+.cke_editable td,
+.ArticleDiv td,
+table.Newsletter table td {
+    padding: $space-s;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: $font-size-s;
+    vertical-align: middle;
+}
+
+.cke_editable td,
+.ArticleDiv td {
+    font-weight: 700;
+    color: $color-neutral-7;
+}
+
+// Newsletter Specific
+table.Newsletter {
+    width: 745px;
+    border-spacing: 0;
+    word-wrap: break-word;
+}
+
+table.Newsletter .NewsletterTitle {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: $font-size-l;
+    font-weight: 700;
+}
+
+table.Newsletter .NewsletterText {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: $font-size-s;
+    font-weight: 400;
+}
+
+table.Newsletter,
+table.Newsletter tr,
+table.Newsletter td,
+table.Newsletter th {
+    border: none;
+    border-collapse: collapse;
+}

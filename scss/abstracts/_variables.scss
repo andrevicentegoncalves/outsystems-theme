@@ -30,6 +30,7 @@ $color-footer-section: #2C2C2C;
 // Layout 
 $layout-max-width: rem(1440);
 $layout-half-max-width: rem(720);
+$popup-max-width: rem(650);
 
 // Login
 $login-form-width: rem(432);
@@ -45,12 +46,17 @@ $logo-max-width: rem(180);
 $font-family-base: 'Arial', sans-serif;
 $font-size-xxs: rem(10);
 $font-size-xs: rem(12);
+$font-size-s: rem(14);
 $font-size-base: rem(16);
+$font-size-m: rem(24);
+$font-size-l: rem(32);
+$font-size-xl: rem(48);
 $line-height-base: 1.5;
 
 // Font Weights
 $font-weight-thin: 100;
 $font-weight-extra-light: 200;
+
 
 // Icons
 $icon-font-family: 'MegasisIconsFont';
@@ -64,6 +70,7 @@ $border-width-selected: 3px;
 $border-width: 0.3px;
 $border-style: solid;
 $border-color: $color-primary;
+$border-radius-soft: 4px;
 $border-radius-extra-soft: 15px;
 
 // Breakpoints
@@ -87,10 +94,10 @@ $grid-breakpoints: (
 );
 
 $grid-container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px
+  sm: $breakpoint-phone-horizontal,
+  md: $breakpoint-tablet-horizontal,
+  lg: $breakpoint-desktop,
+  xl: $layout-max-width
 );
 
 // Z-index
@@ -118,6 +125,7 @@ $space-xs: rem(4);
 $space-s: rem(8);
 $space-base: rem(16);
 $space-m: rem(24);
+$space-l: rem(28);
 $space-xl: rem(40);
 $space-xxl: rem(48);
 

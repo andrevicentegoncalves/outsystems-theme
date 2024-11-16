@@ -1,0 +1,12 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Dropdowns ****************************/
+
+.dropdown-container {
+    > div.dropdown-display,
+    > select.dropdown-display {
+        padding-right: 30px;
+    }
+}

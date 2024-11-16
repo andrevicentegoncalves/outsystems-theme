@@ -1,0 +1,55 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Lists ****************************/
+
+/* List Files */
+.list-file-category {
+    background-color: $color-neutral-1;
+    padding: $space-m;
+    margin-bottom: $space-l;
+
+    &-label {
+        font-weight: bold;
+        color: $color-neutral-9;
+        margin-bottom: $space-s;
+    }
+
+    &-container {
+        padding: $space-m;
+        border-top: $border-style $border-color $border-size-s;
+    }
+}
+
+.list-files {
+    display: flex;
+    flex-direction: column;
+    gap: $space-s;
+
+    &-item {
+        padding: $space-s $space-m;
+        border: $border-style $border-color $border-size-s;
+        border-radius: $border-radius-soft;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: $transition-base;
+
+        &:hover {
+            background-color: lighten($color-primary, 45%);
+            transform: translateY(-2px);
+        }
+
+        a {
+            color: $color-primary;
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+                color: darken($color-primary, 10%);
+                text-decoration: underline;
+            }
+        }
+    }
+}

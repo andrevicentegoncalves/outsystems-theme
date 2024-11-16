@@ -1,0 +1,84 @@
+.html-wrapper {
+    // Basic styles
+    .cke_editable,
+    .ArticleDiv,
+    .NewsletterDiv {
+        font-family: Lato;
+        font-size: $font-size-base;
+        color: $color-footer-section;
+    }
+
+    .NewsletterDiv {
+        font-family: Verdana;
+        font-size: $font-size-s;
+    }
+
+    // Hide table markers
+    p[data-table-marker],
+    span[data-table-marker],
+    p:has(+ table):empty,
+    p:has(+ table),
+    span:has(+ table) {
+        display: none !important;
+    }
+
+    // Links
+    .cke_editable a,
+    .ArticleDiv a,
+    .NewsletterDiv a {
+        color: $color-primary !important;
+    }
+
+    // Component text alignment
+    .carousel,
+    .accordion,
+    .responsive-list {
+        .slide-content {
+            .merged-text {
+                text-align: center !important;
+                margin-top: $space-base;
+
+                * {
+                    text-align: center !important;
+                }
+            }
+        }
+
+        .info-group,
+        .list-content {
+            .value {
+                text-align: left !important;
+
+                * {
+                    text-align: left !important;
+                }
+            }
+        }
+    }
+
+    // Scroll loader
+    .scroll-loader {
+        padding: $space-base;
+        text-align: center;
+        color: $color-neutral-7;
+        background: $color-neutral-1;
+        margin-top: $space-base;
+        border-radius: $border-radius-soft;
+    }
+
+    // Responsive table container
+    .responsive-table-container {
+        position: relative;
+        width: 100%;
+        max-height: 80vh;
+        overflow: auto;
+        padding: $space-base 0;
+        margin: $space-m 0;
+
+        @media (max-width: $breakpoint-phone) {
+            max-height: 70vh;
+            padding: $space-s 0;
+            margin: $space-s 0;
+        }
+    }
+}

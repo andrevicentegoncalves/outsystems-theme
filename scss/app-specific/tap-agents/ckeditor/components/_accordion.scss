@@ -1,0 +1,149 @@
+.accordion {
+    width: 100%;
+    background-color: $color-neutral-0;
+
+    &-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .list-item {
+        margin-bottom: 1.4px;
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+        padding: 0;
+        background-color: $color-neutral-0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .ec-head {
+            background-color: $color-primary;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+
+            h3 {
+                margin: 0;
+                color: $color-neutral-9;
+                font-size: 1rem;
+                text-transform: uppercase;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                text-align: left !important;
+            }
+
+            .arrow {
+                color: $color-neutral-9;
+                transition: transform 0.3s ease;
+                width: 48px;
+                height: 48px;
+                flex-shrink: 0;
+                border-radius: 50%;
+                padding: $space-xs;
+                box-sizing: border-box;
+        
+                path {
+                    stroke: currentColor;
+                    stroke-width: 1.5;
+                }
+            }
+        
+            &.active .arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .expanded-content {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease-out;
+            background-color: $color-neutral-0;
+
+            &.active {
+                height: auto;
+            }
+
+            .info-group {
+                display: flex;
+                flex-direction: column;
+
+                .label {
+                    width: 100%;
+                    padding: 2.1rem 2.5rem;
+                    font-weight: 800;
+                    color: $color-neutral-9;
+                    text-transform: uppercase;
+                    background-color: $color-neutral-5;
+                    text-align: left !important;
+                    min-height: 50px;
+
+                    & + .label {
+                        background-color: rgba($color-neutral-9, 0.2);
+                    }
+
+                    &.group{
+                        background-color: var(--color-neutral-6);
+                    }
+
+                    * {
+                        text-align: left !important;
+                    }
+                }
+
+                .value {
+                    width: 100%;
+                    padding: 1.7rem;
+                    color: $color-neutral-7;
+                    background-color: $color-neutral-0;
+                    text-align: left !important;
+                    min-height: 50px;
+
+                    *, div, p, span {
+                        text-align: left !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-phone) {
+    .accordion {
+        .ec-head {
+            padding: 2rem;
+        }
+
+        .expanded-content .info-group {
+            .label,
+            .value {
+                padding: 2rem;
+                min-height: 80px;
+            }
+        }
+    }
+
+    .responsive-list.accordion-style {
+        .list-content {
+            padding: 2rem;
+            min-height: 80px;
+        }
+    }
+}
+
+@media print {
+    .accordion .expanded-content {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .responsive-list {
+        page-break-inside: avoid;
+    }
+}

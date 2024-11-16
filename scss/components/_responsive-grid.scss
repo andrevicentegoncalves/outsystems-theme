@@ -1,0 +1,65 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Responsive Grid ****************************/
+
+.responsive-grid {
+  &-container {
+    .responsive-grid-list {
+      .responsive-grid-link {
+        .card.grid-item.responsive-grid-item {
+          padding: $space-none;
+          overflow: hidden;
+          transition: $transition-base;
+          height: auto !important;
+          min-height: $flip-card-height !important;
+          display: flex !important;
+          flex-direction: column !important;
+          background-color: $color-neutral-0;
+          border-radius: $border-radius-soft;
+          box-shadow: $box-shadow;
+          
+          .responsive-grid-image {
+            margin: $space-none;
+            padding: $space-none;
+            flex: 0 0 auto;
+            background-color: $color-neutral-2;
+            width: 100%;
+            position: relative;
+            
+            div {
+              width: 100%;
+              height: 100%;
+            }
+            
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              display: block;
+            }
+          }
+          
+          .responsive-grid-text {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: $space-s $space-s $space-base;
+            justify-content: center;
+            
+            .text-neutral-10 {
+              color: $color-neutral-10;
+            }
+          }
+
+          &:hover {
+            transform: translateY(-$space-xs);
+            box-shadow: 0 $space-xs $space-base rgba($color-neutral-10, 0.2);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  margin: $space-m 0;
+  overflow: hidden;
+
+  &-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      margin-bottom: rem(48);
+  }
+
+  &-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $space-m;
+      background: $color-neutral-0;
+      border-radius: $border-radius-soft;
+      box-shadow: $box-shadow;
+      box-sizing: border-box;
+
+      .slide-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          max-width: rem(340);
+          margin: 0 auto;
+          gap: $space-m;
+
+          .list-content {
+              &.image {
+                  margin-bottom: var(--space-m);
+                  
+                  img {
+                      max-width: 100%;
+                      height: auto;
+                      display: block;
+                      margin: 0 auto;
+                  }
+              }
+          }
+
+          .slide-image {
+              width: 100%;
+              max-width: rem(200);
+              height: auto;
+              margin: 0 auto $space-base;
+              
+              img {
+                  width: 100%;
+                  height: auto;
+                  border-radius: $border-radius-soft;
+              }
+          }
+
+          .slide-text {
+              text-align: center;
+              color: $color-neutral-7;
+              line-height: 1.4;
+              margin: $space-s 0;
+
+              * {
+                  text-align: center;
+                  margin: $space-s 0;
+
+                  &:first-child { margin-top: 0; }
+                  &:last-child { margin-bottom: 0; }
+              }
+          }
+      }
+  }
+
+  &-controls {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: rem(32);
+      margin-top: rem(24);
+
+      .carousel-btn {
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          width: rem(28);
+          height: rem(28);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: $transition-base;
+
+          svg {
+              width: 100%;
+              height: 100%;
+              path {
+                  stroke: $color-neutral-9;
+                  stroke-width: 1.5;
+                  fill: none;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+              }
+          }
+
+          &:hover svg path {
+              stroke: $color-primary;
+          }
+
+          &:focus {
+              outline: none;
+          }
+
+          &:focus-visible {
+              outline: 2px solid $color-primary;
+              outline-offset: rem(2);
+          }
+      }
+
+      .carousel-dots {
+          display: flex;
+          gap: rem(8);
+          align-items: center;
+
+          .carousel-dot {
+              width: rem(10);
+              height: rem(10);
+              padding: 0;
+              border: 1.5px solid $color-neutral-9;
+              border-radius: 50%;
+              background: transparent;
+              cursor: pointer;
+              transition: all 0.2s ease;
+
+              &.active {
+                  background: $color-primary;
+                  border-color: $color-primary;
+              }
+
+              &:hover:not(.active) {
+                  border-color: $color-primary;
+              }
+          }
+      }
+  }
+
+  @media (max-width: $breakpoint-phone) {
+      margin: $space-s 0;
+
+      &-track {
+          margin-bottom: rem(32);
+      }
+
+      &-slide {
+          padding: $space-base;
+
+          .slide-content {
+              padding: 0;
+
+              .slide-text {
+                  font-size: $font-size-s;
+              }
+
+              .slide-image {
+                  max-width: rem(160);
+              }
+          }
+      }
+
+      &-controls {
+          gap: rem(24);
+          margin-top: rem(16);
+
+          .carousel-btn {
+              width: rem(24);
+              height: rem(24);
+          }
+
+          .carousel-dots {
+              gap: rem(6);
+
+              .carousel-dot {
+                  width: rem(8);
+                  height: rem(8);
+              }
+          }
+      }
+  }
+}

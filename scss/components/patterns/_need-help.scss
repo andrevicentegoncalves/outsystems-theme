@@ -59,6 +59,12 @@ $banner-need-help-height-phone: rem(265);
             .need-help__button {
                 flex: 1;
             }
+
+            @media (max-width: $breakpoint-phone) {
+                .need-help__button {
+                    flex: none;
+                }
+            }
         }
 
         // For containers with dropdown
@@ -86,6 +92,12 @@ $banner-need-help-height-phone: rem(265);
 
             .need-help__button {
                 flex: 1;
+            }
+
+            @media (max-width: $breakpoint-phone) {
+                .need-help__button {
+                    flex: none;
+                }
             }
         }
     }

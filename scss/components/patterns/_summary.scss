@@ -16,8 +16,8 @@
     }
   
     > [data-container] {
-      @include flexbox;
-      padding: rem(16);
+      @include flexbox(row, center, start);
+      padding: rem(21);
       width: 20%;
   
       @media screen and (max-width: $breakpoint-tablet) {

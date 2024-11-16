@@ -8,12 +8,13 @@ $font-size--base: 16px;
 // Strips the unit from a number
  
 @function strip-unit($value) {
-  @return math.div($value, ($value * 0 + 1));
+  $abs-value: if($value < 0, $value * -1, $value);
+  $unit: math.div($abs-value, ($abs-value * 0 + 1));
+  @return if($value < 0, $unit * -1, $unit);
 }
 
 // Converts a pixel value to rem 
 @function rem($pixels) {
-  // Ensure $pixels is unitless
   $pixels: strip-unit($pixels);
   @return math.div($pixels, strip-unit($font-size--base)) * 1rem;
 }

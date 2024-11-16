@@ -1,0 +1,24 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Signup  ****************************/
+
+.signup-wrapper {
+
+    span{
+        font-size: $font-size-base;
+    
+        @media (max-width: $breakpoint-phone-horizontal) {
+        font-size: $font-size-xs; 
+        }
+    }
+}
+
+.signup-wrapper .checkbox:checked {
+    &::after {
+        content: '';
+        display: none;
+    }
+}
+

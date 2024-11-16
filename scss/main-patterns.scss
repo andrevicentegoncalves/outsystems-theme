@@ -15,6 +15,7 @@ $is_main: false;
 @import 'components/buttons';
 @import 'components/search';
 @import 'components/badges';
+@import 'components/popups';
 
 // Layout
 @import 'layout/grid';
@@ -28,3 +29,7 @@ $is_main: false;
 @import 'components/patterns/summary';
 @import 'components/patterns/arrow-list';
 @import 'components/patterns/content_loading_placeholder';
+@import 'components/patterns/suggestions';
+@import 'components/patterns/grid-flip-card';
+@import 'components/patterns/lists';
+

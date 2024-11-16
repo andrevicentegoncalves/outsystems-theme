@@ -1,0 +1,33 @@
+.ArticleHeader {
+    font-family: Montserrat;
+    font-size: $font-size-m;
+    font-weight: 700;
+    margin: $space-s 0;
+}
+
+.ArticleDiv {
+    div {
+        line-height: 24px;
+    }
+
+    p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        unicode-bidi: isolate;
+    }
+
+    table {
+        margin-top: $space-m;
+        border-collapse: collapse;
+        float: none;
+
+        th {
+            text-transform: uppercase;
+        }
+
+        tr:nth-of-type(odd) {
+            background-color: $color-neutral-1;
+        }
+    }
+}

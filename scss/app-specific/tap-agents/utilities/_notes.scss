@@ -1,0 +1,31 @@
+// Note Box Styles
+.Note-Box,
+.ArticleDisclaimer {
+    padding: 24px $space-m;
+}
+
+.Note-Box {
+    border-radius: $border-radius-soft;
+    background-color: $color-warning-light;
+    box-shadow: $box-shadow;
+    font-size: 15px;
+}
+
+.Note-Text {
+    font-family: Lato;
+    font-size: 15px;
+    line-height: 1.33;
+    color: $color-footer-section;
+}
+
+.SmallText {
+    font-family: Lato;
+    font-size: $font-size-xs;
+    line-height: 2;
+    color: $color-footer-section;
+}
+
+.ArticleDisclaimer {
+    font-size: 15px;
+    font-family: 'Lato', Arial;
+}

@@ -1,0 +1,43 @@
+$ckeditor-config: (
+    // Container heights
+    'container-max-height': 80vh,
+    'mobile-max-height': 70vh,
+    
+    // Spacing
+    'base-spacing': $space-base,
+    'mobile-spacing': $space-s,
+    'component-spacing': $space-m,
+    
+    // Visual
+    'component-radius': $border-radius-soft,
+    'box-shadow': $box-shadow,
+    
+    // Transitions
+    'transition-duration': 0.3s,
+    'transition-timing': ease-in-out,
+    
+    // Components
+    'carousel-height': 240px,
+    'accordion-min-height': 50px,
+    'list-item-padding': 1.7rem
+);
+
+// Helper function to access config values
+@function cke($key) {
+    @if map-has-key($ckeditor-config, $key) {
+        @return map-get($ckeditor-config, $key);
+    }
+    @error 'Unknown key "#{$key}" in $ckeditor-config';
+    @return null;
+}
+
+// Example usage:
+// .responsive-table-container {
+//     max-height: cke('container-max-height');
+//     padding: cke('base-spacing') 0;
+//     
+//     @media (max-width: $breakpoint-phone) {
+//         max-height: cke('mobile-max-height');
+//         padding: cke('mobile-spacing') 0;
+//     }
+// }

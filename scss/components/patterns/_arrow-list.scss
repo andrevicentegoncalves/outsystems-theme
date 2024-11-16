@@ -26,3 +26,103 @@
         }
     }
  }
+
+ /**************************** ArrowList Styled ****************************/
+  
+ .arrow-list-styled-content {
+  @include flex-column;
+  gap: 1rem;
+  width: 100%;
+
+  .arrow-list-styled-item {
+    width: 100%;
+    border: var(--border-width) solid var(--color-primary);
+    @include transition;
+    margin-bottom: 1rem;
+    padding: $space-none $space-base;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: var(--border-width) solid var(--color-primary);
+    }
+
+    &.selected {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      @include box-shadow;
+
+      .content-text-title,
+      .icon {
+        color: var(--color-neutral-0);
+      }
+
+      &:hover {
+        transform: none;
+
+        .content-text-title,
+        .icon {
+          color: var(--color-neutral-0);
+          transform: translateX(var(--space-xs));
+        }
+      }
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      width: 100%;
+      @include transition;
+
+      &:hover .icon {
+        transform: translateX(var(--space-xs));
+        color: var(--color-primary);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+
+    .display-flex {
+      @include flexbox(row, space-between, center);
+      width: 100%;
+      min-height: 4rem;
+    }
+
+    .flex1 {
+      @include truncate-parent;
+    }
+
+    .content-text-title {
+      @include truncate(100%);
+      color: var(--color-neutral-9);
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    .icon {
+      color: var(--color-neutral-6);
+      margin-left: 1rem;
+      @include transition(all);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+
+      &.fa-angle-right {
+        width: 1.5rem;
+        height: 1.5rem;
+        @include flex-center;
+      }
+    }
+
+    &:hover:not(.selected) {
+      @include box-shadow;
+      border-color: var(--color-primary);
+
+      .content-text-title {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
