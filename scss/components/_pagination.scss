@@ -1,0 +1,71 @@
+/**************************** Pagination ****************************/
+
+.pagination {
+  .pagination-counter   {
+    @media (max-width: $breakpoint-phone) {
+      margin-bottom: var(--space-s)
+    }
+  }
+}
+
+// Simple Pagination
+
+.simple-pagination {
+  display: flex;
+  justify-content: center;
+
+  .pagination {
+    margin-top: var(--space-none);
+
+    .pagination-counter {
+      display: none;
+
+      @media (max-width: $breakpoint-phone) {
+        margin-bottom: var(--space-xs)
+      }
+    }
+
+    .pagination-button {
+      background-color: transparent;
+      border: none;
+      font-size: var(--font-size-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: var(--color-hover);
+        color: var(--color-primary);
+      }
+
+      .pagination-text {
+        font-size: var(--font-size-base);
+      }
+
+      &.is--active {
+        border: var(--border-none) solid var(--color-primary);
+        background-color: var(--color-active);
+        color: var(--color-primary);
+
+        span {
+          font-weight: bold;
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+}
+
+.phone {
+  .pagination-container {
+    margin-top: var(--space-none);
+  }
+}
+
+.desktop {
+  .pagination-button:not(.is--ellipsis):hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: none;
+  }
+}

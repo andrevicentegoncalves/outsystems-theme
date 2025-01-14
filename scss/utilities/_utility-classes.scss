@@ -4,130 +4,196 @@
 
 /**************************** Utility Classes ****************************/
 
-/* Colors */
-.color-primary{
-    color: var(--color-primary);
+// Colors
+.color {
+  &-primary { color: var(--color-primary); }
+  &-warning-light { color: var(--color-warning-light); }
+  &-danger { color: var(--color-danger); }
 }
 
-.background-primary{
-    background-color: var(--color-primary);
-}
-
-.background-warning-light{
-    background-color: var(--color-warning-light);
-}
-
-.color-warning-light{
-    color: var(--color-warning-light);
-}
-
-/* Layout */
-.width-max {
-    max-width: var(--width-max);
-}
-
-/* Opacity */
-.opacity-50 {
-    opacity: 0.5;
-}
-
-.bg-opacity-40 {
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.bg-opacity-30 {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Scrolling */
-.scrollable-y {
-    height: 100vh;
-    overflow-y: auto;
-}
-
-/* Device-specific display classes */
-.desktop-only {
-    @media (max-width: $breakpoint-tablet-horizontal) {
-        display: none !important;
-    }
-}
-
-.tablet-only {
-    @media (max-width: $breakpoint-phone-horizontal), (min-width: $breakpoint-desktop) {
-        display: none !important;
-    }
-}
-
-.phone-only {
-    @media (min-width: $breakpoint-tablet) {
-        display: none !important;
-    }
-}
-
-.desktop-and-tablet {
-    @media (max-width: $breakpoint-phone-horizontal) {
-        display: none !important;
-    }
-}
-
-.tablet-and-phone {
-    @media (min-width: $breakpoint-desktop) {
-        display: none !important;
-    }
-}
-
-/* Visibility classes */
-.hide-on-desktop {
-    @media (min-width: $breakpoint-desktop) {
-        display: none !important;
-    }
-}
-
-.hide-on-tablet {
-    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet-horizontal) {
-        display: none !important;
-    }
-}
-
-.hide-on-phone {
-    @media (max-width: $breakpoint-phone-horizontal) {
-        display: none !important;
-    }
-}
-
-/* Show classes */
-.show-on-desktop {
-    @media (max-width: $breakpoint-tablet-horizontal) {
-        display: none !important;
-    }
-}
-
-.show-on-tablet {
-    @media (max-width: $breakpoint-phone-horizontal), (min-width: $breakpoint-desktop) {
-        display: none !important;
-    }
-}
-
-.show-on-phone {
-    @media (min-width: $breakpoint-tablet) {
-        display: none !important;
-    }
-}
-
-.opacity-s{
-    opacity: var(--opacity-s);
-}
-
-.opacity-m{
-    opacity: var(--opacity-m);
-}
-
-.opacity-l{
-    opacity: var(--opacity-l);
-}
-
-.background-image-center{
+.background {
+  &-primary { background-color: var(--color-primary); }
+  &-warning-light { background-color: var(--color-warning-light); }
+  
+  &-image-center {
     background-position: center;
     background-size: cover;
     height: 100%;
+  }
+}
+
+// Layout
+.width {
+  &-max { max-width: var(--width-max); }
+  
+  &-half {
+    max-width: 50%;
+    margin-inline: auto;
+    
+    @media (max-width: $breakpoint-desktop) {
+      max-width: 100%;
+    }
+  }
+  
+  &-65 {
+    max-width: 65%;
+    margin-inline: auto;
+    
+    @media (max-width: $breakpoint-desktop) {
+      max-width: 100%;
+    }
+  }
+  
+  &-80 {
+    max-width: 80%;
+    margin-inline: auto;
+    
+    @media (max-width: $breakpoint-desktop) {
+      max-width: 100%;
+    }
+  }
+}
+
+// Character limits
+.char-limit {
+  &-20 { width: 20ch; }
+  &-30 { width: 30ch; }
+  &-40 { width: 40ch; }
+}
+
+// Opacity
+.opacity {
+  &-50 { opacity: 0.5; }
+  &-s { opacity: var(--opacity-s); }
+  &-m { opacity: var(--opacity-m); }
+  &-l { opacity: var(--opacity-l); }
+}
+
+.bg-opacity {
+  &-30 { background-color: rgba(0, 0, 0, 0.3); }
+  &-40 { background-color: rgba(0, 0, 0, 0.4); }
+}
+
+// Scrolling
+.scrollable-y {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+// Device visibility classes
+.desktop {
+    &-only {
+        @media (max-width: $breakpoint-desktop) {
+            display: none !important;
+        }
+    }
+ 
+    &-and-tablet-large-only {
+        @media (max-width: $breakpoint-tablet-horizontal) {
+            display: none !important;
+        }
+    }
+
+    &-and-tablet-only {
+        @media (max-width: $breakpoint-phone-horizontal) {
+            display: none !important;
+        }
+    }
+ }
+ 
+ .tablet {
+    &-only {
+        @media (max-width: $breakpoint-phone-horizontal), (min-width: $breakpoint-desktop) {
+            display: none !important;
+        }
+    }
+ }
+ 
+ .phone {
+    &-only {
+        @media (min-width: $breakpoint-tablet) {
+            display: none !important;
+        }
+    }
+
+    &-and-tablet-only {
+        @media (min-width: $breakpoint-desktop) {
+            display: none !important;
+        }
+    }
+
+    &-and-tablet-small-only {
+        @media (min-width: $breakpoint-tablet-horizontal) {
+            display: none !important;
+        }
+    }
+ }
+ 
+ // Hide on specific breakpoints with nested classes
+ .hide-on {
+    &-desktop {
+        @media (min-width: $breakpoint-desktop) {
+            display: none !important;
+        }
+    }
+ 
+    &-tablet {
+        @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+            display: none !important;
+        }
+    }
+ 
+    &-phone {
+        @media (max-width: $breakpoint-phone-horizontal) {
+            display: none !important;
+        }
+    }
+ }
+
+// Misc utilities
+.box-shadow{
+  &-danger {
+    box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.05), 0 0 5px var(--color-danger);
+  }
+
+  &-xs{
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
+  }
+
+  &-s{
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  &-base{
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Responsive utilities
+.flex-direction {
+    &-row {
+        flex-direction: row;
+    }
+
+    &-responsive {
+        flex-direction: row;
+        
+        @media (max-width: $breakpoint-desktop) {
+        flex-direction: column;
+        }
+    }
+}
+
+.responsive{
+  &-margin{
+    &-top{
+        @media (max-width: $breakpoint-phone-horizontal) {
+          margin-top: var(--space-base);
+      }
+    }
+  }
 }

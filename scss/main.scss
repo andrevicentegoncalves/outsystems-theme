@@ -1,4 +1,5 @@
 $is_main: true;
+$is_pat: false;
 
 // Abstract
 @import 'abstracts/functions';
@@ -16,7 +17,6 @@ $is_main: true;
 
 // Components
 @import 'components/buttons';
-@import 'components/forms';
 @import 'components/submenus';
 @import 'components/checkboxes';
 @import 'components/dropdowns';
@@ -28,7 +28,13 @@ $is_main: true;
 @import 'components/user-info';
 @import 'components/responsive-grid';
 @import 'components/popups';
-
+@import 'components/scroll-to-top';
+@import 'components/info-bar';
+@import 'components/pagination';
+@import 'components/scroll';
+@import 'components/tables';
+@import 'components/date-picker';
+@import 'components/submenu-custom';
 
 // Layout
 @import 'layout/layout';
@@ -37,14 +43,9 @@ $is_main: true;
 @import 'layout/grid';
 
 // Pages
-@import 'pages/home';
 @import 'pages/login';
-
-// Themes
-@import 'themes/theme';
 
 // Utilities
 @import 'utilities/borders';
-@import 'utilities/spacing';
 @import 'utilities/flex';
 @import 'utilities/utility-classes';

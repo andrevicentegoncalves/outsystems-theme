@@ -1,0 +1,13 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Tables ****************************/
+
+.phone, .tablet {
+    .table:not(.table-no-responsive) {
+        tr:not(:last-child) {
+            margin-bottom: var(--space-base)
+        }
+    }
+}

@@ -5,30 +5,30 @@
 /**************************** Suggestions ****************************/
 
 .suggestion-wrapper {
-    background-color: $color-neutral-0;
-    border-radius: $border-radius-extra-soft;
-    box-shadow: $box-shadow;
-    padding: $space-m;
-    max-width: $layout-half-max-width;
+    background-color: var(--color-neutral-0);
+    border-radius: var(--border-radius-soft);
+    box-shadow: var(--box-shadow);
+    padding: var(--space-m);
+    max-width: var(--layout-half-max-width);
     margin: 0 auto;
-    font-family: $font-family-base;
-    transition: $transition-base;
+    font-family: var(--font-family-base);
+    transition: var(--transition-base);
   
     .suggestion-title {
-      font-size: $font-size-base;
-      font-weight: $font-weight-extra-light;
-      color: $color-neutral-9;
-      margin-bottom: $space-m;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-extra-light);
+      color: var(--color-neutral-9);
+      margin-bottom: var(--space-m);
     }
   
     .suggestion-content {
       .rating-container {
-        margin-bottom: $space-m;
+        margin-bottom: var(--space-m);
   
         h3 {
-          margin-bottom: $space-base;
-          font-weight: $font-weight-thin;
-          color: $color-neutral-8;
+          margin-bottom: var(--space-base);
+          font-weight: var(--font-weight-thin);
+          color: var(--color-neutral-8);
         }
       }
 
@@ -38,8 +38,8 @@
           > div {
             display: flex !important;
             flex-direction: row !important;
-            gap: $space-base !important;
-            margin: $space-base 0 !important;
+            gap: var(--space-base) !important;
+            margin: var(--space-base) 0 !important;
             flex-wrap: nowrap !important;
           }
         }
@@ -59,33 +59,33 @@
             flex-shrink: 0;
             height: rem(24);
             position: relative;
-            transition: $transition-base;
+            transition: var(--transition-base);
             width: rem(24);
-            margin: $space-none;
+            margin: var(--space-none);
 
             &:before {
-              background-color: $color-neutral-0;
-              border: $border-width $border-style $color-neutral-5;
+              background-color: var(--color-neutral-0);
+              border: var(--border-width) var(--border-style) var(--color-neutral-5);
               border-radius: 50%;
               content: "";
               display: flex;
               height: 100%;
-              transition: $transition-base;
+              transition: var(--transition-base);
               width: 100%;
               box-sizing: border-box;
             }
 
             &:checked:before {
-              background-color: $color-neutral-0;
-              border: $border-width-selected solid $color-primary;
+              background-color: var(--color-neutral-0);
+              border: var(--border-width-selected) solid var(--color-primary);
             }
 
             &:hover:before {
-              border-color: $color-neutral-7;
+              border-color: var(--color-neutral-7);
             }
 
             &:focus:before {
-              box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
+              box-shadow: 0 0 0 2px rgba(var(--color-primary), var(--opacity-s));
             }
 
             &:disabled {
@@ -95,30 +95,30 @@
 
               + label {
                 pointer-events: none;
-                color: $color-neutral-6;
+                color: var(--color-neutral-6);
               }
 
               &:before {
-                background-color: $color-neutral-2;
-                border: $border-width $border-style $color-neutral-4;
+                background-color: var(--color-neutral-2);
+                border: var(--border-width) var(--border-style) var(--color-neutral-4);
               }
 
               &:checked:before {
-                background-color: $color-neutral-2;
-                border: $border-width-selected solid $color-neutral-4;
+                background-color: var(--color-neutral-2);
+                border: var(--border-width-selected) solid var(--color-neutral-4);
               }
             }
           }
 
           label {
             cursor: pointer;
-            line-height: $line-height-base;
-            margin: 0 0 0 $space-s;
-            color: $color-neutral-8;
-            transition: $transition-base;
+            line-height: var(--line-height-base);
+            margin: 0 0 0 var(--space-s);
+            color: var(--color-neutral-8);
+            transition: var(--transition-base);
 
             &:hover {
-              color: $color-primary;
+              color: var(--color-primary);
             }
           }
         }
@@ -126,12 +126,12 @@
         // Not Valid State
         &.not-valid [data-radio-button] .radio-button {
           &:before {
-            border: $border-width $border-style $color-danger;
+            border: var(--border-width) var(--border-style) var(--color-danger);
           }
 
           &:checked:before {
-            background-color: $color-neutral-0;
-            border: $border-width-selected solid $color-primary;
+            background-color: var(--color-neutral-0);
+            border: var(--border-width-selected) solid var(--color-primary);
           }
         }
       }
@@ -140,7 +140,7 @@
       body & [data-radio-group].OSFillParent > div {
         display: flex !important;
         flex-direction: row !important;
-        gap: $space-base !important;
+        gap: var(--space-base) !important;
         flex-wrap: nowrap !important;
 
         > div[data-radio-button] {
@@ -148,31 +148,31 @@
           flex-direction: row !important;
           align-items: center !important;
           width: auto !important;
-          margin: $space-s 0 !important;
+          margin: var(--space-s) 0 !important;
         }
       }
 
       // Feedback Container
       .feedback-container {
         textarea {
-          width: $truncate-width;
+          width: var(--truncate-width);
           min-height: calc($flip-card-height / 2);
-          padding: $space-s;
-          border: $border-width $border-style $color-neutral-4;
-          border-radius: $border-radius-extra-soft;
+          padding: var(--space-s);
+          border: var(--border-width $border-style $color-neutral-4);
+          border-radius: var(--border-radius-extra-soft);
           resize: vertical;
-          font-family: $font-family-base;
-          font-size: $font-size-base;
-          transition: $transition-base;
+          font-family: var(--font-family-base);
+          font-size: var(--font-size-base);
+          transition: var(--transition-base);
   
           &:focus {
             outline: none;
-            border-color: $color-primary;
+            border-color: var(--color-primary);
             box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
           }
   
           &::placeholder {
-            color: $color-neutral-6;
+            color: var(--color-neutral-6);
           }
         }
       }
@@ -180,18 +180,17 @@
   
     // Button Styles
     .suggestion-button {
-      margin-top: $space-m;
+      margin-top: var(--space-m);
       text-align: right;
   
       button {
-        padding: $space-s $space-m;
-        background-color: $color-primary;
-        color: $color-neutral-0;
+        padding: var(--space-s) var(--space-m);
+        background-color: var(--color-primary);
+        color: var(--color-neutral-10);
         border: none;
-        border-radius: $border-radius-extra-soft;
-        font-weight: $font-weight-extra-light;
+        font-weight: var(--font-weight-extra-light);
         cursor: pointer;
-        transition: $transition-base;
+        transition: var(--transition-base);
   
         &:hover {
           background-color: darken($color-primary, 10%);
@@ -205,7 +204,7 @@
         &:disabled {
           background-color: lighten($color-primary, 20%);
           cursor: not-allowed;
-          opacity: $opacity-s;
+          opacity: var(--opacity-s);
         }
       }
     }
@@ -214,13 +213,13 @@
 // RTL Support
 .is-rtl {
   [data-radio-group] label {
-    margin-left: $space-none;
-    margin-right: $space-s;
+    margin-left: var(--space-none);
+    margin-right: var(--space-s);
   }
 
   .radio-group.is-horizontal [data-radio-button]:not(:first-of-type) {
     margin-left: unset;
-    margin-right: $space-base;
+    margin-right: var(--space-base);
   }
 }
 
@@ -238,7 +237,7 @@
     width: auto !important;
     
     &:not(:first-of-type) {
-      margin-left: $space-base;
+      margin-left: var(--space-base);
     }
   }
 }
@@ -249,7 +248,7 @@
     
     .suggestion-content {
       [data-radio-group], .radio-group {
-        gap: $space-s !important;
+        gap: var(--space-s) !important;
       }
     }
   }

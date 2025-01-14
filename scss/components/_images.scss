@@ -4,32 +4,43 @@
 
 /**************************** Images ****************************/
 
-/* App Images */
-.image-star-alliance{
-    width: var(--image-star-alliance);
+/* App-specific Images */
+.image {
+    &-star-alliance {
+        width: var(--image-star-alliance);
+    }
+
+    &-captcha {
+        width: var(--image-width-captcha);
+        height: var(--image-height-captcha);
+    }
+
+    &-size{
+        &-120{
+            width: 120px;
+        }
+    }
+}
+  
+/* General Image Styles */
+.img {
+    &-responsive {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
-.image-captcha{
-    width: var(--image-width-captcha);
-    height: var(--image-height-captcha);
-}
+/* Background Styles */
+.bg {
+    &-cover {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-/* General image styles */
-.img-responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Background images */
-.bg-cover {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Responsive background images */
-.bg-responsive {
-    @include responsive('tablet') {
-      background-image: none;
+    &-responsive {
+        @include responsive('tablet') {
+            background-image: none;
+        }
     }
 }

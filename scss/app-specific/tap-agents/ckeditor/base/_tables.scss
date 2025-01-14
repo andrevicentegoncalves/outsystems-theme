@@ -1,11 +1,13 @@
 .cke_editable td p,
 .ArticleDiv td p,
+.cke_contents_ltr td p,
 .NewsletterDiv td p {
     margin: 0;
 }
 
 .cke_editable table[cellSpacing],
 .ArticleDiv table[cellSpacing],
+.cke_contents_ltr table[cellSpacing],
 .NewsletterDiv table[cellSpacing] {
     border-collapse: collapse;
 }
@@ -16,66 +18,68 @@
 .ArticleDiv table,
 .ArticleDiv table tr,
 .ArticleDiv table td,
+.cke_contents_ltr table,
+.cke_contents_ltr table tr,
+.cke_contents_ltr table td,
 .NewsletterDiv table,
 .NewsletterDiv table tr,
 .NewsletterDiv table td {
-    border: solid $border-size-s $color-neutral-5;
+    border: solid var(--border-size-s) var(--color-neutral-5);
     border-collapse: collapse;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: $font-size-s;
+    @include apply-font('verdana', 'regular');
+    font-size: var(--font-size-s);
 }
 
 .cke_editable th,
 .ArticleDiv th,
+.cke_contents_ltr th,
 .NewsletterDiv th,
 table.Newsletter table th {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: $font-size-s;
-    font-weight: 700;
+    @include apply-font('verdana', 'bold');
+    font-size: var(--font-size-s);
     text-align: center;
-    color: $color-footer-section;
-    background-color: $color-primary;
-    padding: $space-s;
+    color: var(--color-footer-section);
+    background-color: var(--color-primary);
+    padding: var(--spacing-s);
 }
 
 .cke_editable td,
 .ArticleDiv td,
+.cke_contents_ltr td,
 table.Newsletter table td {
-    padding: $space-s;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: $font-size-s;
+    padding: var(--spacing-s);
+    @include apply-font('verdana', 'regular');
+    font-size: var(--font-size-s);
     vertical-align: middle;
 }
 
 .cke_editable td,
-.ArticleDiv td {
+.ArticleDiv td,
+.cke_contents_ltr td {
     font-weight: 700;
-    color: $color-neutral-7;
+    color: var(--color-neutral-7);
 }
 
-// Newsletter Specific
 table.Newsletter {
     width: 745px;
     border-spacing: 0;
     word-wrap: break-word;
-}
 
-table.Newsletter .NewsletterTitle {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: $font-size-l;
-    font-weight: 700;
-}
+    .NewsletterTitle {
+        @include apply-font('verdana', 'bold');
+        font-size: var(--font-size-l);
+    }
 
-table.Newsletter .NewsletterText {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: $font-size-s;
-    font-weight: 400;
-}
+    .NewsletterText {
+        @include apply-font('verdana', 'regular');
+        font-size: var(--font-size-s);
+    }
 
-table.Newsletter,
-table.Newsletter tr,
-table.Newsletter td,
-table.Newsletter th {
-    border: none;
-    border-collapse: collapse;
+    &,
+    tr,
+    td,
+    th {
+        border: none;
+        border-collapse: collapse;
+    }
 }

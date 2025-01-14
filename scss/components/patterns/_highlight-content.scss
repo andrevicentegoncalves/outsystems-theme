@@ -1,0 +1,12 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Hightlight Content ****************************/
+
+.highlight-content{
+    background-color: var(--color-info-light);
+    padding: var(--space-base);
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+}

@@ -1,11 +1,13 @@
 .ArticleHeader {
-    font-family: Montserrat;
-    font-size: $font-size-m;
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--font-size-m);
     font-weight: 700;
-    margin: $space-s 0;
+    margin: var(--space-s) 0;
 }
 
-.ArticleDiv {
+.ArticleDiv,
+.cke_contents_ltr
+ {
     div {
         line-height: 24px;
     }
@@ -18,16 +20,24 @@
     }
 
     table {
-        margin-top: $space-m;
+        margin-top: var(--space-m);
         border-collapse: collapse;
         float: none;
-
+        
         th {
             text-transform: uppercase;
+            padding: var(--space-s);
+
+        }
+
+        td{
+            padding: var(--space-s);
         }
 
         tr:nth-of-type(odd) {
-            background-color: $color-neutral-1;
+            background-color: var(--color-neutral-1);
         }
     }
+    
 }
+

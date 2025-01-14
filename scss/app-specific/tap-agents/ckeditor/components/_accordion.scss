@@ -1,11 +1,24 @@
+.accordion-table-title {
+    margin-bottom: var(--space-base);
+    margin-top: var(--space-m);
+}
+
 .accordion {
     width: 100%;
-    background-color: $color-neutral-0;
+    background-color: var(--color-neutral-0);
 
     &-list {
         list-style: none;
         padding: 0;
         margin: 0;
+    }
+
+    .title{
+        background-color: transparent;
+        padding: var(--space-s);
+        text-align: center;
+        font-weight: 600;
+        font-size: var(--font-size-h6);
     }
 
     .list-item {
@@ -14,47 +27,52 @@
         border-radius: 0;
         overflow: hidden;
         padding: 0;
-        background-color: $color-neutral-0;
+        background-color: var(--color-neutral-0);
 
         &:last-child {
             margin-bottom: 0;
         }
 
         .ec-head {
-            background-color: $color-primary;
-            padding: 1rem 2.5rem;
+            background-color: var(--color-primary);
+            padding: 1rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.2s ease-in-out;
 
+            .header-image {
+                margin-right: var(--space-base);
+            }
+
             h3 {
                 margin: 0;
-                color: $color-neutral-9;
+                color: var(--color-neutral-9);
                 font-size: 1rem;
                 text-transform: uppercase;
-                font-weight: 800;
+                font-weight: 600;
                 letter-spacing: 0.5px;
                 text-align: left !important;
+                flex-grow: 1;
             }
 
             .arrow {
-                color: $color-neutral-9;
+                color: var(--color-neutral-9);
                 transition: transform 0.3s ease;
                 width: 48px;
                 height: 48px;
                 flex-shrink: 0;
                 border-radius: 50%;
-                padding: $space-xs;
+                padding: var(--space-xs);
                 box-sizing: border-box;
-        
+
                 path {
                     stroke: currentColor;
                     stroke-width: 1.5;
                 }
             }
-        
+
             &.active .arrow {
                 transform: rotate(180deg);
             }
@@ -64,10 +82,27 @@
             height: 0;
             overflow: hidden;
             transition: height 0.3s ease-out;
-            background-color: $color-neutral-0;
+            background-color: var(--color-neutral-0);
 
             &.active {
                 height: auto;
+            }
+
+            .content-with-image {
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                align-items: flex-start;
+
+                img {
+                    max-width: 200px;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                .content-text {
+                    flex: 1;
+                }
             }
 
             .info-group {
@@ -76,20 +111,26 @@
 
                 .label {
                     width: 100%;
-                    padding: 2.1rem 2.5rem;
-                    font-weight: 800;
-                    color: $color-neutral-9;
+                    padding: 1.5rem 1rem;
+                    font-weight: 600;
+                    color: var(--color-neutral-9);
                     text-transform: uppercase;
-                    background-color: $color-neutral-5;
+                    background-color: var(--color-neutral-5);
                     text-align: left !important;
                     min-height: 50px;
-
+                    display: flex;
+                    align-items: center;
+                    
                     & + .label {
-                        background-color: rgba($color-neutral-9, 0.2);
+                        background-color: rgba(var(--color-neutral-9), 0.2);
                     }
 
-                    &.group{
+                    &.group {
                         background-color: var(--color-neutral-6);
+                    }
+
+                    &.category {
+                        background-color: var(--color-neutral-5);
                     }
 
                     * {
@@ -99,11 +140,29 @@
 
                 .value {
                     width: 100%;
-                    padding: 1.7rem;
-                    color: $color-neutral-7;
-                    background-color: $color-neutral-0;
+                    padding: 1rem;
+                    color: var(--color-neutral-7);
+                    background-color: var(--color-neutral-0);
                     text-align: left !important;
                     min-height: 50px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+
+                    /* Support for lists inside values */
+                    ul {
+                        list-style-type: disc;
+                        margin: 0.5rem 0;
+                        padding-left: 2rem;
+                        width: 100%;
+
+                        li {
+                            margin-bottom: 0.5rem;
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
 
                     *, div, p, span {
                         text-align: left !important;
@@ -116,31 +175,55 @@
 
 @media (max-width: $breakpoint-phone) {
     .accordion {
-        .ec-head {
-            padding: 2rem;
-        }
-
-        .expanded-content .info-group {
-            .label,
-            .value {
-                padding: 2rem;
-                min-height: 80px;
+        .list-item {
+            .ec-head {
+                padding: 1rem;
+            
             }
-        }
-    }
 
-    .responsive-list.accordion-style {
-        .list-content {
-            padding: 2rem;
-            min-height: 80px;
+            .expanded-content {
+                .content-with-image {
+                    flex-direction: column;
+                    
+                    img {
+                        max-width: 100%;
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                .info-group {
+                    .label,
+                    .value {
+                        padding: 1rem;
+                        min-height: 80px;
+                    }
+                }
+            }
         }
     }
 }
 
 @media print {
-    .accordion .expanded-content {
-        height: auto !important;
-        overflow: visible !important;
+    .accordion {
+        .expanded-content {
+            height: auto !important;
+            overflow: visible !important;
+        }
+
+        .list-item {
+            page-break-inside: avoid;
+
+            .ec-head {
+                page-break-inside: avoid;
+                .arrow {
+                    display: none; /* Hide arrows when printing */
+                }
+            }
+
+            .content-with-image {
+                page-break-inside: avoid;
+            }
+        }
     }
 
     .responsive-list {

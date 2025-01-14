@@ -1,13 +1,13 @@
-@import '../../abstracts/functions';
-@import '../../abstracts/variables';
-@import '../../abstracts/mixins';
+@import '../../../abstracts/functions';
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
 
 /**************************** Signup  ****************************/
 
 .signup-wrapper {
 
     span{
-        font-size: $font-size-base;
+        font-size: var(--font-size-base);
     
         @media (max-width: $breakpoint-phone-horizontal) {
         font-size: $font-size-xs; 

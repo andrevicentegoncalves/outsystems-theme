@@ -6,9 +6,9 @@
 
 /* ThemeGrid Base Container */
 .ThemeGrid_Container {
-  margin: $space-none auto;
+  margin: var(--space-none) auto;
   width: 100%;
-  max-width: $layout-max-width;
+  max-width: var(--layout-max-width);
   box-sizing: border-box;
   
   @include responsive(xl) {
@@ -23,18 +23,23 @@
 /* Layout Structure */
 .layout {
   .header .ThemeGrid_Container {
-    padding: $space-none $space-xl;
-    max-width: $layout-max-width;
+    padding: var(--space-none) var(--space-xl);
+    max-width: var(--layout-max-width);
   }
 
   .main-content.ThemeGrid_Container {
-    padding: $space-xl;
-    max-width: $layout-max-width;
+    padding: var(--space-xl);
+    max-width: var(--layout-max-width);
   }
 
-  .footer.ThemeGrid_Container {
-    padding: $space-base $space-xl;
-    max-width: $layout-max-width;
+  .footer {
+    &.ThemeGrid_Container {
+      max-width: var(--layout-max-width);
+  
+      @media (max-width: $breakpoint-phone-horizontal) {
+        padding: var(--space-s) var(--space-xl);
+      }
+    }
   }
 }
 
@@ -45,22 +50,22 @@
 .breadcrumbs-bar.ThemeGrid_Container,
 .footer-content.ThemeGrid_Container,
 .footer .ThemeGrid_Container {
-  padding: $space-none $space-xl;
-  max-width: $layout-max-width;
+  padding: var(--space-none) var(--space-xl);
+  max-width: var(--layout-max-width);
 }
 
 /* Tablet Responsive */
 .tablet {
   .header .ThemeGrid_Container {
-    padding: $space-none $space-m;
+    padding: var(--space-none) var(--space-m);
   }
 
   .main-content.ThemeGrid_Container {
-    padding: $space-m;
+    padding: var(--space-m);
   }
 
   .footer.ThemeGrid_Container {
-    padding: $space-base $space-m;
+    padding: var(--space-base) var(--space-m);
   }
 }
 
@@ -77,7 +82,7 @@
   }
 
   .main-content.ThemeGrid_Container {
-    padding: $space-base;
+    padding: var(--space-base);
     padding-left: calc(var(--os-safe-area-left) + #{$space-base});
     padding-right: calc(var(--os-safe-area-right) + #{$space-base});
   }
@@ -88,8 +93,8 @@
   position: relative;
 
   .ThemeGrid_Container {
-    padding: $space-none $space-xl;
-    max-width: $layout-max-width;
+    padding: var(--space-none) var(--space-xl);
+    max-width: var(--layout-max-width);
   }
 }
 
@@ -108,4 +113,8 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+img {
+  height: auto !important;
 }

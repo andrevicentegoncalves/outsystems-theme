@@ -214,13 +214,13 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
 /* Standard variations */
 .line-list-standard {
     .line {
-        height: $line-height-standard;
-        border-radius: $border-radius-extra-soft;
+        height: var(--line-height-standard);
+        border-radius: var(--border-radius-extra-soft);
     }
 }
 
 .rectangle-list-standard {
     .rectangle {
-        border-radius: $border-radius-extra-soft;
+        border-radius: var(--border-radius-extra-soft);
     }
 }

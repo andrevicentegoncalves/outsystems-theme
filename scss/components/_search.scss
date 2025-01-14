@@ -4,44 +4,35 @@
 
 /**************************** Search ****************************/
 
-/* Position the search icon on the right side of the input field */
-.osui-search .search-tap.form-control[data-input] {
-    background-position: right var(--space-base) center;
-    padding-left: var(--space-base);
-    padding-right: var(--space-xl);
-    min-width: 300px;
-    border: var(--border-size-s) solid var(--color-neutral-0);
-    height: 35px;
-  }
-
-/* Ensure the icon stays within the input boundaries */
 .osui-search {
-  position: relative !important;
-  display: inline-block !important;
-}
+ position: relative !important;
+ display: inline-block !important;
 
-@if $is_main {
-  /* Magnifying glass SVG */
-  .osui-search .search-tap.form-control[data-input] {
-    background-image: url('/TapAgents_TH/img/TapAgents_TH.IconSearch.svg');
-    background-size: 30px 30px;
-    background-position: calc(100% - 5px) center !important;
-  }
-}
+ .search-tap.form-control[data-input] {
+   // Base styles
+   background-position: right var(--space-base) center;
+   padding-left: var(--space-base);
+   padding-right: var(--space-xl); 
+   min-width: 300px;
+   border: var(--border-size-s) solid var(--color-neutral-0);
+   height: 35px;
 
-@if not $is_main {
-  /* Magnifying glass SVG */
-  .osui-search .search-tap.form-control[data-input] {
-    background-image: url('/TapAgents_PAT/img/TapAgents_PAT.IconSearch.svg');
-    background-size: 30px 30px;
-    background-position: calc(100% - 5px) center !important;
-  }
-}
+   // Background image logic
+   @if $is_main {
+     background-image: url('/TapAgents_TH/img/TapAgents_TH.IconSearch.svg');
+   } @else if $is_pat{
+     background-image: url('/TapAgents_PAT/img/TapAgents_PAT.IconSearch.svg');
+   }
 
-/* Remove default search input styling */
-.osui-search .search-tap.form-control[data-input]::-webkit-search-decoration,
-.osui-search .search-tap.form-control[data-input]::-webkit-search-cancel-button,
-.osui-search .search-tap.form-control[data-input]::-webkit-search-results-button,
-.osui-search .search-tap.form-control[data-input]::-webkit-search-results-decoration {
-  display: none;
+   background-size: 30px 30px;
+   background-position: calc(100% - 5px) center !important;
+
+   // Remove default browser search styling
+   &::-webkit-search-decoration,
+   &::-webkit-search-cancel-button,
+   &::-webkit-search-results-button,
+   &::-webkit-search-results-decoration {
+     display: none;
+   }
+ }
 }

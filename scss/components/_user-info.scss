@@ -1,151 +1,108 @@
-// General styles for the submenu
-.osui-submenu {
-  position: relative;
-  display: inline-block;
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
 
-  &__header {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+/**************************** User Info ****************************/
 
-    &:hover {
-      background-color: #e0e0e0;
-    }
+.user-info {
+  &-wrapper {
+    position: relative;
+    z-index: var(--z-index-fixed);
+    user-select: none;  /* Prevents text selection */
+    -webkit-user-select: none;  /* For Safari */
+    -moz-user-select: none;     /* For Firefox */
+    -ms-user-select: none;      /* For IE/Edge */
 
-    &__item {
-      font-size: 14px;
-      font-weight: bold;
-      color: #333;
-      padding: 5px 10px;
-      transition: color 0.3s ease;
+    .osui-submenu {
+      &__items {
+        background: var(--color-neutral-0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: calc(100% + 8px);
+        margin-top: 0;
+        min-width: 100%;
+        width: max-content;
+        max-width: calc(100vw - 32px);
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        z-index: var(--z-index-modal);
 
-      &:hover {
-        color: #007bff;
-      }
-    }
+        > div, 
+        > a {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: var(--space-xs) var(--space-s);
+          width: 100%;
+          box-sizing: border-box;
 
-    &__icon {
-      margin-left: auto;
-      font-size: 16px;
-    }
-  }
-
-  &__items {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 10;
-
-    &.active {
-      display: block;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-    }
-
-    .submenu-clean-item {
-      padding: 8px 16px;
-      font-size: 14px;
-      color: #555;
-
-      &:hover {
-        background-color: #f0f0f0;
-      }
-
-      &.active {
-        background-color: #007bff;
-        color: white;
-      }
-    }
-  }
-
-  &--is-dropdown {
-    display: block;
-
-    &__header {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    &__header__item {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  &__header.needsclick {
-    pointer-events: auto;
-  }
-
-  // Make sure submenu displays correctly when active
-  &.active .osui-submenu__items {
-    display: block;
-  }
-}
-
-// Styles for user info submenu
-.user-info-wrapper {
-  .osui-submenu.user-info-submenu {
-    .osui-submenu__header {
-      background-color: #007bff;
-      color: white;
-      &:hover {
-        background-color: #0056b3;
-      }
-
-      &__item {
-        color: white;
-      }
-    }
-
-    .osui-submenu__items {
-      background-color: #f9f9f9;
-
-      .navigation-submenu-item {
-        padding: 12px;
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-
-        &:hover {
-          background-color: #e9e9e9;
-        }
-
-        & i {
-          margin-right: 8px;
-        }
-
-        & a {
-          color: #333;
-          text-decoration: none;
+          &__items{
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+          }
 
           &:hover {
-            color: #007bff;
+            background-color: var(--color-neutral-1);
+          }
+        }
+      }
+
+      &--is-open {
+        .osui-submenu__items {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    &-wrapper {
+      .osui-submenu__items {
+        right: auto; // Reset right positioning
+        left: auto; // Allow natural positioning
+        position: absolute !important;
+        min-width: 200px;
+        transform: none !important;
+        
+        // Position relative to viewport edge to prevent overflow
+        @media (min-width: 481px) {
+          right: 0;
+        }
+        
+        @media (max-width: $breakpoint-phone) {
+          right: 0;
+          left: auto;
+          // Adjust position if overflowing
+          &:not(.is-rtl) {
+            @media (min-width: 320px) {
+              right: -9px; // Adjust based on padding/margins
+            }
           }
         }
       }
     }
   }
-}
 
-// Additional media queries for responsiveness if needed
-@media (max-width: 768px) {
-  .osui-submenu__header {
-    padding: 8px;
-  }
+  @media (min-width: $breakpoint-desktop) {
+    &-submenu {
+      .osui-submenu__header:hover {
+        border-bottom: none;
+        text-decoration: none;
+      }
+    }
 
-  .osui-submenu__items {
-    width: 100%;
+    &-wrapper {
+      .osui-submenu__items a:hover {
+        background-color: var(--color-neutral-1);
+        color: var(--color-neutral-9);
+      }
+    }
   }
 }

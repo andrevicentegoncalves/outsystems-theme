@@ -6,7 +6,6 @@ $font-size--base: 16px;
 
 
 // Strips the unit from a number
- 
 @function strip-unit($value) {
   $abs-value: if($value < 0, $value * -1, $value);
   $unit: math.div($abs-value, ($abs-value * 0 + 1));

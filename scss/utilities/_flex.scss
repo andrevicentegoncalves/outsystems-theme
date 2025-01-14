@@ -17,7 +17,7 @@
     flex-direction: row;
     align-items: center;
   
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-tablet) {
       flex-direction: column;
     }
   }
@@ -30,15 +30,15 @@
     gap: var(--grid-gap);
     justify-content: center;
 
-    @media (max-width: 1024px) {
+    @media (max-width: $breakpoint-tablet-horizontal) {
         --grid-columns: 3;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-tablet) {
         --grid-columns: 2;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: $breakpoint-phone) {
         --grid-columns: 1;
     }
 }
@@ -53,15 +53,15 @@
     gap: var(--grid-gap);
     justify-content: center;
 
-    @media (max-width: 1024px) {
+    @media (max-width: $breakpoint-tablet-horizontal) {
         --grid-columns: 3;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-tablet) {
         --grid-columns: 2;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: $breakpoint-phone) {
         --grid-columns: 1;
     }
 }
@@ -72,4 +72,16 @@
 
 .flex-grid-item {
     width: 100%;
+}
+
+.container-align-right {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem; 
+
+    button {
+        width: auto;
+    }
 }

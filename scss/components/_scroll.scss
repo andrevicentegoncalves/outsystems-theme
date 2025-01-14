@@ -1,0 +1,45 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Scroll ****************************/
+
+.scroll-horizontal {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  margin-top: var(--space-xs);
+  
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-neutral-3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-neutral-3);
+
+  table {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  th, td {
+    min-width: 150px;
+  }
+}
+
+.scroll-width-max {
+  width: 100%;
+}

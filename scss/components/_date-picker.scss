@@ -1,0 +1,7 @@
+.osui-datepicker > span > input:first-of-type {
+    display: none !important;
+  }
+  
+  .flatpickr-calendar.hasTime:not(.inline) {
+    position: absolute !important;
+  }

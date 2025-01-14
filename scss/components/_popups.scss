@@ -5,100 +5,99 @@
 /**************************** Popups ****************************/
 
 [data-popup-backdrop] {
-    z-index: $z-index-modal;
+    z-index: var(--z-index-modal);
 }
 
 .popup {
     &-dialog {
-        max-width: $popup-max-width;
+        max-width: var(--popup-max-width);
         border-radius: var(--border-radius-extra-soft);
     }
-    
-    &-template {
-        &-content {
-            max-height: calc(80vh - 150px);
-            overflow-y: auto;
-            margin: var(--space-m) 0 var(--space-s) 0;
+}
+
+.popup-template {
+    &__content {
+        max-height: calc(80vh - 150px);
+        overflow-y: auto;
+        margin: var(--space-m) 0 var(--space-s) 0;
+        
+        &::-webkit-scrollbar {
+            width: 4px;
             
-            &::-webkit-scrollbar {
-                width: 4px;
-                
-                &-track {
-                    background: transparent;
-                }
-                
-                &-thumb {
-                    background: $color-primary;
-                    border-radius: $border-radius-soft;
-                }
+            &-track {
+                background: transparent;
+            }
+            
+            &-thumb {
+                background: var(--color-primary);
+                border-radius: var(--border-radius-soft);
             }
         }
-        
-        &-icon {
-            i {
-                position: relative;
-                
-                &:after {
-                    content: '×';
-                    position: absolute;
-                    transform: translate(-50%, -50%);
-                    font-size: 3rem;
-                    padding-right: var(--space-base);
-                }
-                
-                &:before {
-                    display: none;
-                }
+    }
+    
+    &__icon {
+        i {
+            position: relative;
+            
+            &:after {
+                content: '×';
+                position: absolute;
+                transform: translate(-50%, -50%);
+                font-size: 3rem;
+                padding-right: var(--space-base);
+            }
+            
+            &:before {
+                display: none;
+            }
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        width: 100%;
+
+        @media (max-width: $breakpoint-tablet) {
+            flex-direction: column;
+            gap: var(--space-m);
+        }
+
+        @media (min-width: $breakpoint-tablet) {
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: var(--space-m);
+        }
+    }
+
+    &__button {
+        &--main {
+            .btn {
+                color: var(--color-neutral-9);
             }
         }
 
-        &-buttons {
-            display: flex;
-            margin-top: var(--space-m);
-            width: 100%;
+        &--cancel {
+            .btn {
+                border: 0;
+                color: var(--color-primary);
+                font-weight: 400;
+            }
 
             @media (max-width: $breakpoint-tablet) {
-                flex-direction: column;
-                gap: var(--space-m);
+                margin-left: 0 !important;
             }
 
             @media (min-width: $breakpoint-tablet) {
-                flex-direction: row;
-                justify-content: flex-end;
-                gap: var(--space-m);
+                order: -1;
             }
         }
 
-        &-button {
-            &-main {
+        &--main, &--cancel {
+            @media (max-width: $breakpoint-tablet) {
+                width: 100%;
+
                 .btn {
-                    color: $color-neutral-9;
-                }
-            }
-
-            &-cancel {
-                .btn {
-                    border: 0;
-                    color: $color-primary;
-                    font-weight: 400;
-                }
-
-                @media (max-width: $breakpoint-tablet) {
-                    margin-left: 0 !important;
-                }
-
-                @media (min-width: $breakpoint-tablet) {
-                    order: -1;
-                }
-            }
-
-            &-main, &-cancel {
-                @media (max-width: $breakpoint-tablet) {
                     width: 100%;
-
-                    .btn {
-                        width: 100%;
-                    }
                 }
             }
         }

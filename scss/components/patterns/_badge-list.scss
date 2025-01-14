@@ -1,0 +1,141 @@
+@import '../../abstracts/functions';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+/**************************** Badge List ****************************/
+
+.badge-list {
+    --badge-max-width: 240px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: var(--space-base);
+        background-color: var(--color-neutral-3);
+        border-radius: var(--border-radius-extra-soft);
+        margin-bottom: var(--space-s);
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: var(--color-neutral-4);
+        }
+
+        &--danger {
+            box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.05), 0 0 5px var(--color-danger);
+        }
+    }
+
+    &__category {
+        display: flex;
+        align-items: center;
+        margin-right: var(--space-m);
+    }
+    
+    &__light,
+    &__dark,
+    &__state{
+        max-width: var(--badge-max-width);
+    }
+
+    &__state {
+        @media (max-width: $breakpoint-phone) {
+            display: none;
+        }
+
+        &-title {
+            display: none;
+        }
+    }
+
+    &__dark {
+        margin-left: var(--space-m);
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+        margin: 0 var(--space-m);
+    }
+
+    &__arrow {
+        margin-left: var(--space-base);
+    }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        &__state {
+            &-title {
+                display: block;
+                font-size: var(--font-size-xxs);
+                margin-bottom: var(--space-s);
+                position: absolute;
+                top: 0;
+                right: 50%;
+            }
+        }
+
+        &__light {
+            padding-top: var(--space-s);
+        }
+    }
+
+    @media (max-width: $breakpoint-phone-horizontal) {
+        --badge-max-width: 100%;
+
+        &__item {
+            flex-direction: column;
+            align-items: stretch;
+            padding-right: calc(#{$space-base * 2} + #{$space-m});
+            position: relative;
+        }
+
+        &__category {
+            flex-direction: column;
+            align-items: stretch;
+            margin-right: 0;
+            width: 100%;
+        }
+
+        &__light,
+        &__dark,
+        &__state {
+            width: 100%;
+            max-width: none;
+            margin-bottom: var(--space-xs);
+        }
+
+        &__dark {
+            margin-left: 0;
+        }
+
+        &__title {
+            width: 100%;
+            margin: var(--space-s) 0 0 0;
+            order: 1;
+        }
+
+        &__arrow {
+            position: absolute;
+            right: var(--space-base);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &__item--danger {
+            box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.05), 0 0 5px var(--color-danger);
+        }
+    }
+}

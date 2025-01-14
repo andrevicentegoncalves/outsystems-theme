@@ -6,35 +6,32 @@
 
 /* List Files */
 .list-file-category {
-    background-color: $color-neutral-1;
-    padding: $space-m;
-    margin-bottom: $space-l;
+    background-color: var(--color-neutral-1);
+    padding: var(--space-m);
+    margin-bottom: var(--space-ls);
 
     &-label {
         font-weight: bold;
-        color: $color-neutral-9;
-        margin-bottom: $space-s;
+        color: var(--color-neutral-9);
+        margin-bottom: var(--space-s);
     }
 
     &-container {
-        padding: $space-m;
-        border-top: $border-style $border-color $border-size-s;
+        padding: var(--space-s);
     }
 }
 
 .list-files {
     display: flex;
     flex-direction: column;
-    gap: $space-s;
+    gap: var(--space-s);
 
     &-item {
-        padding: $space-s $space-m;
-        border: $border-style $border-color $border-size-s;
-        border-radius: $border-radius-soft;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        transition: $transition-base;
+        transition: var(--transition-base);
+        text-decoration: underline;
 
         &:hover {
             background-color: lighten($color-primary, 45%);
@@ -42,7 +39,7 @@
         }
 
         a {
-            color: $color-primary;
+            color: var(--color-primary);
             text-decoration: none;
             font-weight: 500;
 

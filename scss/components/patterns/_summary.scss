@@ -1,75 +1,123 @@
-@import '../../abstracts/functions';
-@import '../../abstracts/variables';
-@import '../../abstracts/mixins';
-
-/**************************** Summary ****************************/
-
-
-.summary-list {
-    @include flexbox(row, flex-start, stretch);
-    gap: 0;
+.summary {
+  &__list {
+    display: flex;
     width: 100%;
-  
-    @media screen and (max-width: $breakpoint-tablet) {
+    align-items: stretch;
+    padding-top: var(--space-base);
+    padding-bottom: var(--space-base);
+
+    @media (max-width: $breakpoint-phone) {
       flex-direction: column;
-      display: block;
+      padding: var(--space-xl); // Consistent padding for mobile
     }
-  
-    > [data-container] {
-      @include flexbox(row, center, start);
-      padding: rem(21);
-      width: 20%;
-  
-      @media screen and (max-width: $breakpoint-tablet) {
-        width: 100%;
-        display: block;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    overflow: visible;
+    padding: 0 var(--space-xs);
+
+    &:not(:first-child) {
+      margin-left: var(--space-xl);
+
+      @media (max-width: $breakpoint-phone) {
+        margin-left: var(--space-none);
       }
     }
-  
-    a {
-      text-decoration: none;
-      color: $color-neutral-0;
-      @include truncate-parent;
-  
-      span {
-        @include truncate(25ch, 100%);
+
+    @media (max-width: $breakpoint-phone) {
+      margin-left: 0;
+      padding: 0;
+      margin-bottom: var(--space-xxl); 
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:not(:last-child) {
+        position: relative;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: calc(var(--space-xxl) / -2); 
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: var(--color-neutral-3);
+        }
+      }
+    }
+
+    &:not(:last-child) {
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background-color: var(--color-neutral-3);
+
+        @media (max-width: $breakpoint-phone) {
+          display: none; // Hide vertical separators in mobile
+        }
       }
     }
   }
-  
-  .footer-section-container {
-    @include flex-column;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--space-base) var(--space-xs);
+
+    @media (max-width: $breakpoint-phone) {
+      padding: 0; // Remove padding in mobile
+    }
+  }
+
+  &__title {
+    display: flex;
+    padding-bottom: var(--space-s);
+    
+    .content__text--title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
-  
-  .summary-section-title {
-    @include truncate(23ch, 100%);
-  
-    @media screen and (max-width: $breakpoint-tablet) {
-      margin-top: rem(24);
+
+  &__item {
+    display: flex;
+    width: 100%;
+    margin-bottom: var(--space-xs);
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
-  
-  .summary-section-list-item {
-    @include truncate-parent;
-  
-    @media screen and (max-width: $breakpoint-tablet) {
-      margin-top: rem(4);
-    }
-  }
-  
-  .separator-summary-section {
-    width: rem(1);
-    background-color: $color-neutral-0;
-    height: auto;
-    min-height: 100%;
-    margin: 0 rem(20);
-    align-self: stretch;
-  
-    @media screen and (max-width: $breakpoint-tablet) {
-      width: 100%;
-      height: rem(1);
-      margin: 0;
+
+  &__link {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    
+    .summary__text {
       display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
     }
   }
+}

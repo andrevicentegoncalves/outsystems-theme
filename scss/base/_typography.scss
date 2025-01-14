@@ -4,321 +4,217 @@
 
 /**************************** Typography ****************************/
 
-/* Font Family */
-
-/* Montserrat */
-
-@if $is_main {
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_TH/Montserrat-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_TH/Montserrat-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_TH/Montserrat-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_TH/Montserrat-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
-
-    /* Roboto */
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_TH/Roboto-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_TH/Roboto-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_TH/Roboto-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_TH/Roboto-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
-
-    /* Lato */
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_TH/Lato-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_TH/Lato-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_TH/Lato-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_TH/Lato-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
+// Font Face Mixin
+@mixin font-face-generator($family, $path, $weight, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url('#{$path}') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
 }
 
-@if not $is_main {
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_PAT/Montserrat-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
+// Font path based on theme
+$font-path: if($is_main, '/TapAgents_TH/', 
+              if($is_pat, '/TapAgents_PAT/', '/TapAgents_TH/')
+            );
 
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_PAT/Montserrat-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
+$weight-names: (
+  100: 'Thin',
+  300: 'Light',
+  400: 'Regular',
+  700: 'Bold'
+);
 
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_PAT/Montserrat-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Montserrat';
-        src: url('/TapAgents_PAT/Montserrat-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
-
-    /* Roboto */
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_PAT/Roboto-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_PAT/Roboto-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_PAT/Roboto-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Roboto';
-        src: url('/TapAgents_PAT/Roboto-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
-
-    /* Lato */
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_PAT/Lato-Thin.ttf') format('truetype');
-        font-weight: 100; /* Thin */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_PAT/Lato-Light.ttf') format('truetype');
-        font-weight: 300; /* Light */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_PAT/Lato-Regular.ttf') format('truetype');
-        font-weight: 400; /* Regular */
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Lato';
-        src: url('/TapAgents_PAT/Lato-Bold.ttf') format('truetype');
-        font-weight: 700; /* Bold */
-        font-style: normal;
-    }
+// Font Face Declarations
+@each $weight, $style in $weight-names {
+  @include font-face-generator('Montserrat', '#{$font-path}Montserrat-#{$style}.ttf', $weight);
+  @include font-face-generator('Roboto', '#{$font-path}Roboto-#{$style}.ttf', $weight);
+  @include font-face-generator('Lato', '#{$font-path}Lato-#{$style}.ttf', $weight);
 }
 
-/* Montserrat Font Classes */
-.font-montserrat-thin {
+/* Typography Classes */
+.font {
+  // Montserrat variations
+  &__montserrat {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 100;
+    
+    &--thin { 
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 100;
+    }
+    &--light { 
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+    &--regular { 
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+    &--bold { 
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+  }
+
+  // Roboto variations
+  &__roboto {
+    font-family: 'Roboto', sans-serif;
+    
+    &--thin { 
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+    }
+    &--light { 
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+    }
+    &--regular { 
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+    }
+    &--bold { 
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+    }
+  }
+
+  // Lato variations
+  &__lato {
+    font-family: 'Lato', sans-serif;
+    
+    &--thin { 
+      font-family: 'Lato', sans-serif;
+      font-weight: 100;
+    }
+    &--light { 
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+    &--regular { 
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+    }
+    &--bold { 
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+    }
+  }
+
+  // Font sizes
+  &__size {
+    &--xxs { font-size: var(--font-size-xxs); }
+    &--xxxs { font-size: var(--font-size-xxxs); }
+  }
+
+  // Font weights
+  &__weight {
+    &--thin { font-weight: var(--font-weight-thin); }
+    &--extra-light { font-weight: var(--font-weight-extra-light); }
+  }
 }
 
-.font-montserrat-light {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+/* Content Block */
+.content {
+  &__text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+
+    &--title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    &--tab {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+    }
+    
+    &--light {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+    }
+  }
 }
 
-.font-montserrat-regular {
+/* Button Block */
+.button {
+  &__text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-}
+    
+    &--secondary {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+    }
 
-.font-montserrat-bold {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-}
-
-/* Roboto Font Classes */
-.font-roboto-thin {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 100; /* Thin */
-}
-
-.font-roboto-light {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300; /* Light */
-}
-
-.font-roboto-regular {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400; /* Regular */
-}
-
-.font-roboto-bold {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* Bold */
-}
-
-/* Lato Font Classes */
-.font-lato-thin {
-    font-family: 'Lato', sans-serif;
-    font-weight: 100; /* Thin */
-}
-
-.font-lato-light {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300; /* Light */
-}
-
-.font-lato-regular {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400; /* Regular */
-}
-
-.font-lato-bold {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700; /* Bold */
-}
-
-.content-text-title {
-    @include apply-font('montserrat', 'bold');
-}
-
-.content-text-tab {
-    @include apply-font('lato', 'bold');
-}
-
-.content-text{
-    @include apply-font('lato', 'regular');
-}
-
-.content-text-light{
-    @include apply-font('roboto', 'regular');
-}
-
-.button-text{
-    @include apply-font('montserrat', 'regular');
-}
-
-.button-text-secondary{
-    @include apply-font('roboto', 'regular');
-}
-
-.text-underline{
-    text-decoration: underline;
-}
-
-/* Font sizes */
-.font-size-xxs {
-    font-size: var(--font-size-xxs);
-}
-
-/* Font weight */
-.font-weight-thin{
-    font-weight: var(--font-weight-thin);
-}
-
-.font-weight-extra-light{
-    font-weight: var(--font-weight-extra-light);
-}
-
-/* Text styles */
-.text-underline {
-    text-decoration: underline;
-}
-
-.line-height-reduced {
-    line-height: 1;
-}
-
-/* Text truncation */
-.text-truncate-parent {
-    overflow: hidden;
-    flex: 1;
-    display: flex;  
-    align-items: center; 
-}
-
-.text-truncate-child {
-    @include truncate(100%); 
-}
-
-/* Responsive typography */
-.tablet, .phone {
-    .btn.btn-tap-small {
+    &--small {
+      .tablet &,
+      .phone & {
         font-size: var(--font-size-xs);
+      }
     }
+  }
 }
 
-@media (max-width: 480px) {
-    .left-align-on-mobile {
-        text-align: left; 
+/* Text Block */
+.text {
+  &__underline {
+    text-decoration: underline;
+  }
+
+  &__truncate {
+    display: block;
+    max-width: 100%;
+
+    &--container {
+      display: flex;
+      align-items: center;
+      min-width: 0; 
+      max-width: 100%;
+      overflow: hidden;
     }
+
+    &--content {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    /* Multi-line truncate modifier */
+    &--multiline {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* Adjust number for more/less lines */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+
+    /* Add hover state to show full content */
+    &--hover {
+      &:hover {
+        overflow: visible;
+        white-space: normal;
+        word-break: break-word;
+      }
+    }
+  }
+
+  &__line-height {
+    &--reduced {
+      line-height: 1;
+    }
+  }
+
+  &__align {
+    &--left-mobile {
+      @media (max-width: $breakpoint-phone) {
+        text-align: left;
+      }
+    }
+  }
 }

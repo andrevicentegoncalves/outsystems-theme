@@ -4,18 +4,42 @@
 
 /**************************** Buttons ****************************/
 
-/* Button styles */
-.btn.btn-transparent{
-  background-color: transparent;
-  padding: 0px 10px;
-}
-
-.btn.btn-border-neutral-4{
-  border-color: var(--color-neutral-4);
-}
-
-.btn,
-.tablet .btn, 
-.phone .btn{
+.btn {
+  min-height: 35px;
   height: 35px;
+  cursor: pointer;
+
+  &--transparent {
+    background-color: transparent !important;
+    padding: 0 10px;
+  }
+
+  &--border-neutral-4 {
+    border-color: var(--color-neutral-4);
+  }
+
+  &--tap-small {
+    font-size: var(--font-size-xs);
+    min-height: 30px;
+    height: 30px;
+
+    // Device-specific styles
+    .tablet &,
+    .phone & {
+      font-size: var(--font-size-xs);
+      min-height: 30px !important;
+      height: 30px !important;
+    }
+  }
+
+  &-primary{
+    color: var(--color-neutral-9);
+  }
+
+  // Device-specific styles maintain the same dimensions
+  .tablet &,
+  .phone & {
+    min-height: 35px;
+    height: 35px;
+  }
 }

@@ -7,6 +7,6 @@
 .dropdown-container {
     > div.dropdown-display,
     > select.dropdown-display {
-        padding-right: 30px;
+        padding-right: var(--space-l);
     }
 }

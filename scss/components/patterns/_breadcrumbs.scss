@@ -4,72 +4,110 @@
 
 /**************************** Breadcrumbs ****************************/
 
-// Breadcrumbs specific variables
-$breadcrumbs-image-height: rem(30);
-$breadcrumbs-text-max-width: rem(130);
-
-.breadcrumbs-image-height {
-    height: $breadcrumbs-image-height;
+// Custom properties
+:root {
+  --breadcrumbs-image-height: var(--space-xl);
+  --breadcrumbs-image-height-mobile: var(--space-l);
 }
 
 .breadcrumbs {
-    &-content {
+
+    &__wrapper{
+        max-width: var(--layout-max-width);
+        margin: var(--space-none) auto;
+        padding: var(--space-none) var(--space-xl);
+
+        @media (max-width: $breakpoint-phone) {
+            padding-right: var(--space-base);
+            padding-left: var(--space-none);
+        }
+    }
+    
+    &__main {
+        display: flex;
+        padding: var(--space-xs) var(--space-none);
+        flex-direction: row;
+        align-items: center;
+        min-width: 0; // Critical for truncation
+    }
+
+    &__main-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex: 1;
+        min-width: 0; // Critical for truncation
+    }
+
+    &__navigation {
+        display: flex;
+        flex: 1;
+        min-width: 0; // Critical for truncation
+    }
+
+    &__content {  // Changed from .breadcrumbs-content
         display: flex;
         align-items: center;
+        min-width: 0;
+        width: 100%;
     }
 
-    &-item {
-        .icon.fa {
-            font-size: inherit;
-            color: inherit;
+    &__item {    // Changed from .breadcrumbs-item
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
+
+    &__title {
+        min-width: 0;
+        width: 100%;
+        display: flex;
+        flex: 1;
+
+        @media (max-width: $breakpoint-phone) {
+            font-size: var(--font-size-xs);
         }
+    }
 
-        .title {
-            overflow: hidden;
-            flex: 1;
-            display: flex;  
-            align-items: center;
+    &__link {
+        width: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
 
-            @media (max-width: $breakpoint-phone-horizontal) {
-                padding-right: 0;
+    // Image modifier
+    &__image {
+        max-height: var(--breadcrumbs-image-height) !important;
+
+        @media (max-width: $breakpoint-tablet) {
+                max-height: var(--breadcrumbs-image-height-mobile) !important;
             }
         }
-        
-        [data-expression] {
-            display: block;
-            font-size: $font-size-base;
+
+        // Margin modifiers
+        &__margin {
+        &--left-m {
+            margin-left: var(--space-s);
             
             @media (max-width: $breakpoint-phone-horizontal) {
-                font-size: $font-size-xs;
-                max-width: $breadcrumbs-text-max-width;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                margin-left: var(--space-xs);
             }
         }
-    }
 
-    .margin-left-m {
-        margin-left: $space-s;
-        
-        @media (max-width: $breakpoint-phone-horizontal) {
-            margin-left: $space-xs;
+        &--left-base {
+            margin-left: var(--space-xs);
+            
+            @media (max-width: $breakpoint-phone-horizontal) {
+                margin-left: var(--space-xs);
+            }
         }
-    }
 
-    .margin-left-base {
-        margin-left: $space-xs;
-        
-        @media (max-width: $breakpoint-phone-horizontal) {
-            margin-left: $space-xs;
-        }
-    }
-
-    .margin-right-s {
-        margin-right: $space-xs;
-        
-        @media (max-width: $breakpoint-phone-horizontal) {
-            margin-right: $space-xs;
+        &--right-s {
+            margin-right: var(--space-xs);
+            
+            @media (max-width: $breakpoint-phone-horizontal) {
+                margin-right: var(--space-xs);
+            }
         }
     }
 }

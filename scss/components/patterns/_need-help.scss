@@ -12,24 +12,24 @@ $banner-need-help-height-phone: rem(265);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $space-xl;
+    padding: var(--space-xl);
     text-align: center;
     height: 100%;
     width: 100%;
 
     &__title {
         font-size: $font-size-base * 2;
-        font-weight: $font-weight-thin;
-        margin-bottom: $space-base;
-        color: $color-neutral-9;
+        font-weight: var(--font-weight-thin);
+        margin-bottom: var(--space-base);
+        color: var(--color-neutral-9);
     }
 
     &__content {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: $layout-max-width;
-        gap: $space-base;
+        max-width: var(--layout-max-width);
+        gap: var(--space-base);
 
         @media (min-width: $breakpoint-tablet) {
             flex-direction: row;
@@ -40,7 +40,7 @@ $banner-need-help-height-phone: rem(265);
         &:not(:has(.need-help__dropdown-container)) {
             @media (min-width: $breakpoint-desktop) {
                 width: 50%;
-                max-width: $layout-half-max-width;
+                max-width: var(--layout-half-max-width);
             }
 
             @media (min-width: $breakpoint-tablet-horizontal) and (max-width: $breakpoint-desktop) {
@@ -71,7 +71,7 @@ $banner-need-help-height-phone: rem(265);
         &:has(.need-help__dropdown-container) {
             @media (min-width: $breakpoint-desktop) {
                 width: 50%;
-                max-width: $layout-half-max-width;
+                max-width: var(--layout-half-max-width);
             }
 
             @media (min-width: $breakpoint-tablet-horizontal) and (max-width: $breakpoint-desktop) {
@@ -107,7 +107,7 @@ $banner-need-help-height-phone: rem(265);
         .form-control[data-input] {
             &:focus {
                 outline: none;
-                border-color: $color-primary;
+                border-color: var(--color-primary);
             }
     
             &[type="search"] {

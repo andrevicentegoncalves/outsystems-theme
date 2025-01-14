@@ -5,35 +5,50 @@
 /**************************** Borders **************************/
 
 // Border Width
-.border-width {
-  border-width: var(--border-width);
+.border{
+  &-width {
+    border-width: var(--border-width);
+  }
+
+  // Border Color
+  &-primary {
+    border-color: var(--border-color);
+  }
+
+  &-success {
+    border-color: var(--color-success);
+  }
+
+  &-warning {
+    border-color: var(--color-warning);
+  }
+
+  &-danger {
+    border-color: var(--color-danger);
+  }
+
+  // Border Radius
+  &-radius-extra-soft {
+      border-radius: var(--border-radius-extra-soft);
+  }
+
+  // Border Combination
+  &-default {
+    border-width: var(--border-width);
+    border-style: var(--border-style);
+    border-color: var(--border-color);
+  }
+
+  &-size{
+    &-xs{
+      border:var(--border-size-xs) solid currentColor;
+    }
+  }
+  
 }
 
-// Border Color
-.border-primary {
-  border-color: var(--border-color);
-}
-
-.border-success {
-  border-color: var(--color-success);
-}
-
-.border-warning {
-  border-color: var(--color-warning);
-}
-
-.border-danger {
-  border-color: var(--color-danger);
-}
-
-// Border Radius
-.border-radius-extra-soft {
-  border-radius: var(--border-radius-extra-soft);
-}
-
-// Border Combination
-.border-default {
-  border-width: var(--border-width);
-  border-style: var(--border-style);
-  border-color: var(--border-color);
+.card{
+  &.no-border{
+    border: none;
+  }
 }

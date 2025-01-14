@@ -1,0 +1,88 @@
+.alerts-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  
+    &__pagination {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+      flex: 0 0 auto;
+    }
+  
+    // Fixed class name to match HTML
+    .allerts-bar__text {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      padding-right: 1rem;
+      overflow: hidden;
+      max-width: calc(100% - 200px);
+  
+      // Add support for text__truncate-parent class from HTML
+      &.text__truncate-parent {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+  
+      .content__text {
+        width: 100%;
+        min-width: 0;
+        display: block;
+  
+        .OSBlockWidget {
+          width: 100%;
+          min-width: 0;
+          display: block;
+        }
+  
+        .cke_contents_ltr {
+          display: block;
+          width: 100%;
+          min-width: 0;
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          max-width: 100% !important;
+          word-wrap: normal !important;
+          word-break: normal !important;
+        }
+      }
+  
+      .desktop-and-tablet-only {
+        display: block;
+        
+        @media (max-width: $breakpoint-phone) {
+          display: none;
+        }
+      }
+  
+      .phone-only {
+        display: none;
+        
+        @media (max-width: $breakpoint-phone) {
+          display: block;
+        }
+      }
+    }
+  
+    &__button {
+      flex: 0 0 auto;
+      margin-left: auto;
+  
+      .btn {
+        white-space: nowrap;
+        border-radius: 9999px;
+        padding: 0.25rem;
+        background: transparent;
+        border: 1px solid var(--neutral-4);
+        color: var(--neutral-8);
+  
+        .padding-x-s {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+      }
+    }
+  }

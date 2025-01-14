@@ -5,8 +5,8 @@
 
 // Patterns 
 @import 'components/patterns/forms';
-@import 'components/patterns/banners';
-@import 'components/patterns/carousel';
+@import 'components/patterns/banner-news';
+@import 'components/patterns/carousel-tabs';
 @import 'components/patterns/need-help';
 @import 'components/patterns/breadcrumbs';
 @import 'components/patterns/summary';
@@ -15,8 +15,13 @@
 @import 'components/patterns/suggestions';
 @import 'components/patterns/grid-flip-card';
 @import 'components/patterns/lists';
+@import 'components/patterns/highlight-content';
+@import 'components/patterns/badge-list';
+@import 'components/patterns/alerts-bar';
+
 
 // App Specific
-@import 'app-specific/tap-agents/article';
-@import 'app-specific/tap-agents/signup';
-@import 'app-specific/tap-agents/main-ckeditor';
+@import '../scss/app-specific/tap-agents/pages/article';
+@import '../scss/app-specific/tap-agents/pages/signup';
+@import '../scss/app-specific/tap-agents/main-ckeditor';
+

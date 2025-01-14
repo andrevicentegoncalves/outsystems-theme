@@ -5,10 +5,10 @@
 /******************************* Header *********************************/
 
 .header-top {
-  padding: $space-s $space-m;
+  padding: var(--space-s) var(--space-m);
 
   @media (max-width: $breakpoint-phone) {
-    padding: $space-xs $space-s;
+    padding: var(--space-xs) var(--space-s);
   }
 }
 
@@ -26,19 +26,19 @@
 
   .app-logo {
     width: auto;
-    height: rem(30.59);
-    max-width: $logo-max-width;
+    max-height: rem(30.59) !important;
+    max-width: var(--logo-max-width);
 
     @media (max-width: $breakpoint-phone) {
-      height: rem(18);
+      max-height: rem(18) !important;
     }
   }
 }
 
 .menu-wrapper {
   @media (max-width: $breakpoint-phone) {
-    margin-right: $space-s;
-    @include font-style($font-size-xs);
+    margin-right: var(--space-s);
+    @include font-style(var(--font-size-xs));
   }
 }
 
@@ -56,7 +56,7 @@
   @media (max-width: $breakpoint-tablet) {
     width: 100%;
     order: 3;
-    margin-top: $space-s;
+    margin-top: var(--space-s);
   }
 
   &.menu-hidden {
@@ -66,27 +66,27 @@
 
 .app-menu-links {
   @include flexbox;
-  gap: $space-m;
+  gap: var(--space-m);
 
   @media (max-width: $breakpoint-phone) {
     flex-direction: column;
     align-items: center;
-    gap: $space-s;
+    gap: var(--space-s);
   }
 
   a {
     display: block !important;
     text-decoration: none;
-    color: $color-neutral-10;
+    color: var(--color-neutral-10);
     @include font-style(rem(20), 500);
     @include transition(color);
 
     @media (max-width: $breakpoint-phone) {
-      @include font-style($font-size-xs);
+      @include font-style(var(--font-size-xs));
     }
 
     &:hover {
-      color: $color-primary;
+      color: var(--color-primary);
     }
   }
 }
@@ -96,5 +96,5 @@
 }
 
 .user-info-wrapper {
-  margin-left: $space-xs;
+  margin-left: var(--space-xs);
 }

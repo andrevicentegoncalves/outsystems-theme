@@ -57,7 +57,6 @@
   align-items: center;
   justify-content: center;
 }
-  
 
 @mixin responsive($breakpoint) {
   @if $breakpoint == xs {
@@ -95,9 +94,8 @@
         }
       }
     }
-  }
+}
 
-// Mixin to handle default full-width columns (i.e., .col-12)
 @mixin default-grid-columns($grid-columns) {
   @for $i from 1 through $grid-columns {
     .col-#{$i} {
@@ -119,7 +117,7 @@
   transition: $property $duration $timing;
 }
 
-@mixin absolute($top: $position-top, $right: $position-right, $bottom: $position-bottom, $left: $position-left) {
+@mixin absolute($top: $position-top-none, $right: $position-right-none, $bottom: $position-bottom-none, $left: $position-left-none) {
   position: absolute;
   top: $top;
   right: $right;
@@ -155,15 +153,48 @@
     @each $breakpoint, $column-count in $columns {
       @if $breakpoint == 'xs' {
         grid-template-columns: repeat($column-count, minmax(0, 1fr));
-        // Fallback for IE
         -ms-grid-columns: repeat($column-count, 1fr); 
       } @else {
         @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
-          grid-template-columns: repeat($column-count, minmax(0, 1fr));
-          // Fallback for IE
-          -ms-grid-columns: repeat($column-count, 1fr); 
+          grid-template-columns: repeat(map-get($columns, $breakpoint), minmax(0, 1fr));
+          -ms-grid-columns: repeat(map-get($columns, $breakpoint), 1fr); 
         }
       }
+    }
+  }
+}
+
+@mixin create-responsive-grid-container($items, $tablet-items: 2, $phone-items: 1) {
+  display: grid;
+  grid-template-columns: repeat($items, 1fr);
+  gap: var(--space-m);
+
+  // Tablet breakpoint
+  @media (max-width: $breakpoint-desktop) {
+    grid-template-columns: repeat($tablet-items, 1fr);
+    gap: var(--space-base);
+  }
+
+  // Phone landscape breakpoint
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat($phone-items, 1fr);
+    gap: var(--space-base);
+  }
+
+  // Phone portrait breakpoint
+  @media (max-width: $breakpoint-phone) {
+    grid-template-columns: 1fr;
+  }
+
+  &__item {
+    width: 100%;
+
+    .form-control {
+      width: 100%;
+    }
+
+    label {
+      margin-bottom: var(--space-s);
     }
   }
 }

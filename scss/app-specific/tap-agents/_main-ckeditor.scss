@@ -6,25 +6,18 @@
 
 .html-wrapper {
 
-    // 1. Configurations
-    @import 'ckeditor/abstracts/config'; 
-
-    // 2. Base styles
-    @import 'ckeditor/base/base';      // Core styles 
-    @import 'ckeditor/base/article';   // Article styles 
+    // 1. Base styles
+    @import 'ckeditor/base/base';     
+    @import 'ckeditor/base/article';  
+    @import 'ckeditor/base/tables';
     
-    // 3. Interactive Components
+    // 2. Interactive Components
     @import 'ckeditor/components/accordion';
     @import 'ckeditor/components/carousel';
     @import 'ckeditor/components/collapse';
     @import 'ckeditor/components/list';
-    
-    // 4. Table styles
-    @import 'ckeditor/base/tables';
 
-    // 5. Utilities and add-ons
-    @import 'ckeditor/utilities/notes';   
+    // 3. Utilities and add-ons
+    @import 'ckeditor/utilities/notes';
     @import 'ckeditor/utilities/responsive';
-    @import 'ckeditor/utilities/scroll-to-top';
-
 }
