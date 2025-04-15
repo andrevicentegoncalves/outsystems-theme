@@ -4,113 +4,135 @@
 
 /**************************** Banner News ****************************/
 
+//-------------------------------------------
+// Base Container
+//-------------------------------------------
+
 .banner-news {
-  position: relative;
-  height: $banner-height;
+    position: relative;
+    height: $banner-height;
 
-  @media (max-width: $breakpoint-phone) {
-    height: var(--banner-height-phone);
+    @media (max-width: $breakpoint-phone) {
+        height: var(--banner-height-phone);
+        
+        .phone .wide-bar.ThemeGrid_Container {
+            padding-left: var(--space-none);
+            padding-right: var(--space-none);
+        }
+    }
+
+    //-------------------------------------------
+    // Background Layer
+    //-------------------------------------------
+
+    &__background {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        z-index: var(--z-index-dropdown);
+        transition: var(--transition-base);
+
+        // Background Image
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        @media (max-width: $breakpoint-phone) {
+            background-position: 35% center;
+        }
+
+        // Overlay
+        &::before {
+            content: "";
+            position: absolute;
+            top: var(--position-top-none);
+            left: var(--position-left-none);
+            right: var(--position-right-none);
+            bottom: var(--position-bottom-none);
+            background: rgba($color-neutral-10, $banner-overlay-opacity);
+            z-index: var(--z-index-sticky);
+        }
+
+        // Content Z-index
+        > * {
+            position: relative;
+            z-index: var(--z-index-fixed);
+        }
+    }
+
+    //-------------------------------------------
+    // Main Wrapper
+    //-------------------------------------------
     
-    .phone .wide-bar.ThemeGrid_Container {
-      padding-left: var(--space-none);
-      padding-right: var(--space-none);
-    }
-  }
+    &__wrapper {
+        height: var(--banner-height);
+        width: 100%;
 
-  &__background {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: var(--z-index-dropdown);
-    transition: var(--transition-base);
-
-    @media (max-width: $breakpoint-phone) {
-      background-position: 35% center;
+        @media (max-width: $breakpoint-phone) {
+            height: var(--banner-height-phone);
+        }
     }
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: var(--position-top-none);
-      left: var(--position-left-none);
-      right: var(--position-right-none);
-      bottom: var(--position-bottom-none);
-      background: rgba($color-neutral-10, $banner-overlay-opacity);
-      z-index: var(--z-index-sticky);
+    //-------------------------------------------
+    // Content Section
+    //-------------------------------------------
+    
+    &__content {
+        position: relative;
+        z-index: var(--z-index-fixed);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: var(--space-xl);
+
+        @media (max-width: $breakpoint-phone) {
+            padding-top: var(--space-base);
+        }
+
+        // Title
+        &-title {
+            position: relative;
+            z-index: var(--z-index-fixed);
+            font-weight: bold;
+            margin-bottom: var(--space-xs);
+            color: var(--color-neutral-0);
+            font-size: var(--font-size-h1);
+
+            @media (max-width: $breakpoint-phone) {
+                font-size: var(--font-size-h3);
+                padding-top: var(--space-base);
+            }
+        }
+
+        // Subtitle
+        &-subtitle {
+            position: relative;
+            z-index: var(--z-index-fixed);
+            margin-bottom: var(--space-l);
+            color: var(--color-neutral-0);
+            font-size: var(--font-size-h6);
+
+            @media (max-width: $breakpoint-phone) {
+                max-width: 100%;
+            }
+        }
+
+        // Button
+        &-button {
+            position: relative;
+            z-index: var(--z-index-fixed);
+            max-width: 200px;
+            font-size: var(--font-size-h6);
+
+            @media (max-width: $breakpoint-phone) {
+                font-size: var(--font-size-h6);
+                max-width: 100%;
+            }
+
+            .btn-primary {
+                opacity: var(--opaque);
+            }
+        }
     }
-
-    > * {
-      position: relative;
-      z-index: var(--z-index-fixed);
-    }
-  }
-
-  &__wrapper {
-    height: var(--banner-height);
-    width: 100%;
-
-    @media (max-width: $breakpoint-phone) {
-      height: var(--banner-height-phone);
-    }
-  }
-
-  &__content {
-    position: relative;
-    z-index: var(--z-index-fixed);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: var(--space-xl);
-
-    @media (max-width: $breakpoint-phone) {
-      padding-top: var(--space-base);
-    }
-
-    &-title {
-      position: relative;
-      z-index: var(--z-index-fixed);
-      font-weight: bold;
-      margin-bottom: var(--space-xs);
-      color: var(--color-neutral-0);
-      font-size: var(--font-size-h1);
-
-      @media (max-width: $breakpoint-phone) {
-        font-size: var(--font-size-h3);
-        padding-top: var(--space-base);
-
-      }
-    }
-
-    &-subtitle {
-      position: relative;
-      z-index: var(--z-index-fixed);
-      margin-bottom: var(--space-l);
-      color: var(--color-neutral-0);
-      font-size: var(--font-size-h6);
-
-      @media (max-width: $breakpoint-phone) {
-        max-width: 100%;
-      }
-    }
-
-    &-button {
-      position: relative;
-      z-index: var(--z-index-fixed);
-      max-width: 200px;
-      font-size: var(--font-size-h6);
-
-      @media (max-width: $breakpoint-phone) {
-        font-size: var(--font-size-h6);
-        max-width: 100%;
-      }
-
-      .btn-primary {
-        opacity: var(--opaque);
-      }
-    }
-  }
 }

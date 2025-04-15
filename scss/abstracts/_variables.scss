@@ -1,47 +1,47 @@
-@import '../abstracts/functions';
+@import 'flags';
+@import 'functions';
 
-// Color Palette
+//-------------------------------------------
+// Brand Colors
+//-------------------------------------------
+
 $color-primary: #72BE44;
+$color-primary-light: #F1F9EC;
 
+// Semantic Colors
 $color-success: #28a745;
 $color-danger: #dc3545;
+$color-danger-light: #f7dddb;
+$color-danger-extra-light: #ffecec;
 $color-warning: #ffc107;
 $color-warning-light: #FEFBCD;
 $color-info: #17a2b8;
-$color-neutral-0:#ffffff;
-$color-neutral-1:#f8f9fa;
-$color-neutral-2:#f1f3f5;
-$color-neutral-3:#e9ecef;
-$color-neutral-4:#dee2e6;
-$color-neutral-5:#ced4da;
-$color-neutral-6:#adb5bd;
-$color-neutral-7:#6a7178;
-$color-neutral-8:#4f575e;
-$color-neutral-9:#272b30;
-$color-neutral-10:#101213;
+$color-info-light: #add8e6;
+$color-info-extra-light: #e5f5fc;
 
+// Neutral Scale
+$color-neutral-0: #ffffff;
+$color-neutral-1: #f8f9fa;
+$color-neutral-2: #f1f3f5;
+$color-neutral-3: #e9ecef;
+$color-neutral-4: #dee2e6;
+$color-neutral-5: #ced4da;
+$color-neutral-6: #adb5bd;
+$color-neutral-7: #6a7178;
+$color-neutral-8: #4f575e;
+$color-neutral-9: #272b30;
+$color-neutral-10: #101213;
+
+// Theme Colors
 $color-light: $color-neutral-1;
 $color-dark: $color-neutral-9;
-
 $color-footer: #333333;
 $color-footer-section: #2C2C2C;
 
-// Layout 
-$layout-max-width: rem(1440);
-$layout-half-max-width: rem(720);
-$popup-max-width: rem(650);
-
-// Login
-$login-form-width: rem(432);
-$login-background-image: url(/TapAgents_TH/img/TapAgents_TH.Login_Background.jpg);
-
-// Image
-$image-width-captcha: rem(286);
-$image-height-captcha: rem(40);
-$image-star-alliance: rem(270);
-$logo-max-width: rem(180);
-
+//-------------------------------------------
 // Typography
+//-------------------------------------------
+
 $font-family-base: 'Arial', sans-serif;
 $font-size-xxxs: rem(5);
 $font-size-xxs: rem(10);
@@ -61,18 +61,20 @@ $font-weight-bold: bold;
 // Icons
 $icon-font-family: 'MegasisIconsFont';
 
-// Components
-$size-checkbox-s: rem(12);
+//-------------------------------------------
+// Layout & Spacing
+//-------------------------------------------
 
-// Border
-$border-size-xs: 0.5px;
-$border-size-s: 1px;
-$border-width-selected: 3px;
-$border-width: 0.3px;
-$border-style: solid;
-$border-color: $color-primary;
-$border-radius-soft: 4px;
-$border-radius-extra-soft: 15px;
+// Container Widths
+$layout-max-width: rem(1440);
+$layout-half-max-width: rem(720);
+$popup-max-width: rem(650);
+
+// Grid System
+$grid-columns: 12;
+$grid-columns-standard: 4;
+$grid-gap: 25px;
+$grid-gutter-width: 30px;
 
 // Breakpoints
 $breakpoint-phone: 480px;
@@ -81,11 +83,7 @@ $breakpoint-tablet: 768px;
 $breakpoint-tablet-horizontal: 1024px;
 $breakpoint-desktop: 1200px;
 
-// Grid
-$grid-columns: 12;
-$grid-columns-standard: 4;
-$grid-gap: 25px;
-$grid-gutter-width: 30px;
+// Grid Maps
 $grid-breakpoints: (
   xs: 0,
   sm: $breakpoint-phone,
@@ -101,29 +99,11 @@ $grid-container-max-widths: (
   xl: $layout-max-width
 );
 
-// Z-index
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
-
-// Transitions
-$transition-base: all 0.2s ease-in-out;
-
-
-// Shadows
-$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-// Truncation
-$truncate-width: 100%;
-
-// Spacing
+// Spacing Scale
 $space-none: 0;
 $space-xs: rem(4);
 $space-s: rem(8);
+$space-sm: rem(10);
 $space-base: rem(16);
 $space-m: rem(24);
 $space-ls: rem(28);
@@ -133,19 +113,35 @@ $space-xl: rem(40);
 $space-xxl: rem(48);
 $space-xxxl: rem(96);
 
-// Dimensions
-$banner-height: rem(400);
-$banner-height-phone: rem(309);
-$bottom-tab-width: 170px;
-$bottom-tab-height: 60px;
+//-------------------------------------------
+// Components
+//-------------------------------------------
 
-// Positioning
-$position-top-none: 0;
-$position-right-none: 0;
-$position-bottom-none: 0;
-$position-left-none: 0;
+// Border Styles
+$border-size-xs: 0.5px;
+$border-size-s: 1px;
+$border-width-selected: 3px;
+$border-width: 0.3px;
+$border-style: solid;
+$border-color: $color-primary;
+$border-radius-soft: 4px;
+$border-radius-extra-soft: 15px;
 
-// Opacity
+// Z-index Stack
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Effects
+$transition-base: all 0.2s ease-in-out;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$truncate-width: 100%;
+
+// Opacity Levels
 $banner-overlay-opacity: 0.4;
 $opacity-s: 40%;
 $opacity-m: 60%;
@@ -153,7 +149,62 @@ $opacity-l: 80%;
 $opacity-xl: 90%;
 $opaque: 1;
 
-// Flip card
+//-------------------------------------------
+// Feature-Specific
+//-------------------------------------------
+
+// Login
+$login-form-width: rem(432);
+$login-background-image: url(/TapPortal_TH/img/TapPortal_TH.Login_Background.jpg);
+
+// Images & Icons
+$image-width-captcha: rem(286);
+$image-height-captcha: rem(40);
+$image-star-alliance: rem(270);
+$logo-max-width: rem(180);
+
+$image-width-xs: rem(152);
+$image-width-s: rem(203);
+$image-width-m: rem(338);
+$image-width-l: rem(474);
+$image-width-display: rem(778);
+
+$image-height-xs: rem(90);
+$image-height-s: rem(120);
+$image-height-m: rem(200);
+$image-height-l: rem(280);
+$image-height-display: rem(460);
+
+// Checkboxes
+$size-checkbox-s: rem(12);
+
+// Banner
+$banner-height: rem(400);
+$banner-height-phone: rem(309);
+
+// Bottom Tabs
+$bottom-tab-width: 170px;
+$bottom-tab-height: 60px;
+
+// Positioning Reset
+$position-top-none: 0;
+$position-right-none: 0;
+$position-bottom-none: 0;
+$position-left-none: 0;
+
+// Flip Card
 $flip-card-height: 240px;
 $flip-card-expanded-height: 480px;
 $flip-card-transition-time: 0.6s;
+
+$font-path: if($is_main, '/TapPortal_TH/', 
+               if($is_pat, '/TapPortal_PAT/', '/TapPortal_TH/')
+             );
+
+// Font weight mapping
+$weight-names: (
+  100: 'Thin',
+  300: 'Light',
+  400: 'Regular',
+  700: 'Bold'
+);

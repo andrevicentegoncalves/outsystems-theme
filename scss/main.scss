@@ -2,6 +2,7 @@ $is_main: true;
 $is_pat: false;
 
 // Abstract
+@import 'abstracts/flags';
 @import 'abstracts/functions';
 @import 'abstracts/variables';
 @import 'abstracts/custom-properties';
@@ -20,12 +21,10 @@ $is_pat: false;
 @import 'components/submenus';
 @import 'components/checkboxes';
 @import 'components/dropdowns';
-@import 'components/language-switcher';
 @import 'components/images';
 @import 'components/search';
 @import 'components/icons';
 @import 'components/badges';
-@import 'components/user-info';
 @import 'components/responsive-grid';
 @import 'components/popups';
 @import 'components/scroll-to-top';
@@ -35,6 +34,8 @@ $is_pat: false;
 @import 'components/tables';
 @import 'components/date-picker';
 @import 'components/submenu-custom';
+@import 'components/tooltip';
+
 
 // Layout
 @import 'layout/layout';

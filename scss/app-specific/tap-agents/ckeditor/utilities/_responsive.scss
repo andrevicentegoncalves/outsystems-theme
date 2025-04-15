@@ -1,21 +1,29 @@
+//-------------------------------------------
+// Horizontal Phone Breakpoint
+//-------------------------------------------
+
 @media (max-width: var(--breakpoint-phone-horizontal)) {
-    .ArticleDiv .collapse__button svg.icn {
-        width: rem(35);
-        height: rem(35);
-    }
+    // Collapse button icon sizing
+    .ArticleDiv .collapse__button svg.icn,
     .cke_contents_ltr .collapse__button svg.icn {
         width: rem(35);
         height: rem(35);
     }
-    
 }
 
+//-------------------------------------------
+// Phone Breakpoint
+//-------------------------------------------
+
 @media (max-width: var(--breakpoint-phone)) {
+    // Accordion adjustments
     .accordion {
+        // Header padding
         .ec-head {
             padding: rem(20);
         }
 
+        // Info group spacing
         .expanded-content .info-group {
             .label,
             .value {
@@ -24,6 +32,7 @@
         }
     }
 
+    // Responsive list adjustments
     .responsive-list.accordion-style {
         .list-content {
             padding: var(--spacing-mobile-padding);
@@ -31,12 +40,18 @@
     }
 }
 
+//-------------------------------------------
+// Print Styles
+//-------------------------------------------
+
 @media print {
+    // Accordion print layout
     .accordion .expanded-content {
         height: auto !important;
         overflow: visible !important;
     }
 
+    // List print layout
     .responsive-list {
         page-break-inside: avoid;
     }

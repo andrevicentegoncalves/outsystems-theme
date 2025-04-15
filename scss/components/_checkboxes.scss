@@ -4,7 +4,10 @@
 
 /**************************** Checkboxes ****************************/
 
-/* Small Checkbox */
+//-------------------------------------------
+// Small Checkbox 
+//-------------------------------------------
+
 .checkbox.checkbox-small {
     width: var(--size-checkbox-s);
     height: var(--size-checkbox-s);
@@ -15,36 +18,80 @@
     appearance: none;
     outline: none;
     
+    // Default State
     &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--color-neutral-0);
-      border: var(--border-size-s) solid var(--color-neutral-5);
-      border-radius: var(--border-radius-soft);
-      box-sizing: border-box;
-      transition: all 180ms linear;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--color-neutral-0);
+        border: var(--border-size-s) solid var(--color-neutral-5);
+        border-radius: var(--border-radius-soft);
+        box-sizing: border-box;
+        transition: all 180ms linear;
     }
     
-    &:checked:before {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
+    // Checked State
+    &:checked {
+        &:before {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        &:after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-neutral-0);
+            font-size: calc(var(--size-checkbox-s) * 0.6);
+        }
     }
     
+    // Focus State
     &:focus {
-      box-shadow: 0 0 0 2px var(--color-focus);
+        box-shadow: 0 0 0 2px var(--color-focus);
     }
-    
-    &:checked:after {
-      content: '✓';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-neutral-0);
-      font-size: calc(var(--size-checkbox-s) * 0.6);
+}
+
+//-------------------------------------------
+// Base Checkbox 
+//-------------------------------------------
+.checkbox-base {
+    &[data-checkbox] {
+        height: auto;
+        width: auto;
+        padding: var(--space-none);
+        display: inline-block; 
+
+        &::before {
+            height: 16px;
+            width: 16px;
+        }
+
+        &:checked {
+            &::after {
+                border: var(--border-size-l) solid var(--color-neutral-0);
+                border-right: var(--border-size-none) !important;
+                border-top: var(--border-size-none) !important;
+                display: block;
+                height: 4px;
+                left: 3.5px;
+                top: 4px;
+                width: 8px;
+            }
+        }
     }
-  }
+
+    span {
+        display: inline-block;  
+        margin-bottom: 0;      
+    }
+}
+
+.checkbox__wrapper label {
+    margin-bottom: var(--space-xs) !important;
+}

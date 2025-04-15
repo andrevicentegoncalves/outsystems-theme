@@ -4,6 +4,10 @@
 
 /**************************** Suggestions ****************************/
 
+//-------------------------------------------
+// Suggestion Container
+//-------------------------------------------
+
 .suggestion-wrapper {
     background-color: var(--color-neutral-0);
     border-radius: var(--border-radius-soft);
@@ -13,177 +17,181 @@
     margin: 0 auto;
     font-family: var(--font-family-base);
     transition: var(--transition-base);
-  
+
+    // Title
     .suggestion-title {
-      font-size: var(--font-size-base);
-      font-weight: var(--font-weight-extra-light);
-      color: var(--color-neutral-9);
-      margin-bottom: var(--space-m);
-    }
-  
-    .suggestion-content {
-      .rating-container {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-extra-light);
+        color: var(--color-neutral-9);
         margin-bottom: var(--space-m);
-  
+    }
+}
+
+//-------------------------------------------
+// Content Area
+//-------------------------------------------
+
+.suggestion-content {
+    // Rating Section
+    .rating-container {
+        margin-bottom: var(--space-m);
+
         h3 {
-          margin-bottom: var(--space-base);
-          font-weight: var(--font-weight-thin);
-          color: var(--color-neutral-8);
+            margin-bottom: var(--space-base);
+            font-weight: var(--font-weight-thin);
+            color: var(--color-neutral-8);
         }
-      }
+    }
 
-      // Radio Group Styles
-      [data-radio-group], .radio-group {
+    //-------------------------------------------
+    // Radio Group
+    //-------------------------------------------
+
+    [data-radio-group], .radio-group {
         &.OSFillParent {
-          > div {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: var(--space-base) !important;
-            margin: var(--space-base) 0 !important;
-            flex-wrap: nowrap !important;
-          }
+            > div {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: var(--space-base) !important;
+                margin: var(--space-base) 0 !important;
+                flex-wrap: nowrap !important;
+            }
         }
 
-        // Radio Button Styles
+        // Radio Button
         [data-radio-button] {
-          display: inline-flex !important;
-          flex-direction: row !important;
-          align-items: center !important;
-          width: auto !important;
-          margin: $space-s 0 !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            width: auto !important;
+            margin: $space-s 0 !important;
 
-          .radio-button {
-            appearance: none;
-            -webkit-appearance: none;
-            cursor: pointer;
-            flex-shrink: 0;
-            height: rem(24);
-            position: relative;
-            transition: var(--transition-base);
-            width: rem(24);
-            margin: var(--space-none);
+            // Input Styling
+            .radio-button {
+                appearance: none;
+                -webkit-appearance: none;
+                cursor: pointer;
+                flex-shrink: 0;
+                height: rem(24);
+                position: relative;
+                transition: var(--transition-base);
+                width: rem(24);
+                margin: var(--space-none);
 
+                // States
+                &:before {
+                    background-color: var(--color-neutral-0);
+                    border: var(--border-width) var(--border-style) var(--color-neutral-5);
+                    border-radius: 50%;
+                    content: "";
+                    display: flex;
+                    height: 100%;
+                    transition: var(--transition-base);
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                &:checked:before {
+                    background-color: var(--color-neutral-0);
+                    border: var(--border-width-selected) solid var(--color-primary);
+                }
+
+                &:hover:before {
+                    border-color: var(--color-neutral-7);
+                }
+
+                &:focus:before {
+                    box-shadow: 0 0 0 2px rgba(var(--color-primary), var(--opacity-s));
+                }
+
+                // Disabled State
+                &:disabled {
+                    background-color: transparent;
+                    border: none;
+                    pointer-events: none;
+
+                    + label {
+                        pointer-events: none;
+                        color: var(--color-neutral-6);
+                    }
+
+                    &:before {
+                        background-color: var(--color-neutral-2);
+                        border: var(--border-width) var(--border-style) var(--color-neutral-4);
+                    }
+
+                    &:checked:before {
+                        background-color: var(--color-neutral-2);
+                        border: var(--border-width-selected) solid var(--color-neutral-4);
+                    }
+                }
+            }
+
+            // Label Styling
+            label {
+                cursor: pointer;
+                line-height: var(--line-height-base);
+                margin: 0 0 0 var(--space-s);
+                color: var(--color-neutral-8);
+                transition: var(--transition-base);
+
+                &:hover {
+                    color: var(--color-primary);
+                }
+            }
+        }
+
+        // Invalid State
+        &.not-valid [data-radio-button] .radio-button {
             &:before {
-              background-color: var(--color-neutral-0);
-              border: var(--border-width) var(--border-style) var(--color-neutral-5);
-              border-radius: 50%;
-              content: "";
-              display: flex;
-              height: 100%;
-              transition: var(--transition-base);
-              width: 100%;
-              box-sizing: border-box;
+                border: var(--border-width) var(--border-style) var(--color-danger);
             }
 
             &:checked:before {
-              background-color: var(--color-neutral-0);
-              border: var(--border-width-selected) solid var(--color-primary);
+                background-color: var(--color-neutral-0);
+                border: var(--border-width-selected) solid var(--color-primary);
             }
+        }
+    }
 
-            &:hover:before {
-              border-color: var(--color-neutral-7);
-            }
+    //-------------------------------------------
+    // Feedback Area
+    //-------------------------------------------
 
-            &:focus:before {
-              box-shadow: 0 0 0 2px rgba(var(--color-primary), var(--opacity-s));
-            }
-
-            &:disabled {
-              background-color: transparent;
-              border: none;
-              pointer-events: none;
-
-              + label {
-                pointer-events: none;
-                color: var(--color-neutral-6);
-              }
-
-              &:before {
-                background-color: var(--color-neutral-2);
-                border: var(--border-width) var(--border-style) var(--color-neutral-4);
-              }
-
-              &:checked:before {
-                background-color: var(--color-neutral-2);
-                border: var(--border-width-selected) solid var(--color-neutral-4);
-              }
-            }
-          }
-
-          label {
-            cursor: pointer;
-            line-height: var(--line-height-base);
-            margin: 0 0 0 var(--space-s);
-            color: var(--color-neutral-8);
+    .feedback-container {
+        textarea {
+            width: var(--truncate-width);
+            min-height: calc($flip-card-height / 2);
+            padding: var(--space-s);
+            border: var(--border-width $border-style $color-neutral-4);
+            border-radius: var(--border-radius-extra-soft);
+            resize: vertical;
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
             transition: var(--transition-base);
 
-            &:hover {
-              color: var(--color-primary);
+            &:focus {
+                outline: none;
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
             }
-          }
+
+            &::placeholder {
+                color: var(--color-neutral-6);
+            }
         }
-
-        // Not Valid State
-        &.not-valid [data-radio-button] .radio-button {
-          &:before {
-            border: var(--border-width) var(--border-style) var(--color-danger);
-          }
-
-          &:checked:before {
-            background-color: var(--color-neutral-0);
-            border: var(--border-width-selected) solid var(--color-primary);
-          }
-        }
-      }
-
-      // Maximum Specificity Override
-      body & [data-radio-group].OSFillParent > div {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: var(--space-base) !important;
-        flex-wrap: nowrap !important;
-
-        > div[data-radio-button] {
-          display: inline-flex !important;
-          flex-direction: row !important;
-          align-items: center !important;
-          width: auto !important;
-          margin: var(--space-s) 0 !important;
-        }
-      }
-
-      // Feedback Container
-      .feedback-container {
-        textarea {
-          width: var(--truncate-width);
-          min-height: calc($flip-card-height / 2);
-          padding: var(--space-s);
-          border: var(--border-width $border-style $color-neutral-4);
-          border-radius: var(--border-radius-extra-soft);
-          resize: vertical;
-          font-family: var(--font-family-base);
-          font-size: var(--font-size-base);
-          transition: var(--transition-base);
-  
-          &:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
-          }
-  
-          &::placeholder {
-            color: var(--color-neutral-6);
-          }
-        }
-      }
     }
-  
-    // Button Styles
-    .suggestion-button {
-      margin-top: var(--space-m);
-      text-align: right;
-  
-      button {
+}
+
+//-------------------------------------------
+// Button Area
+//-------------------------------------------
+
+.suggestion-button {
+    margin-top: var(--space-m);
+    text-align: right;
+
+    button {
         padding: var(--space-s) var(--space-m);
         background-color: var(--color-primary);
         color: var(--color-neutral-10);
@@ -191,65 +199,72 @@
         font-weight: var(--font-weight-extra-light);
         cursor: pointer;
         transition: var(--transition-base);
-  
+
         &:hover {
-          background-color: darken($color-primary, 10%);
+            background-color: darken($color-primary, 10%);
         }
-  
+
         &:focus {
-          outline: none;
-          box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba($color-primary, $opacity-s);
         }
-  
+
         &:disabled {
-          background-color: lighten($color-primary, 20%);
-          cursor: not-allowed;
-          opacity: var(--opacity-s);
+            background-color: lighten($color-primary, 20%);
+            cursor: not-allowed;
+            opacity: var(--opacity-s);
         }
-      }
     }
 }
 
+//-------------------------------------------
 // RTL Support
+//-------------------------------------------
+
 .is-rtl {
-  [data-radio-group] label {
-    margin-left: var(--space-none);
-    margin-right: var(--space-s);
-  }
+    [data-radio-group] label {
+        margin-left: var(--space-none);
+        margin-right: var(--space-s);
+    }
 
-  .radio-group.is-horizontal [data-radio-button]:not(:first-of-type) {
-    margin-left: unset;
-    margin-right: var(--space-base);
-  }
+    .radio-group.is-horizontal [data-radio-button]:not(:first-of-type) {
+        margin-left: unset;
+        margin-right: var(--space-base);
+    }
 }
 
-// Additional Overrides for Horizontal Layout
+//-------------------------------------------
+// Layout Variations
+//-------------------------------------------
+
 .radio-group.is-horizontal {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap;
-  
-  > div {
-    display: contents !important;
-  }
-  
-  [data-radio-button] {
-    width: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
     
-    &:not(:first-of-type) {
-      margin-left: var(--space-base);
+    > div {
+        display: contents !important;
     }
-  }
+    
+    [data-radio-button] {
+        width: auto !important;
+        
+        &:not(:first-of-type) {
+            margin-left: var(--space-base);
+        }
+    }
 }
 
-// Responsive Styles
+//-------------------------------------------
+// Responsive Adjustments
+//-------------------------------------------
+
 @media (max-width: $breakpoint-phone-horizontal) {
-  .suggestion-wrapper {
-    
-    .suggestion-content {
-      [data-radio-group], .radio-group {
-        gap: var(--space-s) !important;
-      }
+    .suggestion-wrapper {
+        .suggestion-content {
+            [data-radio-group], .radio-group {
+                gap: var(--space-s) !important;
+            }
+        }
     }
-  }
 }

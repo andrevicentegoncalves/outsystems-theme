@@ -4,28 +4,45 @@
 
 /****************************** Footer *******************************/
 
-.background {
-  &-footer {
-    background: var(--color-footer);
+//-------------------------------------------
+// Background Variations
+//-------------------------------------------
 
-    &-section {
-    background: var(--color-footer-section);
+.background {
+    // Main footer background color
+    &-footer {
+        background: var(--color-footer);
+
+        // Nested section background color
+        &-section {
+            background: var(--color-footer-section);
+        }
     }
-  }
 }
+
+//-------------------------------------------
+// Separator Elements
+//-------------------------------------------
 
 .separator {
-  &-footer {
-    &-section {
-      border-left: var(--border-style) 2px var(--color-neutral-6);
-      margin: var(--space-none) 1%;
-      height: rem(104);    
+    &-footer {
+        // Vertical separator between footer sections
+        // Uses neutral color and maintains specific height
+        &-section {
+            border-left: var(--border-style) 2px var(--color-neutral-6);
+            margin: var(--space-none) 1%;
+            height: rem(104);    
+        }
     }
-  }
 }
 
+//-------------------------------------------
+// Responsive Text Alignment
+//-------------------------------------------
+
 @media (max-width: $breakpoint-phone-horizontal) {
-  .left-align-on-mobile {
-    text-align: left;
-  }
+    // Forces left alignment on mobile devices
+    .left-align-on-mobile {
+        text-align: left;
+    }
 }

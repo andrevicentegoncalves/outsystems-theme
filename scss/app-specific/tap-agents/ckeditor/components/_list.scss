@@ -1,12 +1,32 @@
+//-------------------------------------------
+// Base List Structure
+//-------------------------------------------
+
 .responsive-list {
     width: 100%;
     margin: 0;
     padding: 0;
 
+    @media screen and (max-width: $breakpoint-phone) {
+        .list-content, .list-image {
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+    }
+}
+
+//-------------------------------------------
+// Clean List Variant
+//-------------------------------------------
+
+.responsive-list {
     &.table-list-clean,
     &.mobile-list-clean {
         .list-item {
-            padding: var(--space-base);
+            // Base item structure
+            padding-bottom: var(--space-base);
             border: none;
             border-radius: 0;
             overflow: hidden;
@@ -18,19 +38,21 @@
                 margin-bottom: 0;
             }
 
+            // List image styling
             .list-image {
                 text-align: center;
                 margin: var(--space-m) var(--space-none);
             }
             
+            // List title styling
             .list-title {
                 font-weight: 600;
                 color: var(--color-neutral-9);
                 margin-bottom: var(--space-s);
                 padding: var(--space-base);
-
             }
             
+            // List content styling
             .list-content {
                 color: var(--color-neutral-7);
                 
@@ -43,6 +65,7 @@
                 }
             }
             
+            // Bulleted list styling
             ul.list-content {
                 list-style-type: disc;
                 padding-left: var(--space-xl);
@@ -58,13 +81,21 @@
             }
         }
     }
+}
 
+//-------------------------------------------
+// Accordion Style Variant
+//-------------------------------------------
+
+.responsive-list {
     &.accordion-style {
         .list-content {
             padding: var(--space-m) var(--space-base);
             text-align: left;
             min-height: var(--space-xxl);
+            margin: var(--space-none) var(--space-none);
             
+            // Header variations
             &.header {
                 background-color: var(--color-primary);
                 color: var(--color-neutral-9);
@@ -86,18 +117,26 @@
                 text-transform: uppercase;
             }
 
+            // Content value styling
             &.value {
                 background-color: var(--color-neutral-0);
                 color: var(--color-neutral-7);
                 font-weight: 600;
 
-                * {
+                // Ensure left alignment
+                *, 
+                div, 
+                p, 
+                span {
                     text-align: left !important;
                 }
+            }
 
-                div, p, span {
-                    text-align: left !important;
-                }
+            .table-standalone-title {
+                font-size: 1.2em;
+                font-weight: bold;
+                padding: 10px;
+                margin-bottom: 0;
             }
         }
     }

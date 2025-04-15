@@ -1,27 +1,7 @@
-$is_main: false;
-$is_pat: true;
-
 // Abstract
-@import 'abstracts/flags';
-@import 'abstracts/functions';
 @import 'abstracts/variables';
+@import 'abstracts/functions';
 @import 'abstracts/mixins';
-@import 'abstracts/custom-properties';
-
-// Utilities
-@import 'utilities/utility-classes';
-
-// Base
-@import 'base/typography';
-// Components
-@import 'components/buttons';
-@import 'components/search';
-@import 'components/badges';
-@import 'components/popups';
-@import 'components/pagination';
-
-// Layout
-@import 'layout/grid';
 
 // Patterns 
 @import 'components/patterns/forms';
@@ -37,7 +17,13 @@ $is_pat: true;
 @import 'components/patterns/lists';
 @import 'components/patterns/highlight-content';
 @import 'components/patterns/badge-list';
-@import 'components/submenu-custom';
 @import 'components/patterns/alerts-bar';
 @import 'components/patterns/search-and-filter';
+
+
+
+// App Specific
+@import '../scss/app-specific/tap-agents/pages/article';
+@import '../scss/app-specific/tap-agents/pages/signup';
+@import '../scss/app-specific/tap-agents/main-ckeditor';
 

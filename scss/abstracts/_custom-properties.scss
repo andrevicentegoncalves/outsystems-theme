@@ -1,145 +1,163 @@
 :root {
-    /* Color Palette */
-    --color-primary: #{$color-primary};
-    --color-primary-hover: #{$color-primary};
-    --color-primary-active: #{$color-primary};
-    --color-success: #{$color-success};
-    --color-danger: #{$color-danger};
-    --color-warning: #{$color-warning};
-    --color-warning-light: #{$color-warning-light};
-    --color-info: #{$color-info};
-    --color-neutral-0: #{$color-neutral-0};
-    --color-neutral-1: #{$color-neutral-1};
-    --color-neutral-2: #{$color-neutral-2};
-    --color-neutral-3: #{$color-neutral-3};
-    --color-neutral-4: #{$color-neutral-4};
-    --color-neutral-5: #{$color-neutral-5};
-    --color-neutral-6: #{$color-neutral-6};
-    --color-neutral-7: #{$color-neutral-7};
-    --color-neutral-8: #{$color-neutral-8};
-    --color-neutral-9: #{$color-neutral-9};
-    --color-neutral-10: #{$color-neutral-10};
-    --color-light: #{$color-light};
-    --color-dark: #{$color-dark};
-    --color-footer: #{$color-footer};
-    --color-footer-section: #{$color-footer-section};
-  
-    /* Layout */
-    --layout-max-width: #{$layout-max-width};
-    --layout-half-max-width: #{$layout-half-max-width};
-    --popup-max-width: #{$popup-max-width};
-  
-    @if $is_main {
-    /* Login */
-    --login-form-width: #{$login-form-width};
-    --login-background-image: #{$login-background-image};
-    }
+  /* Color Palette */
+  --color-primary: #{$color-primary};                                        /* Main brand color */
+  --color-primary-light: #{$color-primary-light};                                        /* Main brand color light */
+  --color-primary-hover: #{$color-primary};                                  /* Hover state */
+  --color-primary-active: #{$color-primary};                                 /* Active state */
+  --color-success: #{$color-success};                                        /* Success messages */
+  --color-danger: #{$color-danger};                                          /* Error states */
+  --color-danger-light: #{$color-danger-light};      
+  --color-danger-extra-light: #{$color-danger-extra-light};      
+  --color-warning: #{$color-warning};                                        /* Warning messages */
+  --color-warning-light: #{$color-warning-light};                            
+  --color-info: #{$color-info};                                              /* Info messages */
+  --color-info-light: #{$color-info-light};   
+  --color-info-extra-light: #{$color-info-extra-light};                      
+  --color-neutral-0: #{$color-neutral-0};                                    /* White */
+  --color-neutral-1: #{$color-neutral-1};                                    /* Lightest gray */
+  --color-neutral-2: #{$color-neutral-2};                                    /* Light gray */
+  --color-neutral-3: #{$color-neutral-3};                                    /* Mid-light gray */
+  --color-neutral-4: #{$color-neutral-4};                                    /* Medium gray */
+  --color-neutral-5: #{$color-neutral-5};                                    /* True gray */
+  --color-neutral-6: #{$color-neutral-6};                                    /* Mid-dark gray */
+  --color-neutral-7: #{$color-neutral-7};                                    /* Dark gray */
+  --color-neutral-8: #{$color-neutral-8};                                    /* Darker gray */
+  --color-neutral-9: #{$color-neutral-9};                                    /* Nearly black */
+  --color-neutral-10: #{$color-neutral-10};                                  /* Black */
+  --color-light: #{$color-light};                                            /* Light theme base */
+  --color-dark: #{$color-dark};                                              /* Dark theme base */
+  --color-footer: #{$color-footer};                                          /* Footer background */
+  --color-footer-section: #{$color-footer-section};                          /* Footer dividers */
 
-    /* Image */
-    --image-width-captcha: #{$image-width-captcha};
-    --image-height-captcha: #{$image-height-captcha};
-    --image-star-alliance: #{$image-star-alliance};
-    --logo-max-width: #{$logo-max-width};
-  
-    /* Typography */
-    --font-family-base: #{$font-family-base};
-    --font-size-xxxs: #{$font-size-xxxs};
-    --font-size-xxs: #{$font-size-xxs};
-    --font-size-xs: #{$font-size-xs};
-    --font-size-s: #{$font-size-s};
-    --font-size-base: #{$font-size-base};
-    --font-size-m: #{$font-size-m};
-    --font-size-l: #{$font-size-l};
-    --font-size-xl: #{$font-size-xl};
-    --line-height-base: #{$line-height-base};
-  
-    /* Font Weights */
-    --font-weight-thin: #{$font-weight-thin};
-    --font-weight-extra-light: #{$font-weight-extra-light};
-    --font-weight-bold: #{$font-weight-bold};
-  
-    /* Icons */
-    --icon-font-family: #{$icon-font-family};
-  
-    /* Components */
-    --size-checkbox-s: #{$size-checkbox-s};
-  
-    /* Border */
-    --border-size-xs: #{$border-size-xs};
-    --border-size-s: #{$border-size-s};
-    --border-width-selected: #{$border-width-selected};
-    --border-width: #{$border-width};
-    --border-style: #{$border-style};
-    --border-color: #{$border-color};
-    --border-radius-soft: #{$border-radius-soft};
-    --border-radius-extra-soft: #{$border-radius-extra-soft};
-  
-    /* Breakpoints */
-    --breakpoint-phone: #{$breakpoint-phone};
-    --breakpoint-phone-horizontal: #{$breakpoint-phone-horizontal};
-    --breakpoint-tablet: #{$breakpoint-tablet};
-    --breakpoint-tablet-horizontal: #{$breakpoint-tablet-horizontal};
-    --breakpoint-desktop: #{$breakpoint-desktop};
-  
-    /* Grid */
-    --grid-columns: #{$grid-columns};
-    --grid-columns-standard: #{$grid-columns-standard};
-    --grid-gap: #{$grid-gap};
-    --grid-gutter-width: #{$grid-gutter-width};
-  
-    /* Z-index */
-    --z-index-dropdown: #{$z-index-dropdown};
-    --z-index-sticky: #{$z-index-sticky};
-    --z-index-fixed: #{$z-index-fixed};
-    --z-index-modal-backdrop: #{$z-index-modal-backdrop};
-    --z-index-modal: #{$z-index-modal};
-    --z-index-popover: #{$z-index-popover};
-    --z-index-tooltip: #{$z-index-tooltip};
-  
-    /* Transitions */
-    --transition-base: #{$transition-base};
-  
-    /* Shadows */
-    --box-shadow: #{$box-shadow};
-  
-    /* Truncation */
-    --truncate-width: #{$truncate-width};
-  
-    /* Spacing */
-    --space-none: #{$space-none};
-    --space-xs: #{$space-xs};
-    --space-s: #{$space-s};
-    --space-base: #{$space-base};
-    --space-m: #{$space-m};
-    --space-ls: #{$space-ls};
-    --space-l: #{$space-l};
-    --space-lm: #{$space-lm};
-    --space-xl: #{$space-xl};
-    --space-xxl: #{$space-xxl};
-    --space-xxxl: #{$space-xxxl};
-  
-    /* Dimensions */
-    --banner-height: #{$banner-height};
-    --banner-height-phone: #{$banner-height-phone};
-    --bottom-tab-width: #{$bottom-tab-width};
-    --bottom-tab-height: #{$bottom-tab-height};
-    
-    /* Positioning */
-    --position-top-none: #{$position-top-none};
-    --position-right-none: #{$position-right-none};
-    --position-bottom-none: #{$position-bottom-none};
-    --position-left-none: #{$position-left-none};
-  
-    /* Opacity */
-    --banner-overlay-opacity: #{$banner-overlay-opacity};
-    --opacity-s: #{$opacity-s};
-    --opacity-m: #{$opacity-m};
-    --opacity-l: #{$opacity-l};
-    --opacity-xl: #{$opacity-xl};
-    --opaque: #{$opaque};
-  
-    /* Flip Card */
-    --flip-card-height: #{$flip-card-height};
-    --flip-card-expanded-height: #{$flip-card-expanded-height};
-    --flip-card-transition-time: #{$flip-card-transition-time};
+  /* Layout */
+  --layout-max-width: #{$layout-max-width};                                  /* Content max width */
+  --layout-half-max-width: #{$layout-half-max-width};                        /* Half content width */
+  --popup-max-width: #{$popup-max-width};                                    /* Popup width */
+
+  @if $is_main {
+  /* Login */
+  --login-form-width: #{$login-form-width};                                  /* Login form width */
+  --login-background-image: #{$login-background-image};                      /* Login background */
   }
+
+  /* Image */
+  --image-width-captcha: #{$image-width-captcha};                            /* Captcha width */
+  --image-height-captcha: #{$image-height-captcha};                          /* Captcha height */
+  --image-star-alliance: #{$image-star-alliance};                            /* Logo size */
+  --logo-max-width: #{$logo-max-width};                                      /* Main logo width */
+  
+  --image-width-xs: #($image-width-xs);
+  --image-width-s: #($image-width-s);
+  --image-width-m: #($image-width-m);
+  --image-width-l: #($image-width-l);
+  --image-width-display: #($image-width-display);
+
+  --image-height-xs: #($image-height-xs);
+  --image-height-s: #($image-height-s);
+  --image-height-m: #($image-height-m);
+  --image-height-l: #($image-height-l);
+  --image-height-display: #($image-height-display);
+
+  /* Typography */
+  --font-family-base: #{$font-family-base};                                  /* Main font */
+  --font-size-xxxs: #{$font-size-xxxs};                                      /* Smallest text */
+  --font-size-xxs: #{$font-size-xxs};                                        /* Tiny text */
+  --font-size-xs: #{$font-size-xs};                                          /* Extra small text */
+  --font-size-s: #{$font-size-s};                                            /* Small text */
+  --font-size-base: #{$font-size-base};                                      /* Base text size */
+  --font-size-m: #{$font-size-m};                                            /* Medium text */
+  --font-size-l: #{$font-size-l};                                            /* Large text */
+  --font-size-xl: #{$font-size-xl};                                          /* Largest text */
+  --line-height-base: #{$line-height-base};                                  /* Line height */
+
+  /* Font Weights */
+  --font-weight-thin: #{$font-weight-thin};                                  /* Thinnest */
+  --font-weight-extra-light: #{$font-weight-extra-light};                    /* Very thin */
+  --font-weight-bold: #{$font-weight-bold};                                  /* Bold */
+
+  /* Icons */
+  --icon-font-family: #{$icon-font-family};                                  /* Icon font */
+
+  /* Components */
+  --size-checkbox-s: #{$size-checkbox-s};                                    /* Small checkbox */
+
+  /* Border */
+  --border-size-xs: #{$border-size-xs};                                      /* Tiny border */
+  --border-size-s: #{$border-size-s};                                        /* Small border */
+  --border-width-selected: #{$border-width-selected};                        /* Selected state */
+  --border-width: #{$border-width};                                          /* Default width */
+  --border-style: #{$border-style};                                          /* Border style */
+  --border-color: #{$border-color};                                          /* Border color */
+  --border-radius-soft: #{$border-radius-soft};                              /* Slight rounding */
+  --border-radius-extra-soft: #{$border-radius-extra-soft};                  /* Minimal rounding */
+
+  /* Breakpoints */
+  --breakpoint-phone: #{$breakpoint-phone};                                  /* Mobile */
+  --breakpoint-phone-horizontal: #{$breakpoint-phone-horizontal};            /* Mobile landscape */
+  --breakpoint-tablet: #{$breakpoint-tablet};                                /* Tablet */
+  --breakpoint-tablet-horizontal: #{$breakpoint-tablet-horizontal};          /* Tablet landscape */
+  --breakpoint-desktop: #{$breakpoint-desktop};                              /* Desktop */
+
+  /* Grid */
+  --grid-columns: #{$grid-columns};                                          /* Total columns */
+  --grid-columns-standard: #{$grid-columns-standard};                        /* Default columns */
+  --grid-gap: #{$grid-gap};                                                  /* Grid spacing */
+  --grid-gutter-width: #{$grid-gutter-width};                                /* Gutter width */
+
+  /* Z-index */
+  --z-index-dropdown: #{$z-index-dropdown};                                  /* Dropdowns */
+  --z-index-sticky: #{$z-index-sticky};                                      /* Sticky elements */
+  --z-index-fixed: #{$z-index-fixed};                                        /* Fixed elements */
+  --z-index-modal-backdrop: #{$z-index-modal-backdrop};                      /* Modal background */
+  --z-index-modal: #{$z-index-modal};                                        /* Modal window */
+  --z-index-popover: #{$z-index-popover};                                    /* Popovers */
+  --z-index-tooltip: #{$z-index-tooltip};                                    /* Tooltips */
+
+  /* Transitions */
+  --transition-base: #{$transition-base};                                    /* Basic transition */
+
+  /* Shadows */
+  --box-shadow: #{$box-shadow};                                              /* Default shadow */
+
+  /* Truncation */
+  --truncate-width: #{$truncate-width};                                      /* Text cutoff width */
+
+  /* Spacing */
+  --space-none: #{$space-none};                                              /* No space */
+  --space-xs: #{$space-xs};                                                  /* Tiny space */
+  --space-s: #{$space-s};                                                    /* Small space */
+  --space-sm: #{$space-sm};                                                 /* Small medium */
+  --space-base: #{$space-base};                                              /* Base space */
+  --space-m: #{$space-m};                                                    /* Medium space */
+  --space-ls: #{$space-ls};                                                  /* Large-small space */
+  --space-l: #{$space-l};                                                    /* Large space */
+  --space-lm: #{$space-lm};                                                  /* Large-medium space */
+  --space-xl: #{$space-xl};                                                  /* Extra large space */
+  --space-xxl: #{$space-xxl};                                                /* Double XL space */
+  --space-xxxl: #{$space-xxxl};                                              /* Triple XL space */
+
+  /* Dimensions */
+  --banner-height: #{$banner-height};                                        /* Banner height */
+  --banner-height-phone: #{$banner-height-phone};                            /* Mobile banner */
+  --bottom-tab-width: #{$bottom-tab-width};                                  /* Tab width */
+  --bottom-tab-height: #{$bottom-tab-height};                                /* Tab height */
+  
+  /* Positioning */
+  --position-top-none: #{$position-top-none};                                /* Reset top */
+  --position-right-none: #{$position-right-none};                            /* Reset right */
+  --position-bottom-none: #{$position-bottom-none};                          /* Reset bottom */
+  --position-left-none: #{$position-left-none};                              /* Reset left */
+
+  /* Opacity */
+  --banner-overlay-opacity: #{$banner-overlay-opacity};                      /* Banner overlay */
+  --opacity-s: #{$opacity-s};                                                /* Light opacity */
+  --opacity-m: #{$opacity-m};                                                /* Medium opacity */
+  --opacity-l: #{$opacity-l};                                                /* Heavy opacity */
+  --opacity-xl: #{$opacity-xl};                                              /* Very heavy opacity */
+  --opaque: #{$opaque};                                                      /* No transparency */
+
+  /* Flip Card */
+  --flip-card-height: #{$flip-card-height};                                  /* Default height */
+  --flip-card-expanded-height: #{$flip-card-expanded-height};                /* Expanded height */
+  --flip-card-transition-time: #{$flip-card-transition-time};                /* Flip duration */
+}

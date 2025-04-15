@@ -4,95 +4,120 @@
 
 /**************************** Responsive Grid ****************************/
 
+//-------------------------------------------
+// Grid Container & Layout
+//-------------------------------------------
+
 .responsive-grid {
-  // Block level styles
-  &__container {
-    width: 100%;
-  }
-
-  &__list {
-    display: grid;
-    gap: var(--space-base);
-  }
-
-  &__link {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-  }
-
-  &__item {
-    padding: var(--space-none);
-    overflow: hidden;
-    transition: var(--transition-base);
-    height: auto !important;
-    min-height: var(--flip-card-height) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    background-color: var(--color-neutral-0);
-    border-radius: var(--border-radius-soft);
-    box-shadow: var(--box-shadow);
-
-    // Hover state
-    &:hover {
-      transform: translateY(calc(-1 * var(--space-xs)));
-      box-shadow: 0 var(--space-xs) var(--space-base) rgba(var(--color-neutral-10-rgb), 0.2);
+    &__container {
+        width: 100%;
     }
-  }
 
-  // Image container and styles
-  &__image-container {
-    margin: var(--space-none);
-    padding: var(--space-none);
-    flex: 0 0 auto;
-    background-color: var(--color-neutral-2);
-    width: 100%;
-    position: relative;
-
-    &-wrapper {
-      width: 100%;
-      height: 100%;
+    &__list {
+        display: grid;
+        gap: var(--space-base);
     }
-  }
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  // Text content styles
-  &__content {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: var(--space-s) var(--space-s) var(--space-base);
-    justify-content: center;
-  }
-
-  &__text {
-    &--neutral-10 {
-      color: var(--color-neutral-10);
+    &__link {
+        text-decoration: none;
+        display: block;
+        width: 100%;
     }
-  }
 }
 
-// Responsive Grid Modifiers
-.responsive-grid--centered {
-  text-align: center;
-}
+//-------------------------------------------
+// Grid Items
+//-------------------------------------------
 
-// Media Queries
-@media (max-width: $breakpoint-tablet) {
-  .responsive-grid {
+.responsive-grid {
     &__item {
-      min-height: auto !important;
+        padding: var(--space-none);
+        overflow: hidden;
+        transition: var(--transition-base);
+        height: auto !important;
+        min-height: var(--flip-card-height) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background-color: var(--color-neutral-0);
+        border-radius: var(--border-radius-soft);
+        box-shadow: var(--box-shadow);
+
+        // Hover Effects
+        &:hover {
+            transform: translateY(calc(-1 * var(--space-xs)));
+            box-shadow: 0 var(--space-xs) var(--space-base) rgba(var(--color-neutral-10-rgb), 0.2);
+        }
+    }
+}
+
+//-------------------------------------------
+// Image Components
+//-------------------------------------------
+
+.responsive-grid {
+    &__image-container {
+        margin: var(--space-none);
+        padding: var(--space-none);
+        flex: 0 0 auto;
+        background-color: var(--color-neutral-2);
+        width: 100%;
+        position: relative;
+
+        &-wrapper {
+            width: 100%;
+            height: 100%;
+        }
     }
 
-    &__content {
-      padding: var(--space-xs);
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
-  }
+}
+
+//-------------------------------------------
+// Content Area
+//-------------------------------------------
+
+.responsive-grid {
+    &__content {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-s) var(--space-s) var(--space-base);
+        justify-content: center;
+    }
+
+    &__text {
+        &--neutral-10 {
+            color: var(--color-neutral-10);
+        }
+    }
+}
+
+//-------------------------------------------
+// Grid Modifiers
+//-------------------------------------------
+
+.responsive-grid--centered {
+    text-align: center;
+}
+
+//-------------------------------------------
+// Responsive Behavior
+//-------------------------------------------
+
+@media (max-width: $breakpoint-tablet) {
+    .responsive-grid {
+        &__item {
+            min-height: auto !important;
+        }
+
+        &__content {
+            padding: var(--space-xs);
+        }
+    }
 }

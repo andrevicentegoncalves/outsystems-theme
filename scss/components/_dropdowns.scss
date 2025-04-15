@@ -4,9 +4,18 @@
 
 /**************************** Dropdowns ****************************/
 
+//-------------------------------------------
+// Dropdown Display
+//-------------------------------------------
+
 .dropdown-container {
+    // Space for dropdown arrow/icon
     > div.dropdown-display,
     > select.dropdown-display {
         padding-right: var(--space-l);
     }
+}
+
+.dropdown-error .vscomp-wrapper.show-value-as-tags:not(.has-value) .vscomp-toggle-button {
+    border-color: var(--color-red);
 }

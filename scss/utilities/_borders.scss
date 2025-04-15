@@ -4,51 +4,75 @@
 
 /**************************** Borders **************************/
 
-// Border Width
-.border{
-  &-width {
-    border-width: var(--border-width);
-  }
+//-------------------------------------------
+// Border Utilities
+//-------------------------------------------
 
-  // Border Color
-  &-primary {
-    border-color: var(--border-color);
-  }
-
-  &-success {
-    border-color: var(--color-success);
-  }
-
-  &-warning {
-    border-color: var(--color-warning);
-  }
-
-  &-danger {
-    border-color: var(--color-danger);
-  }
-
-  // Border Radius
-  &-radius-extra-soft {
-      border-radius: var(--border-radius-extra-soft);
-  }
-
-  // Border Combination
-  &-default {
-    border-width: var(--border-width);
-    border-style: var(--border-style);
-    border-color: var(--border-color);
-  }
-
-  &-size{
-    &-xs{
-      border:var(--border-size-xs) solid currentColor;
-    }
-  }
+.border {
   
+    //-------------------------------------------
+    // Width Utilities
+    //-------------------------------------------
+
+    &-width {
+        border-width: var(--border-width);  // Standard border width
+    }
+
+    //-------------------------------------------
+    // Semantic Color Variations
+    //-------------------------------------------
+
+    &-primary {
+        border-color: var(--border-color);  // Default border color
+    }
+
+    &-success {
+        border-color: var(--color-success);  // Success state color
+    }
+
+    &-warning {
+        border-color: var(--color-warning);  // Warning state color
+    }
+
+    &-danger {
+        border-color: var(--color-danger);  // Danger state color
+    }
+
+    //-------------------------------------------
+    // Border Radius Variations
+    //-------------------------------------------
+
+    &-radius-extra-soft {
+        border-radius: var(--border-radius-extra-soft);  // Extra soft corners
+    }
+
+    //-------------------------------------------
+    // Complete Border Presets
+    //-------------------------------------------
+
+    &-default {
+        border-width: var(--border-width);    // Default width
+        border-style: var(--border-style);    // Default style
+        border-color: var(--border-color);    // Default color
+    }
+
+    //-------------------------------------------
+    // Size Variations
+    //-------------------------------------------
+
+    &-size {
+        &-xs {
+            border: var(--border-size-xs) solid currentColor;  // Extra small border
+        }
+    }
 }
 
-.card{
-  &.no-border{
-    border: none;
-  }
+//-------------------------------------------
+// Component-Specific Overrides
+//-------------------------------------------
+
+.card {
+    &.no-border {
+        border: none;  // Remove borders from cards
+    }
 }

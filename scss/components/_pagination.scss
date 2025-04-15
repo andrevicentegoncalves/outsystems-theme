@@ -1,71 +1,87 @@
 /**************************** Pagination ****************************/
 
+//-------------------------------------------
+// Standard Pagination
+//-------------------------------------------
+
 .pagination {
-  .pagination-counter   {
-    @media (max-width: $breakpoint-phone) {
-      margin-bottom: var(--space-s)
-    }
+  .pagination-counter {
+      @media (max-width: $breakpoint-phone) {
+          margin-bottom: var(--space-s);
+      }
   }
 }
 
+//-------------------------------------------
 // Simple Pagination
+//-------------------------------------------
 
 .simple-pagination {
   display: flex;
   justify-content: center;
 
   .pagination {
-    margin-top: var(--space-none);
+      margin-top: var(--space-none);
 
-    .pagination-counter {
-      display: none;
+      // Counter
+      .pagination-counter {
+          display: none;
 
-      @media (max-width: $breakpoint-phone) {
-        margin-bottom: var(--space-xs)
-      }
-    }
-
-    .pagination-button {
-      background-color: transparent;
-      border: none;
-      font-size: var(--font-size-base);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background-color: var(--color-hover);
-        color: var(--color-primary);
+          @media (max-width: $breakpoint-phone) {
+              margin-bottom: var(--space-xs);
+          }
       }
 
-      .pagination-text {
-        font-size: var(--font-size-base);
-      }
+      // Button Styles
+      .pagination-button {
+          background-color: transparent;
+          border: none;
+          font-size: var(--font-size-base);
+          align-items: center;
+          justify-content: center;
 
-      &.is--active {
-        border: var(--border-none) solid var(--color-primary);
-        background-color: var(--color-active);
-        color: var(--color-primary);
+          // Hover State
+          &:hover {
+              background-color: var(--color-hover);
+              color: var(--color-primary);
+          }
 
-        span {
-          font-weight: bold;
-          color: var(--color-primary);
-        }
+          // Text Styling
+          .pagination-text {
+              font-size: var(--font-size-base);
+          }
+
+          // Active State
+          &.is--active {
+              border: var(--border-none) solid var(--color-primary);
+              background-color: var(--color-active);
+              color: var(--color-primary);
+
+              span {
+                  font-weight: bold;
+                  color: var(--color-primary);
+              }
+          }
       }
-    }
   }
 }
 
+//-------------------------------------------
+// Device-Specific Styles
+//-------------------------------------------
+
+// Mobile Styles
 .phone {
   .pagination-container {
-    margin-top: var(--space-none);
+      margin-top: var(--space-none);
   }
 }
 
+// Desktop Styles
 .desktop {
   .pagination-button:not(.is--ellipsis):hover {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: none;
+      background-color: transparent;
+      color: var(--color-primary);
+      border: none;
   }
 }

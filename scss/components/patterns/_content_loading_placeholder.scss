@@ -1,39 +1,44 @@
+// Import core functionality and variables
 @import '../../abstracts/functions';
 @import '../../abstracts/variables';
 @import '../../abstracts/mixins';
 
 /**************************** Content Loading Placeholder ****************************/
 
-// Variables
-$empty-state-background: $color-neutral-4;
-$empty-state-background-negative: rgba(255, 255, 255, 0.12);
-$line-height-standard: rem(35);
+//-------------------------------------------
+// Configuration Variables
+//-------------------------------------------
+
+// Theme backgrounds
+$empty-state-background: $color-neutral-4;                          // Light theme background
+$empty-state-background-negative: rgba(255, 255, 255, 0.12);      // Dark theme background
+$line-height-standard: rem(35);                                     // Standard height for lines
 
 // Shimmer colors
-$shimmer-light: rgba(255, 255, 255, 0.3);
-$shimmer-dark: rgba(0, 0, 0, 0.2);
+$shimmer-light: rgba(255, 255, 255, 0.3);                         // Light theme shimmer
+$shimmer-dark: rgba(0, 0, 0, 0.2);                                // Dark theme shimmer
 
-// Linear glow animation
+//-------------------------------------------
+// Animations
+//-------------------------------------------
+
+// Horizontal slide animation
 @keyframes linearGlow {
-    0% {
-        transform: translateX(-150%); 
-    }
-    100% {
-        transform: translateX(150%); 
-    }
+    0% { transform: translateX(-150%); }
+    100% { transform: translateX(150%); }
 }
 
-// Radial glow animation
+// Circular rotation animation
 @keyframes radialGlow {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-/* Base shimmer overlay mixins */
+//-------------------------------------------
+// Core Mixins
+//-------------------------------------------
+
+// Shimmer overlay effect
 @mixin shimmerOverlay($theme: 'light') {
     content: "";
     position: absolute;
@@ -49,15 +54,18 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
     );
 }
 
-/* Base element styles mixin */
+// Base placeholder styling
 @mixin baseElement($theme: 'light') {
     background-color: if($theme == 'light', $empty-state-background, $empty-state-background-negative);
     opacity: if($theme == 'light', 0.8, 1);
 }
 
-/* Empty state variations */
+//-------------------------------------------
+// Empty State Components
+//-------------------------------------------
+
 .empty-state {
-    /* Line styles */
+    // Line Element
     .line {
         @include baseElement('light');
         border-radius: 0.5rem;
@@ -72,7 +80,7 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
         }
     }
 
-    /* Rectangle styles */
+    // Rectangle Element
     .rectangle {
         display: block;
         overflow: hidden;
@@ -97,7 +105,7 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
         }
     }
 
-    /* Square styles */
+    // Square Element
     .square {
         overflow: hidden;
         position: relative;
@@ -117,7 +125,7 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
         }
     }
 
-    /* Circle styles */
+    // Circle Element
     .circle {
         overflow: hidden;
         position: relative;
@@ -137,46 +145,38 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
         }
     }
 
-    /* Negative theme */
+    //-------------------------------------------
+    // Theme Variations
+    //-------------------------------------------
+
     &.negative {
         .line {
             @include baseElement('dark');
-            &:before {
-                @include shimmerOverlay('dark');
-            }
+            &:before { @include shimmerOverlay('dark'); }
         }
 
         .rectangle {
-            &:before {
-                @include baseElement('dark');
-            }
-            &:after {
-                @include shimmerOverlay('dark');
-            }
+            &:before { @include baseElement('dark'); }
+            &:after { @include shimmerOverlay('dark'); }
         }
 
         .square {
-            &:before {
-                @include baseElement('dark');
-            }
-            &:after {
-                @include shimmerOverlay('dark');
-            }
+            &:before { @include baseElement('dark'); }
+            &:after { @include shimmerOverlay('dark'); }
         }
 
         .circle {
-            &:before {
-                @include baseElement('dark');
-            }
-            &:after {
-                @include shimmerOverlay('dark');
-            }
+            &:before { @include baseElement('dark'); }
+            &:after { @include shimmerOverlay('dark'); }
         }
     }
 
-    /* Animation styles */
+    //-------------------------------------------
+    // Animation Variations
+    //-------------------------------------------
+
     &.animation {
-        // Linear animations for rectangular elements
+        // Linear animations
         .content-block:before,
         .line:before,
         .square:after,
@@ -184,7 +184,7 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
             animation: linearGlow 2s infinite;
         }
 
-        // Radial animations only for circles and explicitly rounded squares
+        // Radial animations
         .circle:after,
         .square.rounded:after {
             animation: radialGlow 2s infinite linear;
@@ -206,12 +206,16 @@ $shimmer-dark: rgba(0, 0, 0, 0.2);
     }
 }
 
-/* Phone styles */
+//-------------------------------------------
+// Responsive & Standardized Styles
+//-------------------------------------------
+
+// Mobile optimizations
 .phone td {
     flex-direction: column;
 }
 
-/* Standard variations */
+// Standard variations
 .line-list-standard {
     .line {
         height: var(--line-height-standard);

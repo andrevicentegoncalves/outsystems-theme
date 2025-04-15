@@ -1,3 +1,7 @@
+//-------------------------------------------
+// Article Header Typography
+//-------------------------------------------
+
 .ArticleHeader {
     font-family: 'Montserrat', sans-serif;
     font-size: var(--font-size-m);
@@ -5,13 +9,18 @@
     margin: var(--space-s) 0;
 }
 
+//-------------------------------------------
+// Article Content & CKEditor Styles
+//-------------------------------------------
+
 .ArticleDiv,
-.cke_contents_ltr
- {
+.cke_contents_ltr {
+    // Basic text block styling
     div {
         line-height: 24px;
     }
 
+    // Paragraph formatting
     p {
         display: block;
         margin-block-start: 1em;
@@ -19,25 +28,26 @@
         unicode-bidi: isolate;
     }
 
+    // Table styling
     table {
         margin-top: var(--space-m);
         border-collapse: collapse;
         float: none;
         
+        // Header cells
         th {
             text-transform: uppercase;
             padding: var(--space-s);
-
         }
 
-        td{
+        // Data cells
+        td {
             padding: var(--space-s);
         }
 
+        // Zebra striping for rows
         tr:nth-of-type(odd) {
             background-color: var(--color-neutral-1);
         }
     }
-    
 }
-

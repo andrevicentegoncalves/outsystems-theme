@@ -1,3 +1,11 @@
+// =============================================================================
+// Typography System
+// Mixins for managing fonts, text styles, and typography-related functionality
+// =============================================================================
+
+// Implements a consistent typography system using predefined font families
+// Handles various weights (thin, light, regular, bold) for Roboto, Lato, and Montserrat
+// Usage: @include apply-font('roboto', 'bold');
 @mixin apply-font($font-family, $font-weight) {
   @if $font-family == 'roboto' {
       @if $font-weight == 'thin' {
@@ -44,7 +52,47 @@
   }
 }
 
+// Implements consistent typography using predefined base variables
+// Ensures uniform text appearance and maintains vertical rhythm
+// Usage: @include font-style(16px, 1.5);
+@mixin font-style($size: $font-size-base, $line-height: $line-height-base) {
+  font-size: $size;
+  line-height: $line-height;
+}
 
+@mixin font-face-generator($family, $path, $weight, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url('#{$path}') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// Handles text overflow with ellipsis and optional mobile adaptation
+// Ensures consistent text truncation across different screen sizes
+// Usage: @include truncate(200px, 150px);
+@mixin truncate($width: $truncate-width, $mobile-width: null) {
+  max-width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $mobile-width {
+    @media (max-width: $breakpoint-phone) {
+      max-width: $mobile-width;
+    }
+  }
+}
+
+// =============================================================================
+// Layout & Grid System
+// Mixins for creating responsive layouts and grid structures
+// =============================================================================
+
+// Creates a customizable flexbox container with configurable alignment and direction
+// Useful for creating complex layouts with minimal code
+// Usage: @include flexbox(column, flex-start, center);
 @mixin flexbox($direction: row, $justify: center, $align: center) {
     display: flex;
     flex-direction: $direction;
@@ -52,12 +100,79 @@
     align-items: $align;
 }
 
+// Quick implementation of the most common flexbox pattern - centered content
+// Perfect for modal windows, hero sections, and centered content layouts
+// Usage: @include flex-center;
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+// Shorthand for vertical stack layout using flexbox
+// Useful for form groups and card content
+// Usage: @include flex-column;
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Creates a complete set of responsive column classes for specified breakpoints
+// Enables flexible grid layouts that adapt to different screen sizes
+// Usage: @include generate-grid-columns($breakpoints, 12);
+@mixin generate-grid-columns($breakpoints, $grid-columns) {
+    @each $breakpoint, $min-width in $breakpoints {
+      @media (min-width: $min-width) {
+        @for $i from 1 through $grid-columns {
+          .row .col-#{$breakpoint}-#{$i} { 
+            grid-column: span $i;
+          }
+        }
+      }
+    }
+}
+
+// Generates non-responsive column classes for basic grid layouts
+// Useful for static layouts or as fallback for older browsers
+// Usage: @include default-grid-columns(12);
+@mixin default-grid-columns($grid-columns) {
+  @for $i from 1 through $grid-columns {
+    .col-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+// Creates responsive grid system with custom breakpoint columns and IE support
+// Implements modern CSS Grid with legacy browser fallbacks
+// Usage: @include create-grid('main', (xs: 1, sm: 2, md: 3, lg: 4));
+@mixin create-grid($class, $columns) {
+  .grid-#{$class} {
+    display: grid;
+    gap: $grid-gap;
+
+    @each $breakpoint, $column-count in $columns {
+      @if $breakpoint == 'xs' {
+        grid-template-columns: repeat($column-count, minmax(0, 1fr));
+        -ms-grid-columns: repeat($column-count, 1fr); 
+      } @else {
+        @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+          grid-template-columns: repeat(map-get($columns, $breakpoint), minmax(0, 1fr));
+          -ms-grid-columns: repeat(map-get($columns, $breakpoint), 1fr); 
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// Responsive Design
+// Mixins for managing breakpoints and responsive behavior
+// =============================================================================
+
+// Manages media queries using predefined device breakpoints
+// Ensures consistent responsive behavior across the application
+// Usage: @include responsive(md) { .element { width: 50%; } }
 @mixin responsive($breakpoint) {
   @if $breakpoint == xs {
     @content;
@@ -84,104 +199,24 @@
   }
 }
 
-@mixin generate-grid-columns($breakpoints, $grid-columns) {
-    @each $breakpoint, $min-width in $breakpoints {
-      @media (min-width: $min-width) {
-        @for $i from 1 through $grid-columns {
-          .row .col-#{$breakpoint}-#{$i} { 
-            grid-column: span $i;
-          }
-        }
-      }
-    }
-}
-
-@mixin default-grid-columns($grid-columns) {
-  @for $i from 1 through $grid-columns {
-    .col-#{$i} {
-      grid-column: span $i;
-    }
-  }
-}
-  
-@mixin font-style($size: $font-size-base, $line-height: $line-height-base) {
-  font-size: $size;
-  line-height: $line-height;
-}
-
-@mixin box-shadow($shadow: $box-shadow) {
-  box-shadow: $shadow;
-}
-
-@mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
-  transition: $property $duration $timing;
-}
-
-@mixin absolute($top: $position-top-none, $right: $position-right-none, $bottom: $position-bottom-none, $left: $position-left-none) {
-  position: absolute;
-  top: $top;
-  right: $right;
-  bottom: $bottom;
-  left: $left;
-}
-
-@mixin truncate($width: $truncate-width, $mobile-width: null) {
-  max-width: $width;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @if $mobile-width {
-    @media (max-width: $breakpoint-phone) {
-      max-width: $mobile-width;
-    }
-  }
-}
-
-@mixin truncate-parent {
-  overflow: hidden;
-  flex: 1;
-  display: flex;  
-  align-items: center; 
-}
-
-@mixin create-grid($class, $columns) {
-  .grid-#{$class} {
-    display: grid;
-    gap: $grid-gap;
-
-    @each $breakpoint, $column-count in $columns {
-      @if $breakpoint == 'xs' {
-        grid-template-columns: repeat($column-count, minmax(0, 1fr));
-        -ms-grid-columns: repeat($column-count, 1fr); 
-      } @else {
-        @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
-          grid-template-columns: repeat(map-get($columns, $breakpoint), minmax(0, 1fr));
-          -ms-grid-columns: repeat(map-get($columns, $breakpoint), 1fr); 
-        }
-      }
-    }
-  }
-}
-
+// Creates responsive container with preset breakpoints
+// Adapts from desktop multi-column to single column mobile
+// Usage: @include create-responsive-grid-container(4, 2, 1);
 @mixin create-responsive-grid-container($items, $tablet-items: 2, $phone-items: 1) {
   display: grid;
   grid-template-columns: repeat($items, 1fr);
   gap: var(--space-m);
 
-  // Tablet breakpoint
   @media (max-width: $breakpoint-desktop) {
     grid-template-columns: repeat($tablet-items, 1fr);
     gap: var(--space-base);
   }
 
-  // Phone landscape breakpoint
   @media (max-width: $breakpoint-tablet) {
     grid-template-columns: repeat($phone-items, 1fr);
     gap: var(--space-base);
   }
 
-  // Phone portrait breakpoint
   @media (max-width: $breakpoint-phone) {
     grid-template-columns: 1fr;
   }
@@ -199,11 +234,38 @@
   }
 }
 
-@mixin flex-column {
-  display: flex;
-  flex-direction: column;
+// Adapts container padding for mobile screens
+// Includes minimum height to prevent collapsed layouts
+// Usage: @include mobile-padding;
+@mixin mobile-padding {
+  @media (max-width: $breakpoint-phone) {
+      padding: $space-s;
+      min-height: 80px;
+  }
 }
 
+// =============================================================================
+// Visual Effects & Animations
+// Mixins for shadows, transitions, and animations
+// =============================================================================
+
+// Applies predefined box shadows for depth and elevation
+// Maintains consistent shadow appearance across components
+// Usage: @include box-shadow($custom-shadow);
+@mixin box-shadow($shadow: $box-shadow) {
+  box-shadow: $shadow;
+}
+
+// Creates fluid transitions with customizable properties and timing
+// Enhances UI interactions and state changes
+// Usage: @include transition(opacity, 0.3s, ease-out);
+@mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}
+
+// Creates loading shimmer effect with customizable timing
+// Used for content placeholder animations
+// Usage: @include glow-animation(2s, 0.8);
 @mixin glow-animation($speed: 3s, $opacity: 0.9) { 
   animation: glow $speed linear infinite;
   background: linear-gradient(to right, 
@@ -219,6 +281,9 @@
   width: 100%;
 }
 
+// Enables hardware acceleration for smoother animations
+// Reduces jank in transitions and transforms
+// Usage: @include gpu-accelerate;
 @mixin gpu-accelerate {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -226,6 +291,14 @@
   will-change: transform;
 }
 
+// =============================================================================
+// Component Utilities
+// Mixins for common component patterns and behaviors
+// =============================================================================
+
+// Applies standard styling for component containers
+// Includes border-radius, shadow, and box-sizing reset
+// Usage: @include base-component;
 @mixin base-component {
   border-radius: $border-radius-soft;
   background-color: $color-neutral-0;
@@ -233,6 +306,9 @@
   box-sizing: border-box;
 }
 
+// Enforces consistent text alignment in complex components
+// Prevents inheritance issues with nested elements
+// Usage: @include text-alignment;
 @mixin text-alignment {
   .value {
       text-align: left !important;
@@ -245,9 +321,23 @@
   }
 }
 
-@mixin mobile-padding {
-  @media (max-width: $breakpoint-phone) {
-      padding: $space-s;
-      min-height: 80px;
-  }
+// Simplifies absolute positioning with optional edge offsets
+// Standardizes positioning across components using predefined variables
+// Usage: @include absolute(0, 0, null, 0);
+@mixin absolute($top: $position-top-none, $right: $position-right-none, $bottom: $position-bottom-none, $left: $position-left-none) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// Prepares parent containers for truncated child elements
+// Maintains layout integrity when text is truncated
+// Usage: @include truncate-parent;
+@mixin truncate-parent {
+  overflow: hidden;
+  flex: 1;
+  display: flex;  
+  align-items: center; 
 }

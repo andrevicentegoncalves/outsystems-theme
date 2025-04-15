@@ -4,31 +4,42 @@
 
 /**************************** Scroll to Top ****************************/
 
+//-------------------------------------------
+// Scroll Button Base
+//-------------------------------------------
+
 .scroll-to-top {
+    // Container Layout
     display: flex;
     align-items: center;
     justify-content: center;
-    width: rem(45);  // Set the size of the button
-    height: rem(45); // Set the size of the button
-    border-radius: 50%; // Ensure it's circular
-    background-color: var(--color-primary); 
-    transition: background-color 0.3s ease;
+    width: rem(45);
+    height: rem(45);
+    
+    // Visual Styling
+    border-radius: 50%;
+    background-color: var(--color-primary);
     border: 1px solid var(--color-neutral-0);
+    
+    // Interaction
     cursor: pointer;
+    transition: background-color 0.3s ease;
     user-select: none;
     -webkit-user-select: none;
-
+    
+    // Icon Styling
     i {
-        font-size: rem(28);  // Adjust the size of the arrow
+        font-size: rem(28);
         color: var(--color-neutral-9);
-        padding-bottom:var(--space-xs);
+        padding-bottom: var(--space-xs);
     }
 
+    // States
     &:hover {
-        background-color: var(--color-primary); 
+        background-color: var(--color-primary);
     }
 
     &:focus {
-        outline: none; 
+        outline: none;
     }
 }

@@ -2,15 +2,18 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-/****************************** Grid *******************************/
+/****************************** Grid System *******************************/
 
+//-------------------------------------------
+// Base Grid Container
+//-------------------------------------------
 
-// Grid container
 .grid-container {
     width: 100%;
     max-width: var(--layout-max-width);
     margin: 0 auto;
     
+    // Script safety measures
     script {
         display: none !important;
         visibility: hidden !important;
@@ -21,17 +24,25 @@
         z-index: -1 !important;
         opacity: var(--space-none) !important;
     }
- }
- 
- @each $breakpoint, $width in $grid-container-max-widths {
+}
+
+//-------------------------------------------
+// Responsive Container Widths
+//-------------------------------------------
+
+@each $breakpoint, $width in $grid-container-max-widths {
     @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
         .grid-container {
             max-width: $width;
         }
     }
- }
- 
- .grid-item {
+}
+
+//-------------------------------------------
+// Grid Item Base Styles
+//-------------------------------------------
+
+.grid-item {
     overflow: hidden;
     -webkit-transition: var(--transition-base);
     transition: var(--transition-base);
@@ -39,44 +50,55 @@
     min-height: unset !important;
     display: flex !important;
     flex-direction: column !important;
- 
+
+    // Height override for zero-height items
     &[style*="height: 0px"] {
         height: auto !important;
         min-height: unset !important;
         margin: var(--space-none) !important;
     }
- }
- 
- .grid-item-content {
-    padding: var(--space-base);
- }
+}
 
-// Create grid classes
+//-------------------------------------------
+// Grid Item Content
+//-------------------------------------------
+
+.grid-item-content {
+    padding: var(--space-base);
+}
+
+//-------------------------------------------
+// Predefined Grid Layouts
+//-------------------------------------------
+
 @include create-grid(2, (
-  xs: 1,
-  sm: 1,
-  md: 2,
-  lg: 2,
-  xl: 2
+    xs: 1,
+    sm: 1,
+    md: 2,
+    lg: 2,
+    xl: 2
 ));
 
 @include create-grid(3, (
-  xs: 1,
-  sm: 2,
-  md: 3,
-  lg: 3,
-  xl: 3
+    xs: 1,
+    sm: 2,
+    md: 3,
+    lg: 3,
+    xl: 3
 ));
 
 @include create-grid(4, (
-  xs: 1,
-  sm: 2,
-  md: 3,
-  lg: 4,
-  xl: 4
+    xs: 1,
+    sm: 2,
+    md: 3,
+    lg: 4,
+    xl: 4
 ));
 
-/* Row within grid */
+//-------------------------------------------
+// 12-Column Grid System
+//-------------------------------------------
+
 .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -84,26 +106,36 @@
     gap: 16px;
 }
 
-// Define columns for each breakpoint
+// Generate responsive columns
 @include generate-grid-columns($grid-breakpoints, $grid-columns);
 
-// Default columns
+// Default column spans
 @include default-grid-columns($grid-columns);
 
-/* Fractional grid classes */
+//-------------------------------------------
+// Fractional Layout Classes
+//-------------------------------------------
+
 .grid-fourth { grid-column: span 3; }
 .grid-third { grid-column: span 4; }
 .grid-half { grid-column: span 6; }
 .grid-two-thirds { grid-column: span 8; }
 .grid-three-fourths { grid-column: span 9; }
 
-/* Grid Positioning */
+//-------------------------------------------
+// Grid Column Start Positions
+//-------------------------------------------
+
 .grid-start-first { grid-column-start: 1; }
 .grid-start-fourth { grid-column-start: 4; }
 .grid-start-third { grid-column-start: 5; }
 .grid-start-half { grid-column-start: 7; }
 .grid-start-two-thirds { grid-column-start: 9; }
 .grid-start-three-fourths { grid-column-start: 10; }
+
+//-------------------------------------------
+// Responsive Column Start Positions
+//-------------------------------------------
 
 @each $breakpoint, $width in $grid-breakpoints {
     @include responsive($breakpoint) {
@@ -113,22 +145,29 @@
     }
 }
 
-/* Gap Utilities */
+//-------------------------------------------
+// Gap Utilities
+//-------------------------------------------
+
 .gap-05 { gap: 0.5rem; }
 .gap-1 { gap: 1rem; }
 .gap-2 { gap: 2rem; }
 .gap-3 { gap: 3rem; }
-.column-gap-xxl{ column-gap: var(--space-xxl); }
-.column-gap-xxxl{ column-gap: var(--space-xxxl); }
+.column-gap-xxl { column-gap: var(--space-xxl); }
+.column-gap-xxxl { column-gap: var(--space-xxxl); }
 
-/* Alignment Utilities */
+//-------------------------------------------
+// Grid Alignment Utilities
+//-------------------------------------------
+
 .grid-align-center { align-items: center; }
 .grid-justify-center { justify-items: center; }
-
-/* Grid Flow */
 .grid-auto-flow-dense { grid-auto-flow: dense; }
 
-/* No Gutters */
+//-------------------------------------------
+// Gutter Control
+//-------------------------------------------
+
 .no-gutters {
     margin-right: 0;
     margin-left: 0;
@@ -141,11 +180,17 @@
     }
 }
 
-/* Special Cases */
+//-------------------------------------------
+// Special Cases
+//-------------------------------------------
+
 .card.grid-item { padding: 0; }
 .grid .grid { grid-column: 1 / -1; }
 
-/* Responsive Utilities */
+//-------------------------------------------
+// Responsive Visibility Utilities
+//-------------------------------------------
+
 @each $breakpoint, $width in $grid-breakpoints {
     @media (min-width: $width) {
         .hidden-#{$breakpoint}-up {
@@ -170,35 +215,54 @@
     }
 }
 
-.container-two-two-one {
+//-------------------------------------------
+// Responsive Grid Container Variations
+//-------------------------------------------
+
+.container-2-2-1 {
     @include create-responsive-grid-container(2, 2, 1);
 }
 
-.container-three-two-one {
+.container-3-2-1 {
     @include create-responsive-grid-container(3, 2, 1);
 }
+
+.container-3-3-1 {
+    @include create-responsive-grid-container(3, 3, 1);
+}
   
-.container-four-two-one {
+.container-4-2-1 {
     @include create-responsive-grid-container(4, 2, 1);
 }
  
-.container-four-two-two {
+.container-4-2-2 {
     @include create-responsive-grid-container(4, 2, 2);
 }
 
-.container-five-three-one {
+.container-4-3-2 {
+    @include create-responsive-grid-container(4, 3, 2);
+}
+
+.container-5-3-1 {
     @include create-responsive-grid-container(5, 3, 1);
 }
 
-.container-five-three-two {
+.container-5-3-2 {
     @include create-responsive-grid-container(5, 3, 2);
 }
+
+.container-5-4-2 {
+    @include create-responsive-grid-container(5, 4, 2);
+}
   
-.container-six-three-one {
+.container-6-3-1 {
     @include create-responsive-grid-container(6, 3, 1);
 }
 
-.container-six-three-two {
+.container-6-3-2 {
     @include create-responsive-grid-container(6, 3, 2);
 }
 
+.container-6-4-2 {
+    @include create-responsive-grid-container(6, 4, 2);
+}

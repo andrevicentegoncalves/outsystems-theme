@@ -4,15 +4,22 @@
 
 /**************************** Breadcrumbs ****************************/
 
-// Custom properties
+//-------------------------------------------
+// Custom Properties
+//-------------------------------------------
+
 :root {
-  --breadcrumbs-image-height: var(--space-xl);
-  --breadcrumbs-image-height-mobile: var(--space-l);
+    --breadcrumbs-image-height: var(--space-xl);
+    --breadcrumbs-image-height-mobile: var(--space-l);
 }
 
-.breadcrumbs {
+//-------------------------------------------
+// Breadcrumbs Component
+//-------------------------------------------
 
-    &__wrapper{
+.breadcrumbs {
+    // Container Wrapper
+    &__wrapper {
         max-width: var(--layout-max-width);
         margin: var(--space-none) auto;
         padding: var(--space-none) var(--space-xl);
@@ -23,12 +30,16 @@
         }
     }
     
+    //-------------------------------------------
+    // Main Navigation Structure
+    //-------------------------------------------
+
     &__main {
         display: flex;
         padding: var(--space-xs) var(--space-none);
         flex-direction: row;
         align-items: center;
-        min-width: 0; // Critical for truncation
+        min-width: 0;
     }
 
     &__main-item {
@@ -36,23 +47,27 @@
         flex-direction: row;
         align-items: center;
         flex: 1;
-        min-width: 0; // Critical for truncation
+        min-width: 0;
     }
 
     &__navigation {
         display: flex;
         flex: 1;
-        min-width: 0; // Critical for truncation
+        min-width: 0;
     }
 
-    &__content {  // Changed from .breadcrumbs-content
+    //-------------------------------------------
+    // Content Elements
+    //-------------------------------------------
+
+    &__content {
         display: flex;
         align-items: center;
         min-width: 0;
         width: 100%;
     }
 
-    &__item {    // Changed from .breadcrumbs-item
+    &__item {
         display: flex;
         align-items: center;
         min-width: 0;
@@ -73,19 +88,27 @@
         width: 100%;
         text-decoration: none;
         color: inherit;
+        font-weight: bold;
     }
 
-    // Image modifier
+    //-------------------------------------------
+    // Image Styles
+    //-------------------------------------------
+
     &__image {
         max-height: var(--breadcrumbs-image-height) !important;
 
         @media (max-width: $breakpoint-tablet) {
-                max-height: var(--breadcrumbs-image-height-mobile) !important;
-            }
+            max-height: var(--breadcrumbs-image-height-mobile) !important;
         }
+    }
 
-        // Margin modifiers
-        &__margin {
+    //-------------------------------------------
+    // Margin Utilities
+    //-------------------------------------------
+
+    &__margin {
+        // Left Margins
         &--left-m {
             margin-left: var(--space-s);
             
@@ -102,6 +125,7 @@
             }
         }
 
+        // Right Margins
         &--right-s {
             margin-right: var(--space-xs);
             

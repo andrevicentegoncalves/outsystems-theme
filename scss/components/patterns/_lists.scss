@@ -4,28 +4,38 @@
 
 /**************************** Lists ****************************/
 
-/* List Files */
+//-------------------------------------------
+// File Category Container
+//-------------------------------------------
+
 .list-file-category {
     background-color: var(--color-neutral-1);
     padding: var(--space-m);
     margin-bottom: var(--space-ls);
 
+    // Category Label
     &-label {
         font-weight: bold;
         color: var(--color-neutral-9);
         margin-bottom: var(--space-s);
     }
 
+    // Inner Container
     &-container {
         padding: var(--space-s);
     }
 }
+
+//-------------------------------------------
+// File List
+//-------------------------------------------
 
 .list-files {
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
 
+    // List Item
     &-item {
         display: flex;
         align-items: center;
@@ -33,11 +43,13 @@
         transition: var(--transition-base);
         text-decoration: underline;
 
+        // Hover State
         &:hover {
             background-color: lighten($color-primary, 45%);
             transform: translateY(-2px);
         }
 
+        // Link Styles
         a {
             color: var(--color-primary);
             text-decoration: none;

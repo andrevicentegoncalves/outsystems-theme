@@ -1,232 +1,595 @@
-.accordion-table-title {
-    margin-bottom: var(--space-base);
-    margin-top: var(--space-m);
+//-------------------------------------------
+// Variables & Colors
+//-------------------------------------------
+
+$color-primary: #72BE44;
+$color-primary-light: rgba(114, 190, 68, 0.75);
+$color-primary-lighter: rgba(114, 190, 68, 0.5);
+$color-primary-lightest: rgba(114, 190, 68, 0.2);
+
+//-------------------------------------------
+// Accordion Title
+//-------------------------------------------
+
+.accordion-table-title,
+.table-standalone-title {
+  margin-bottom: var(--space-base);
+  margin-top: var(--space-m);
+  font-weight: 600;
+  font-size: var(--font-size-h6);
 }
 
-.accordion {
-    width: 100%;
-    background-color: var(--color-neutral-0);
+//-------------------------------------------
+// Base Accordion Structure
+//-------------------------------------------
 
-    &-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+.accordion {
+  width: 100%;
+  background-color: var(--color-neutral-0);
+
+  &-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .title {
+    background-color: transparent;
+    padding: var(--space-s);
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--font-size-h6);
+  }
+}
+
+//-------------------------------------------
+// Accordion List Items
+//-------------------------------------------
+
+.accordion .list-item {
+  margin-bottom: 1.4px;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
+  background-color: var(--color-neutral-0);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // Header section
+  .ec-head {
+    background-color: var(--color-primary);
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+
+    .header-image {
+      margin-right: var(--space-base);
     }
 
-    .title{
-        background-color: transparent;
-        padding: var(--space-s);
-        text-align: center;
-        font-weight: 600;
-        font-size: var(--font-size-h6);
+    h3 {
+      margin: 0;
+      color: var(--color-neutral-9);
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: left !important;
+      flex-grow: 1;
+
+      // Row ID styles for complex tables
+      .row-id {
+        display: inline-block;
+        background-color: rgba(var(--color-neutral-0), 0.2);
+        color: var(--color-neutral-0);
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-right: 8px;
+        font-size: 0.9em;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+
+    // Expand/collapse arrow
+    .arrow {
+      color: var(--color-neutral-9);
+      transition: transform 0.3s ease;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      padding: var(--space-xs);
+      box-sizing: border-box;
+
+      path {
+        stroke: currentColor;
+        stroke-width: 1.5;
+      }
+    }
+
+    &.active .arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+//-------------------------------------------
+// Expanded Content Styling
+//-------------------------------------------
+
+.accordion .list-item .expanded-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-out;
+  background-color: var(--color-neutral-0);
+
+  &.active {
+    overflow: hidden;
+  }
+
+  // Content with image layout
+  .content-with-image {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-start;
+
+    img {
+      max-width: 200px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .content-text {
+      flex: 1;
+    }
+  }
+
+  // Information group layout
+  .info-group {
+    display: flex;
+    flex-direction: column;
+
+    // Label styles
+    .label {
+      width: 100%;
+      padding: 1.5rem 1rem;
+      font-weight: 600;
+      color: var(--color-neutral-9);
+      text-transform: uppercase;
+      background-color: var(--color-neutral-4);
+      text-align: left !important;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      
+      & + .label {
+        background-color: rgba(var(--color-neutral-9), 0.2);
+      }
+
+      &.group {
+        background-color: var(--color-neutral-6);
+      }
+
+      &.category {
+        background-color: var(--color-neutral-4);
+      }
+
+      * {
+        text-align: left !important;
+      }
+    }
+
+    // Value styles
+    .value {
+      width: 100%;
+      padding: 1rem;
+      color: var(--color-neutral-7);
+      background-color: var(--color-neutral-0);
+      text-align: left !important;
+      min-height: 50px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      /* Support for lists inside values */
+      ul {
+        list-style-type: disc;
+        margin: 0.5rem 0;
+        padding-left: 2rem;
+        width: 100%;
+
+        li {
+          margin-bottom: 0.5rem;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      &.subheader {
+        background-color: var(--color-neutral-6);
+        color: var(--color-neutral-9);
+      }
+
+      *, div, p, span {
+        text-align: left !important;
+      }
+    }
+  }
+}
+
+//-------------------------------------------
+// Hierarchical Table Specific Styles
+//-------------------------------------------
+
+.html-wrapper .accordion .list-item .expanded-content,
+.responsive-table-container .accordion .list-item .expanded-content {
+  // Row Title styles
+  .section-row-title {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    text-transform: uppercase;
+    background-color: $color-primary-light;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid $color-primary;
+    text-align: left !important;
+  }
+
+  // Row subtitle styles
+  .section-row-subtitle {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    background-color: $color-primary-lighter;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid $color-primary;
+    padding-left: 1.5rem;
+    text-align: left !important;
+  }
+
+  // Subtitle header styles
+  .subtitle-header {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    background-color: $color-primary-lightest;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid $color-primary;
+    padding-left: 2rem;
+    text-align: left !important;
+  }
+
+  // Sublabel title styles
+  .sublabel-title {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-8);
+    background-color: var(--color-neutral-3);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid $color-primary-lighter;
+    padding-left: 2.5rem;
+    text-align: left !important;
+  }
+
+  // Columns header styles
+  .columns-header {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    text-transform: uppercase;
+    background-color: var(--color-neutral-7);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: left !important;
+  }
+
+  // Column group header styles
+  .column-group-header {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    background-color: var(--color-neutral-6);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: left !important;
+  }
+  
+  // Column subgroup styles - between leaf and column group
+  .column-subgroup {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-neutral-2);
+    overflow: hidden;
+  }
+  
+  // Column subgroup header styles
+  .column-subgroup-header {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-neutral-9);
+    background-color: var(--color-neutral-5);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: left !important;
+  }
+
+  // Reset for existing styles when used inside our structure
+  .info-group .value.section-row-title,
+  .info-group .value.section-row-subtitle,
+  .info-group .value.subtitle-header,
+  .info-group .value.sublabel-title {
+    padding: 1.5rem 1rem;
+    min-height: 50px;
+  }
+}
+
+//-------------------------------------------
+// Complex Table Specific Styling
+//-------------------------------------------
+
+// Rows containing sublabels in complex tables
+.sublabel-row {
+  margin: var(--space-xs) 0;
+  padding: var(--space-xs) var(--space-s);
+  border-bottom: 1px solid var(--color-neutral-3);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// Container for column content under a sublabel
+.sublabel-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  padding: var(--space-s) var(--space-base);
+  
+  // Info group within sublabel content
+  .info-group {
+    flex: 1 1 calc(50% - var(--space-s));
+    min-width: 200px;
+    margin-bottom: var(--space-s);
+    
+    // Column category labels
+    .label.category {
+    
+      padding: var(--space-s) var(--space-base);
+      min-height: 40px;
+    }
+    
+    // Column values in complex tables
+    .value {
+      padding: var(--space-s) var(--space-base);
+      min-height: 40px;
+      
+      &:not(:last-child) {
+        border-bottom: 1px dotted var(--color-neutral-3);
+      }
+    }
+  }
+}
+
+//-------------------------------------------
+// Column Group Styling
+//-------------------------------------------
+
+// Column group container
+.column-group {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-neutral-1);
+  overflow: hidden;
+  flex: 1 1 calc(50% - var(--space-s));
+  min-width: 200px;
+}
+
+// Column group content container
+.column-group-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-xs);
+  
+  // Adjust info groups inside column groups
+  .info-group {
+    flex: 1 1 calc(50% - var(--space-xs));
+    min-width: 120px;
+    margin: var(--space-xs);
+    
+    // Smaller header in column groups
+    .label.category {
+      font-size: 0.9em;
+      min-height: 30px;
+      padding: var(--space-xs) var(--space-s);
+    }
+    
+    // Smaller values in column groups
+    .value {
+      min-height: 30px;
+      padding: var(--space-xs) var(--space-s);
+    }
+  }
+}
+
+//-------------------------------------------
+// Column Subgroup Content Styling
+//-------------------------------------------
+
+// Column subgroup content container
+.column-subgroup-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-xs);
+  
+  // Adjust info groups inside column subgroups
+  .info-group {
+    flex: 1 1 calc(50% - var(--space-xs));
+    min-width: 120px;
+    margin: var(--space-xs);
+    
+    .label.category {
+      font-size: 0.9em;
+      min-height: 35px;
+      padding: var(--space-xs) var(--space-s);
+    }
+    
+    .value {
+      min-height: 35px;
+      padding: var(--space-xs) var(--space-s);
+    }
+  }
+}
+
+//-------------------------------------------
+// Responsive Styles
+//-------------------------------------------
+
+@media (max-width: $breakpoint-phone) {
+  .accordion {
+    .list-item {
+      .ec-head {
+        padding: 1rem;
+      }
+
+      .expanded-content {
+        .content-with-image {
+          flex-direction: column;
+          
+          img {
+            max-width: 100%;
+            margin-bottom: 1rem;
+          }
+        }
+
+        .info-group {
+          .label,
+          .value {
+            padding: 1rem;
+            min-height: 70px;
+          }
+        }
+        
+        // Hierarchical elements responsive styles
+        .section-row-title,
+        .section-row-subtitle,
+        .subtitle-header,
+        .sublabel-title,
+        .columns-header,
+        .column-group-header,
+        .column-subgroup-header {
+          padding: 1rem;
+          min-height: 70px;
+        }
+        
+        // Complex table responsive adjustments
+        .sublabel-content {
+          flex-direction: column;
+          padding: var(--space-xs);
+          
+          .info-group {
+            flex: 1 1 100%;
+            
+            .label,
+            .value {
+              min-height: 40px;
+              padding: var(--space-s);
+            }
+          }
+        }
+        
+        // Column group responsive adjustments
+        .column-group,
+        .column-subgroup {
+          flex: 1 1 100%;
+          
+          .column-group-content,
+          .column-subgroup-content {
+            flex-direction: column;
+            
+            .info-group {
+              flex: 1 1 100%;
+              margin: var(--space-xs) 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//-------------------------------------------
+// Print Styles
+//-------------------------------------------
+
+@media print {
+  .accordion {
+    .expanded-content {
+      height: auto !important;
+      overflow: visible !important;
+      
+      // Ensure complex table components print properly
+      .section-row-title,
+      .section-row-subtitle,
+      .subtitle-header,
+      .sublabel-title,
+      .columns-header,
+      .column-group-header,
+      .column-subgroup-header,
+      .sublabel-row,
+      .sublabel-content,
+      .column-group,
+      .column-subgroup,
+      .column-group-content,
+      .column-subgroup-content {
+        page-break-inside: avoid;
+      }
     }
 
     .list-item {
-        margin-bottom: 1.4px;
-        border: none;
-        border-radius: 0;
-        overflow: hidden;
-        padding: 0;
-        background-color: var(--color-neutral-0);
+      page-break-inside: avoid;
 
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        .ec-head {
-            background-color: var(--color-primary);
-            padding: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease-in-out;
-
-            .header-image {
-                margin-right: var(--space-base);
-            }
-
-            h3 {
-                margin: 0;
-                color: var(--color-neutral-9);
-                font-size: 1rem;
-                text-transform: uppercase;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                text-align: left !important;
-                flex-grow: 1;
-            }
-
-            .arrow {
-                color: var(--color-neutral-9);
-                transition: transform 0.3s ease;
-                width: 48px;
-                height: 48px;
-                flex-shrink: 0;
-                border-radius: 50%;
-                padding: var(--space-xs);
-                box-sizing: border-box;
-
-                path {
-                    stroke: currentColor;
-                    stroke-width: 1.5;
-                }
-            }
-
-            &.active .arrow {
-                transform: rotate(180deg);
-            }
-        }
-
-        .expanded-content {
-            height: 0;
-            overflow: hidden;
-            transition: height 0.3s ease-out;
-            background-color: var(--color-neutral-0);
-
-            &.active {
-                height: auto;
-            }
-
-            .content-with-image {
-                display: flex;
-                gap: 1rem;
-                padding: 1rem;
-                align-items: flex-start;
-
-                img {
-                    max-width: 200px;
-                    height: auto;
-                    object-fit: contain;
-                }
-
-                .content-text {
-                    flex: 1;
-                }
-            }
-
-            .info-group {
-                display: flex;
-                flex-direction: column;
-
-                .label {
-                    width: 100%;
-                    padding: 1.5rem 1rem;
-                    font-weight: 600;
-                    color: var(--color-neutral-9);
-                    text-transform: uppercase;
-                    background-color: var(--color-neutral-5);
-                    text-align: left !important;
-                    min-height: 50px;
-                    display: flex;
-                    align-items: center;
-                    
-                    & + .label {
-                        background-color: rgba(var(--color-neutral-9), 0.2);
-                    }
-
-                    &.group {
-                        background-color: var(--color-neutral-6);
-                    }
-
-                    &.category {
-                        background-color: var(--color-neutral-5);
-                    }
-
-                    * {
-                        text-align: left !important;
-                    }
-                }
-
-                .value {
-                    width: 100%;
-                    padding: 1rem;
-                    color: var(--color-neutral-7);
-                    background-color: var(--color-neutral-0);
-                    text-align: left !important;
-                    min-height: 50px;
-                    font-weight: 600;
-                    display: flex;
-                    align-items: center;
-
-                    /* Support for lists inside values */
-                    ul {
-                        list-style-type: disc;
-                        margin: 0.5rem 0;
-                        padding-left: 2rem;
-                        width: 100%;
-
-                        li {
-                            margin-bottom: 0.5rem;
-                            &:last-child {
-                                margin-bottom: 0;
-                            }
-                        }
-                    }
-
-                    *, div, p, span {
-                        text-align: left !important;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: $breakpoint-phone) {
-    .accordion {
-        .list-item {
-            .ec-head {
-                padding: 1rem;
-            
-            }
-
-            .expanded-content {
-                .content-with-image {
-                    flex-direction: column;
-                    
-                    img {
-                        max-width: 100%;
-                        margin-bottom: 1rem;
-                    }
-                }
-
-                .info-group {
-                    .label,
-                    .value {
-                        padding: 1rem;
-                        min-height: 80px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media print {
-    .accordion {
-        .expanded-content {
-            height: auto !important;
-            overflow: visible !important;
-        }
-
-        .list-item {
-            page-break-inside: avoid;
-
-            .ec-head {
-                page-break-inside: avoid;
-                .arrow {
-                    display: none; /* Hide arrows when printing */
-                }
-            }
-
-            .content-with-image {
-                page-break-inside: avoid;
-            }
-        }
-    }
-
-    .responsive-list {
+      .ec-head {
         page-break-inside: avoid;
+        .arrow {
+          display: none; /* Hide arrows when printing */
+        }
+      }
+
+      .content-with-image {
+        page-break-inside: avoid;
+      }
     }
+  }
+
+  .responsive-list {
+    page-break-inside: avoid;
+  }
 }

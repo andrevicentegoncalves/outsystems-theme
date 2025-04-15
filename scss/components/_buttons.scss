@@ -4,11 +4,29 @@
 
 /**************************** Buttons ****************************/
 
+//-------------------------------------------
+// Base Button Styles
+//-------------------------------------------
+
 .btn {
   min-height: 35px;
   height: 35px;
   cursor: pointer;
 
+  // Responsive base styles
+  .tablet &,
+  .phone & {
+    min-height: 35px;
+    height: 35px;
+  }
+}
+
+//-------------------------------------------
+// Button Variants
+//-------------------------------------------
+
+.btn {
+  // Style variants
   &--transparent {
     background-color: transparent !important;
     padding: 0 10px;
@@ -18,12 +36,13 @@
     border-color: var(--color-neutral-4);
   }
 
+  // Size variants
   &--tap-small {
     font-size: var(--font-size-xs);
     min-height: 30px;
     height: 30px;
 
-    // Device-specific styles
+    // Maintain small size on mobile
     .tablet &,
     .phone & {
       font-size: var(--font-size-xs);
@@ -32,14 +51,8 @@
     }
   }
 
-  &-primary{
+  // Color variants
+  &-primary {
     color: var(--color-neutral-9);
-  }
-
-  // Device-specific styles maintain the same dimensions
-  .tablet &,
-  .phone & {
-    min-height: 35px;
-    height: 35px;
   }
 }

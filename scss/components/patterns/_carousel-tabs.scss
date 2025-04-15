@@ -2,151 +2,180 @@
 @import '../../abstracts/variables';
 @import '../../abstracts/mixins';
 
-.responsive-carousel-wrapper .osui-carousel .splide.splide--loop.splide--ltr.splide--draggable.is-active .splide__arrows.splide__arrows--ltr .splide__arrow {
-  background: none;
-  border: none;
-  box-shadow: none;
-  bottom: rem(-32) !important;
-  top: auto !important;
-  cursor: pointer;
-  position: absolute;
-  transform: none !important;
-  height: rem(19);
-  width: rem(19);
+//-------------------------------------------
+// Carousel Navigation Arrows
+//-------------------------------------------
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+.responsive-carousel-wrapper {
+    .osui-carousel .splide.splide--loop.splide--ltr.splide--draggable.is-active {
+        .splide__arrows.splide__arrows--ltr .splide__arrow {
+            // Base Styles
+            background: none;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            position: absolute;
+            
+            // Positioning
+            bottom: rem(-32) !important;
+            top: auto !important;
+            transform: none !important;
+            
+            // Dimensions
+            height: rem(19);
+            width: rem(19);
 
-  &.splide__arrow--prev {
-    left: calc(50% - rem(120)) !important;
-    right: auto !important;
-  }
-  
-  &.splide__arrow--next {
-    right: calc(50% - rem(120)) !important;
-    left: auto !important;
-  }
+            // Icon Styles
+            svg {
+                width: 100%;
+                height: 100%;
+            }
 
-  &:hover {
-    background: none;
-    
-    svg path {
-      fill: var(--color-primary);
+            // Arrow Positioning
+            &.splide__arrow--prev {
+                left: calc(50% - rem(120)) !important;
+                right: auto !important;
+            }
+            
+            &.splide__arrow--next {
+                right: calc(50% - rem(120)) !important;
+                left: auto !important;
+            }
+
+            // Hover States
+            &:hover {
+                background: none;
+                
+                svg path {
+                    fill: var(--color-primary);
+                }
+            }
+        }
     }
-  }
 }
 
-// Carousel tabs
+//-------------------------------------------
+// Carousel Tabs
+//-------------------------------------------
+
 .carousel__tabs {
-  position: absolute;
-  bottom: 0;
-  left: 40px;
-  right: 0;
-  height: 60px;
-  width: 100%;
-  z-index: var(--z-index-modal);
-  box-sizing: border-box;
-  overflow: hidden;
-  touch-action: pan-x pinch-zoom;
-  -webkit-tap-highlight-color: transparent;
-  @include gpu-accelerate;
-
-  @media (max-width: $breakpoint-phone) {
-    left: 0;
-  }
-
-  &-list {
-    display: flex;
-    height: 100%;
-    position: relative;
-    width: max-content;
-    left: 0;
-    transition: left 0.3s ease;
-    @include gpu-accelerate;
-    
-    &.is-dragging {
-      transition: none;
-      * { pointer-events: none; }
-    }
-  }
-
-  &-item {
-    height: var(--bottom-tab-height);
-    min-width: 210px;
-    flex: 0 0 210px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-neutral-0);
-    cursor: pointer;
-    background-color: rgba($color-neutral-10, 0.4);
-    border-top: var(--border-width) solid transparent;
-    transition: background-color 0.2s ease;
+    // Base Layout
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    right: 0;
+    height: 60px;
+    width: 100%;
+    z-index: var(--z-index-modal);
     box-sizing: border-box;
-    padding: 0 var(--space-s);
-    margin-right: var(--space-s);
+    overflow: hidden;
+    touch-action: pan-x pinch-zoom;
+    -webkit-tap-highlight-color: transparent;
     @include gpu-accelerate;
 
     @media (max-width: $breakpoint-phone) {
-      min-width: 100px;
-      margin-right: var(--space-none);
+        left: 0;
     }
 
-    &--selected {
-      background-color: rgba($color-neutral-10, 0.7);
-      border-top-color: var(--color-primary);
-      border-top-width: var(--border-width-selected);
+    // Tab List
+    &-list {
+        display: flex;
+        height: 100%;
+        position: relative;
+        width: max-content;
+        left: 0;
+        transition: left 0.3s ease;
+        @include gpu-accelerate;
+        
+        &.is-dragging {
+            transition: none;
+            * { pointer-events: none; }
+        }
     }
 
-    &:not(&--selected):hover {
-      background-color: rgba($color-neutral-10, 0.6);
+    // Tab Items
+    &-item {
+        height: var(--bottom-tab-height);
+        min-width: 210px;
+        flex: 0 0 210px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-neutral-0);
+        cursor: pointer;
+        background-color: rgba($color-neutral-10, 0.4);
+        border-top: var(--border-width) solid transparent;
+        transition: background-color 0.2s ease;
+        box-sizing: border-box;
+        padding: 0 var(--space-s);
+        margin-right: var(--space-s);
+        @include gpu-accelerate;
+
+        @media (max-width: $breakpoint-phone) {
+            min-width: 100px;
+            margin-right: var(--space-none);
+        }
+
+        // States
+        &--selected {
+            background-color: rgba($color-neutral-10, 0.7);
+            border-top-color: var(--color-primary);
+            border-top-width: var(--border-width-selected);
+        }
+
+        &:not(&--selected):hover {
+            background-color: rgba($color-neutral-10, 0.6);
+        }
+
+        &:active {
+            transform: scale(0.98) translate3d(0, 0, 0);
+        }
     }
 
-    &:active {
-      transform: scale(0.98) translate3d(0, 0, 0);
+    // Tab Text
+    &-text {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: var(--font-size-base);
+        font-weight: 500;
+        padding: 0 var(--space-s);
+        user-select: none;
+        text-align: center;
     }
-  }
 
-  &-text {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: var(--font-size-base);
-    font-weight: 500;
-    padding: 0 var(--space-s);
-    user-select: none;
-    text-align: center;
-  }
-
-  &.is-draggable {
-    .carousel__tabs-list {
-      cursor: grab;
-      &.is-dragging { 
-        cursor: grabbing; 
-      }
+    // Draggable States
+    &.is-draggable {
+        .carousel__tabs-list {
+            cursor: grab;
+            &.is-dragging { 
+                cursor: grabbing; 
+            }
+        }
     }
-  }
 }
 
-// Reduced motion
+//-------------------------------------------
+// Accessibility & Feature Detection
+//-------------------------------------------
+
+// Reduced Motion
 @media (prefers-reduced-motion: reduce) {
-  .carousel__tabs * {
-    transition: none !important;
-  }
+    .carousel__tabs * {
+        transition: none !important;
+    }
 }
 
-// Print styles
+// Print Styles
 @media print {
-  .carousel__tabs {
-    display: none;
-  }
+    .carousel__tabs {
+        display: none;
+    }
 }
 
-// No JS fallback
+// No JS Fallback
 .no-js .carousel__tabs {
-  display: none;
+    display: none;
 }

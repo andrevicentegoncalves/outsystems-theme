@@ -4,35 +4,44 @@
 
 /**************************** Search ****************************/
 
+//-------------------------------------------
+// Search Container
+//-------------------------------------------
+
 .osui-search {
- position: relative !important;
- display: inline-block !important;
+    position: relative !important;
+    display: inline-block !important;
 
- .search-tap.form-control[data-input] {
-   // Base styles
-   background-position: right var(--space-base) center;
-   padding-left: var(--space-base);
-   padding-right: var(--space-xl); 
-   min-width: 300px;
-   border: var(--border-size-s) solid var(--color-neutral-0);
-   height: 35px;
+    //-------------------------------------------
+    // Search Input
+    //-------------------------------------------
 
-   // Background image logic
-   @if $is_main {
-     background-image: url('/TapAgents_TH/img/TapAgents_TH.IconSearch.svg');
-   } @else if $is_pat{
-     background-image: url('/TapAgents_PAT/img/TapAgents_PAT.IconSearch.svg');
-   }
+    .search-tap.form-control[data-input] {
+        // Dimensions and Spacing
+        height: 35px;
+        min-width: 300px;
+        padding-left: var(--space-base);
+        padding-right: var(--space-xl);
 
-   background-size: 30px 30px;
-   background-position: calc(100% - 5px) center !important;
+        // Border and Background
+        border: var(--border-size-s) solid var(--color-neutral-0);
+        background-position: right var(--space-base) center;
+        background-size: 30px 30px;
+        background-position: calc(100% - 5px) center !important;
 
-   // Remove default browser search styling
-   &::-webkit-search-decoration,
-   &::-webkit-search-cancel-button,
-   &::-webkit-search-results-button,
-   &::-webkit-search-results-decoration {
-     display: none;
-   }
- }
+        // Theme-specific Search Icon
+        @if $is_main {
+            background-image: url('/TapPortal_TH/img/TapPortal_TH.IconSearch.svg');
+        } @else if $is_pat {
+            background-image: url('/TapPortal_PAT/img/TapPortal_PAT.IconSearch.svg');
+        }
+
+        // Remove Browser Default Styles
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+    }
 }

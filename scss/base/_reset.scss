@@ -4,14 +4,15 @@
 
 /**************************** Reset ****************************/
 
-/* Basic reset for consistent styling across browsers */
+// Universal Box Model Reset
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  img {
+}
+
+// Media Element Reset  
+img {
     max-width: 100%;
     height: auto;
-  }
+}

@@ -2,23 +2,30 @@
 @import '../../../abstracts/variables';
 @import '../../../abstracts/mixins';
 
-/**************************** Signup  ****************************/
+//-------------------------------------------
+// Signup Form Container
+//-------------------------------------------
 
 .signup-wrapper {
-
-    span{
+    // Text elements styling
+    span {
         font-size: var(--font-size-base);
     
+        // Mobile horizontal orientation adjustments
         @media (max-width: $breakpoint-phone-horizontal) {
-        font-size: $font-size-xs; 
+            font-size: $font-size-xs; 
         }
     }
 }
 
+//-------------------------------------------
+// Custom Checkbox Styling
+//-------------------------------------------
+
 .signup-wrapper .checkbox:checked {
+    // Remove default checkbox appearance
     &::after {
         content: '';
         display: none;
     }
 }
-

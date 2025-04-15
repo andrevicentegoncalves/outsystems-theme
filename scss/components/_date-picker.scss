@@ -1,7 +1,13 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+/**************************** Date Picker ****************************/
+
 .osui-datepicker > span > input:first-of-type {
     display: none !important;
-  }
-  
-  .flatpickr-calendar.hasTime:not(.inline) {
+}
+
+.flatpickr-calendar.hasTime:not(.inline) {
     position: absolute !important;
-  }
+}

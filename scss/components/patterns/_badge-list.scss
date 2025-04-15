@@ -4,8 +4,21 @@
 
 /**************************** Badge List ****************************/
 
+//-------------------------------------------
+// Badge List Component
+//-------------------------------------------
+
 .badge-list {
+
+    //-------------------------------------------
+    // Custom Properties
+    //-------------------------------------------
+
     --badge-max-width: 240px;
+
+    //-------------------------------------------
+    // List Item Structure
+    //-------------------------------------------
 
     &__item {
         display: flex;
@@ -16,14 +29,20 @@
         margin-bottom: var(--space-s);
         transition: background-color 0.3s;
 
+        // Hover state
         &:hover {
             background-color: var(--color-neutral-4);
         }
 
+        // Danger state variation
         &--danger {
             box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.05), 0 0 5px var(--color-danger);
         }
     }
+
+    //-------------------------------------------
+    // Category Section
+    //-------------------------------------------
 
     &__category {
         display: flex;
@@ -31,11 +50,19 @@
         margin-right: var(--space-m);
     }
     
+    //-------------------------------------------
+    // Badge Variations
+    //-------------------------------------------
+
     &__light,
     &__dark,
-    &__state{
+    &__state {
         max-width: var(--badge-max-width);
     }
+
+    //-------------------------------------------
+    // State Badge
+    //-------------------------------------------
 
     &__state {
         @media (max-width: $breakpoint-phone) {
@@ -47,9 +74,17 @@
         }
     }
 
+    //-------------------------------------------
+    // Dark Badge
+    //-------------------------------------------
+
     &__dark {
         margin-left: var(--space-m);
     }
+
+    //-------------------------------------------
+    // Title Section
+    //-------------------------------------------
 
     &__title {
         display: flex;
@@ -59,9 +94,17 @@
         margin: 0 var(--space-m);
     }
 
+    //-------------------------------------------
+    // Arrow Element
+    //-------------------------------------------
+
     &__arrow {
         margin-left: var(--space-base);
     }
+
+    //-------------------------------------------
+    // Link Styling
+    //-------------------------------------------
 
     &__link {
         text-decoration: none;
@@ -75,6 +118,9 @@
         }
     }
 
+    //-------------------------------------------
+    // Tablet Responsive Styles
+    //-------------------------------------------
     @media (max-width: $breakpoint-tablet) {
         &__state {
             &-title {
@@ -92,9 +138,15 @@
         }
     }
 
+    //-------------------------------------------
+    // Mobile Responsive Styles
+    //-------------------------------------------
+
     @media (max-width: $breakpoint-phone-horizontal) {
+        // Reset max-width for mobile
         --badge-max-width: 100%;
 
+        // Adjust item layout for mobile
         &__item {
             flex-direction: column;
             align-items: stretch;
@@ -102,6 +154,7 @@
             position: relative;
         }
 
+        // Adjust category layout
         &__category {
             flex-direction: column;
             align-items: stretch;
@@ -109,6 +162,7 @@
             width: 100%;
         }
 
+        // Reset badge widths
         &__light,
         &__dark,
         &__state {
@@ -117,16 +171,19 @@
             margin-bottom: var(--space-xs);
         }
 
+        // Reset dark badge margin
         &__dark {
             margin-left: 0;
         }
 
+        // Adjust title positioning
         &__title {
             width: 100%;
             margin: var(--space-s) 0 0 0;
             order: 1;
         }
 
+        // Reposition arrow for mobile
         &__arrow {
             position: absolute;
             right: var(--space-base);
@@ -134,6 +191,7 @@
             transform: translateY(-50%);
         }
 
+        // Maintain danger state styling
         &__item--danger {
             box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.05), 0 0 5px var(--color-danger);
         }

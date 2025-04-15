@@ -4,98 +4,113 @@
 
 /**************************** Submenus ****************************/
 
-// Base submenu styles
+//-------------------------------------------
+// Base Submenu Styles
+//-------------------------------------------
+
 .osui-submenu {
-  &__header {
-    border-bottom: none;
-    text-decoration: none;
+    // Header Styles
+    &__header {
+        border-bottom: none;
+        text-decoration: none;
 
-    &__icon {
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      cursor: pointer;
+        // Icon Styles
+        &__icon {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            cursor: pointer;
 
-      &:before {
-        .submenu-clean & {
-          height: 7px;
-          width: 7px;
+            &:before {
+                .submenu-clean & {
+                    height: 7px;
+                    width: 7px;
+                }
+            }
         }
-      }
-    }
 
-    &__item {
-      .submenu-clean & {
-        padding: 0;
-      }
+        // Item Styles
+        &__item {
+            .submenu-clean & {
+                padding: 0;
+            }
 
-      // Active state styles
-      .active & {
-        &,
-        a {
-          color: var(--color-neutral-10);
+            // Active State
+            .active & {
+                &,
+                a {
+                    color: var(--color-neutral-10);
+                }
+            }
         }
-      }
     }
-  }
 
-  // Active state styles
-  &.active {
-    .osui-submenu__header {
-      border-bottom: none;
-      text-decoration: none;
+    // Active State Styles
+    &.active {
+        .osui-submenu__header {
+            border-bottom: none;
+            text-decoration: none;
 
-      &__icon:before {
-        border: var(--border-size-s) solid var(--color-neutral-8);
-        border-right: 0;
-        border-top: 0;
-      }
+            &__icon:before {
+                border: var(--border-size-s) solid var(--color-neutral-8);
+                border-right: 0;
+                border-top: 0;
+            }
+        }
     }
-  }
 
-  &__items {
-    a:hover {
-      .desktop & {
-        background-color: transparent;
-      }
+    // Item Container
+    &__items {
+        a:hover {
+            .desktop & {
+                background-color: transparent;
+            }
+        }
     }
-  }
 }
 
-// Clean submenu variant
+//-------------------------------------------
+// Clean Submenu Variant
+//-------------------------------------------
+
 .submenu-clean {
-  .list {
-    .list-group {
-      box-shadow: 0px -1px 15px rgba(0, 0, 0, 0.15);
+    .list {
+        .list-group {
+            box-shadow: 0px -1px 15px rgba(0, 0, 0, 0.15);
+        }
     }
-  }
 
-  &-item:hover {
-    // Add hover-specific styles if needed
-  }
+    &-item:hover {
+        // Hover styles placeholder
+    }
 }
 
-// Device-specific styles
+//-------------------------------------------
+// Device-Specific Styles
+//-------------------------------------------
+
+// Desktop
 .desktop {
-  .osui-submenu__header {
-    &:hover {
-      border-bottom: none;
-      text-decoration: none;
+    .osui-submenu__header {
+        &:hover {
+            border-bottom: none;
+            text-decoration: none;
+        }
     }
-  }
 }
 
+// Mobile & Tablet
 .tablet,
 .phone {
-  .osui-submenu {
-    &__items {
-      padding: var(--space-none) !important;
-    }
+    .osui-submenu {
+        &__items {
+            padding: var(--space-none) !important;
+        }
 
-    &__header {
-      padding: var(--space-none) var(--space-none) !important;
-      border-left: none;
+        &__header {
+            padding: var(--space-none) var(--space-none) !important;
+            border-left: none;
+        }
     }
-  }
 }

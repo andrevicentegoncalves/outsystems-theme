@@ -4,117 +4,158 @@
 
 /**************************** Layout ****************************/
 
-/* ThemeGrid Base Container */
+//-------------------------------------------
+// Base Container
+//-------------------------------------------
+
 .ThemeGrid_Container {
-  margin: var(--space-none) auto;
-  width: 100%;
-  max-width: var(--layout-max-width);
-  box-sizing: border-box;
-  
-  @include responsive(xl) {
-    width: 90%;
-  }
-  
-  @include responsive(md) {
-    width: 95%;
-  }
-}
-
-/* Layout Structure */
-.layout {
-  .header .ThemeGrid_Container {
-    padding: var(--space-none) var(--space-xl);
+    margin: var(--space-none) auto;
+    width: 100%;
     max-width: var(--layout-max-width);
-  }
-
-  .main-content.ThemeGrid_Container {
-    padding: var(--space-xl);
-    max-width: var(--layout-max-width);
-  }
-
-  .footer {
-    &.ThemeGrid_Container {
-      max-width: var(--layout-max-width);
-  
-      @media (max-width: $breakpoint-phone-horizontal) {
-        padding: var(--space-s) var(--space-xl);
-      }
+    box-sizing: border-box;
+    
+    // Extra large screens
+    @include responsive(xl) {
+        width: 90%;
     }
-  }
+    
+    // Medium screens
+    @include responsive(md) {
+        width: 95%;
+    }
 }
 
-/* Common Container Styles */
+//-------------------------------------------
+// Main Layout Structure
+//-------------------------------------------
+
+.layout {
+    // Header container spacing
+    .header .ThemeGrid_Container {
+        padding: var(--space-none) var(--space-xl);
+        max-width: var(--layout-max-width);
+    }
+
+    // Main content area padding
+    .main-content.ThemeGrid_Container {
+        padding: var(--space-xl);
+        max-width: var(--layout-max-width);
+    }
+
+    // Footer container responsive adjustments
+    .footer {
+        &.ThemeGrid_Container {
+            max-width: var(--layout-max-width);
+    
+            // Mobile padding
+            @media (max-width: $breakpoint-phone-horizontal) {
+                padding: var(--space-s) var(--space-xl);
+            }
+        }
+    }
+}
+
+//-------------------------------------------
+// Shared Container Styles
+//-------------------------------------------
+
 .header .ThemeGrid_Container,
 .info-bar.ThemeGrid_Container,
 .wide-bar.ThemeGrid_Container,
 .breadcrumbs-bar.ThemeGrid_Container,
 .footer-content.ThemeGrid_Container,
 .footer .ThemeGrid_Container {
-  padding: var(--space-none) var(--space-xl);
-  max-width: var(--layout-max-width);
-}
-
-/* Tablet Responsive */
-.tablet {
-  .header .ThemeGrid_Container {
-    padding: var(--space-none) var(--space-m);
-  }
-
-  .main-content.ThemeGrid_Container {
-    padding: var(--space-m);
-  }
-
-  .footer.ThemeGrid_Container {
-    padding: var(--space-base) var(--space-m);
-  }
-}
-
-/* Phone Responsive */
-.phone {
-  .header .ThemeGrid_Container,
-  .info-bar.ThemeGrid_Container,
-  .wide-bar.ThemeGrid_Container,
-  .breadcrumbs-bar.ThemeGrid_Container,
-  .footer-content.ThemeGrid_Container,
-  .footer .ThemeGrid_Container {
-    padding-left: calc(var(--os-safe-area-left) + #{$space-base});
-    padding-right: calc(var(--os-safe-area-right) + #{$space-base});
-  }
-
-  .main-content.ThemeGrid_Container {
-    padding: var(--space-base);
-    padding-left: calc(var(--os-safe-area-left) + #{$space-base});
-    padding-right: calc(var(--os-safe-area-right) + #{$space-base});
-  }
-}
-
-/* Full Width Sections */
-.full-width-section {
-  position: relative;
-
-  .ThemeGrid_Container {
     padding: var(--space-none) var(--space-xl);
     max-width: var(--layout-max-width);
-  }
 }
 
+//-------------------------------------------
+// Tablet Layout Adjustments
+//-------------------------------------------
+
+.tablet {
+    // Header padding
+    .header .ThemeGrid_Container {
+        padding: var(--space-none) var(--space-m);
+    }
+
+    // Main content padding
+    .main-content.ThemeGrid_Container {
+        padding: var(--space-m);
+    }
+
+    // Footer padding
+    .footer.ThemeGrid_Container {
+        padding: var(--space-base) var(--space-m);
+    }
+}
+
+//-------------------------------------------
+// Mobile Layout with Safe Areas
+//-------------------------------------------
+
+.phone {
+    // Common container padding with safe areas
+    .header .ThemeGrid_Container,
+    .info-bar.ThemeGrid_Container,
+    .wide-bar.ThemeGrid_Container,
+    .breadcrumbs-bar.ThemeGrid_Container,
+    .footer-content.ThemeGrid_Container,
+    .footer .ThemeGrid_Container {
+        padding-left: calc(var(--os-safe-area-left) + #{$space-base});
+        padding-right: calc(var(--os-safe-area-right) + #{$space-base});
+    }
+
+    // Main content padding with safe areas
+    .main-content.ThemeGrid_Container {
+        padding: var(--space-base);
+        padding-left: calc(var(--os-safe-area-left) + #{$space-base});
+        padding-right: calc(var(--os-safe-area-right) + #{$space-base});
+    }
+}
+
+//-------------------------------------------
+// Full Width Section
+//-------------------------------------------
+
+.full-width-section {
+    position: relative;
+
+    // Container constraints
+    .ThemeGrid_Container {
+        padding: var(--space-none) var(--space-xl);
+        max-width: var(--layout-max-width);
+    }
+}
+
+//-------------------------------------------
+// Section Components
+//-------------------------------------------
+
+// Content positioning
 .section-content {
-  position: relative;
+    position: relative;
 }
 
+// Background image container
 .section-background {
-  @include absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  img {
+    @include absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-  }
+    overflow: hidden;
+
+    // Image sizing
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
+//-------------------------------------------
+// Global Image Handling
+//-------------------------------------------
+
 img {
-  height: auto !important;
+    height: auto !important;
 }

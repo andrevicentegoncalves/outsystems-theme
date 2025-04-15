@@ -2,94 +2,124 @@
 @import '../../../abstracts/variables';
 @import '../../../abstracts/mixins';
 
-/**************************** Article ****************************/
+//-------------------------------------------
+// Article Header Container
+//-------------------------------------------
 
 .article-header-wrapper {
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
-  .line {
-    margin: 0 auto;
-  }
+    // Horizontal line styling
+    .line {
+        margin: 0 auto;
+    }
 }
+
+//-------------------------------------------
+// Main Header Layout
+//-------------------------------------------
 
 .article-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  gap: var(--space-m);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-m);
 }
+
+//-------------------------------------------
+// Article Title
+//-------------------------------------------
 
 .article-title {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 
-  @media (max-width: var(--breakpoint-desktop)) {
-    padding-right: var(--space-none);
-    margin: {
-      bottom: var(--space-base);
-      right: var(--space-none);
+    // Desktop breakpoint adjustments
+    @media (max-width: var(--breakpoint-desktop)) {
+        padding-right: var(--space-none);
+        margin: {
+            bottom: var(--space-base);
+            right: var(--space-none);
+        }
     }
-  }
 }
+
+//-------------------------------------------
+// Article Subtitle
+//-------------------------------------------
 
 .article-subtitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: var(--space-m);
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: var(--space-m);
+    width: 100%;
 
-  @media (max-width: $breakpoint-desktop) {
-    margin-top: var(--space-base);
-  }
+    // Responsive spacing
+    @media (max-width: $breakpoint-desktop) {
+        margin-top: var(--space-base);
+    }
 }
+
+//-------------------------------------------
+// Article Icon
+//-------------------------------------------
 
 .article-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0.5rem;
-  right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
 }
 
+// Desktop icon positioning
 @media (max-width: $breakpoint-desktop) {
-  .article-icon {
-    position: static;
-    margin-top: 1rem;
-    width: 100%;
-  }
+    .article-icon {
+        position: static;
+        margin-top: 1rem;
+        width: 100%;
+    }
 }
+
+//-------------------------------------------
+// Title with Bookmark Layout
+//-------------------------------------------
 
 .title-with-bookmark {
-  display: flex;
-  align-items: center;
-  gap: var(--space-s);
-  justify-content: center;
-  text-align: center;
-
-  .cke_contents_ltr {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    justify-content: center;
     text-align: center;
-  }
 
-  .article-bookmark {
-    display: flex;
-    align-items: center;
-    font-size: var(--font-size-base);
-
-    @media (max-width: $breakpoint-desktop) {
-      font-size: var(--font-size-h6);
+    // CKEditor content alignment
+    .cke_contents_ltr {
+        text-align: center;
     }
-  }
 
-  .icon {
-    display: flex;
-    align-items: center;
-  }
+    // Bookmark styling
+    .article-bookmark {
+        display: flex;
+        align-items: center;
+        font-size: var(--font-size-base);
+
+        // Responsive font size
+        @media (max-width: $breakpoint-desktop) {
+            font-size: var(--font-size-h6);
+        }
+    }
+
+    // Icon container
+    .icon {
+        display: flex;
+        align-items: center;
+    }
 }

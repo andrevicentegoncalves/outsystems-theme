@@ -1,32 +1,47 @@
+//-------------------------------------------
+// Collapse Button
+//-------------------------------------------
+
 .collapse__button {
+    // Base button structure
     display: flex;
     align-items: center;
     gap: var(--space-xs);
     width: 100%;
     margin: 0;
+    margin-bottom: var(--space-l);
+    padding: var(--space-s) var(--space-none);
+    
+    // Reset button styles
     border: none;
     background: none;
     cursor: pointer;
+    
+    // Typography
     font-family: inherit;
     font-weight: 600;
     letter-spacing: var(--letter-spacing-default);
     color: var(--color-neutral-9);
-    padding: var(--space-s) var(--space-none);
     text-transform: uppercase;
     line-height: 1.4;
-    border-bottom: 1px solid var(--color-neutral-5);
-    margin-bottom: var(--space-l);
     text-align: left;
     white-space: normal;
     
+    // Border styling
+    border-bottom: 1px solid var(--color-neutral-5);
+    
+    // Underline spacing
     u {
         margin: 0 var(--space-xs);
+        margin-left: var(--space-xs);
     }
 
+    // Hover state
     &:hover {
         background-color: var(--color-neutral-1);
     }
 
+    // Expand/collapse indicator
     &::after {
         content: '+';
         font-size: rem(30);
@@ -37,6 +52,7 @@
         margin-left: auto;
     }
 
+    // Active state
     &.active {
         &::after {
             content: '−';
@@ -44,15 +60,39 @@
         }
     }
 
-    u {
-        margin-left: var(--space-xs); 
-    }
-
+    // Article header sizing
     .ArticleHeader {
         font-size: var(--font-size-base);
     }
+}
 
-    @media (max-width: var(--breakpoint-phone)) {
+//-------------------------------------------
+// Collapse Container
+//-------------------------------------------
+
+.collapse__container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--color-neutral-0);
+
+    // Active state
+    &.active {
+        max-height: none !important;
+    }
+
+    // Nested containers
+    .collapse__container {
+        margin-top: 1px;
+    }
+}
+
+//-------------------------------------------
+// Responsive Styles
+//-------------------------------------------
+
+@media (max-width: var(--breakpoint-phone)) {
+    .collapse__button {
         padding: var(--space-s) var(--space-none);
 
         &::after {
@@ -65,21 +105,9 @@
     }
 }
 
-.collapse__container {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background-color: var(--color-neutral-0);
-
-    &.active {
-        max-height: none;
-        padding: var(--space-base);
-    }
-
-    .collapse__container {
-        margin-top: 1px;
-    }
-}
+//-------------------------------------------
+// Print Styles
+//-------------------------------------------
 
 @media print {
     .collapse__container {
@@ -91,6 +119,10 @@
         display: none;
     }
 }
+
+//-------------------------------------------
+// Accessibility - Reduced Motion
+//-------------------------------------------
 
 @media (prefers-reduced-motion: reduce) {
     .collapse__button::after {

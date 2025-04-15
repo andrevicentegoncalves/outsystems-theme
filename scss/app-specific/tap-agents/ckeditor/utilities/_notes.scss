@@ -1,8 +1,14 @@
+//-------------------------------------------
+// Box Components
+//-------------------------------------------
+
+// Shared box padding
 .Note-Box,
 .ArticleDisclaimer {
     padding: rem(24) var(--spacing-m);
 }
 
+// Note box specific styling
 .Note-Box {
     border-radius: var(--border-radius-soft);
     background-color: var(--color-warning-light);
@@ -11,6 +17,11 @@
     padding: var(--space-m) !important;
 }
 
+//-------------------------------------------
+// Typography Components
+//-------------------------------------------
+
+// Note text styling
 .Note-Text {
     font-family: 'Lato', sans-serif;
     font-size: rem(15);
@@ -18,6 +29,7 @@
     color: var(--color-footer-section);
 }
 
+// Small text variant
 .SmallText {
     font-family: 'Lato', sans-serif;
     font-size: var(--font-size-xs);
@@ -25,6 +37,7 @@
     color: var(--color-footer-section);
 }
 
+// Article disclaimer text
 .ArticleDisclaimer {
     font-size: rem(15);
     font-family: 'Lato', Arial, sans-serif;

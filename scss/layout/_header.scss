@@ -4,97 +4,196 @@
 
 /******************************* Header *********************************/
 
-.header-top {
-  padding: var(--space-s) var(--space-m);
+//-------------------------------------------
+// Header Top Section
+//-------------------------------------------
 
-  @media (max-width: $breakpoint-phone) {
-    padding: var(--space-xs) var(--space-s);
-  }
+.header-top {
+    padding: var(--space-s) var(--space-m);
+
+    // Adjust padding for mobile devices
+    @media (max-width: $breakpoint-phone) {
+        padding: var(--space-xs) var(--space-s);
+    }
 }
+
+//-------------------------------------------
+// Main Header Content Layout
+//-------------------------------------------
 
 .header-content {
-  @include flexbox(row, space-between, center);
-  flex-wrap: nowrap;
+    @include flexbox(row, space-between, center);
+    flex-wrap: nowrap;
 
-  @media (max-width: $breakpoint-phone) {
-    gap: 0;
-  }
+    // Remove gap on mobile
+    @media (max-width: $breakpoint-phone) {
+        gap: 0;
+    }
 }
+
+//-------------------------------------------
+// Application Logo
+//-------------------------------------------
 
 .application-name {
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  .app-logo {
-    width: auto;
-    max-height: rem(30.59) !important;
-    max-width: var(--logo-max-width);
+    // Logo sizing and responsive adjustments
+    .app-logo {
+        width: auto;
+        max-height: rem(30.59) !important;
+        max-width: var(--logo-max-width);
 
-    @media (max-width: $breakpoint-phone) {
-      max-height: rem(18) !important;
+        // Smaller logo for mobile
+        @media (max-width: $breakpoint-phone) {
+            max-height: rem(18) !important;
+        }
     }
-  }
 }
+
+//-------------------------------------------
+// Menu Container
+//-------------------------------------------
 
 .menu-wrapper {
-  @media (max-width: $breakpoint-phone) {
-    margin-right: var(--space-s);
-    @include font-style(var(--font-size-xs));
-  }
+    // Mobile-specific adjustments
+    @media (max-width: $breakpoint-phone) {
+        margin-right: var(--space-s);
+        @include font-style(var(--font-size-xs));
+    }
 }
+
+//-------------------------------------------
+// Navigation Links Container
+//-------------------------------------------
 
 .page-links-container {
-  @media (max-width: $breakpoint-phone) {
-    margin-left: 0;
-    padding-left: 0;
-  }
+    // Remove left spacing on mobile
+    @media (max-width: $breakpoint-phone) {
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
+
+//-------------------------------------------
+// Main Menu Content Area
+//-------------------------------------------
 
 .app-menu-content {
-  flex-grow: 1;
-  @include flex-center;
+    flex-grow: 1;
+    @include flex-center;
 
-  @media (max-width: $breakpoint-tablet) {
-    width: 100%;
-    order: 3;
-    margin-top: var(--space-s);
-  }
-
-  &.menu-hidden {
-    display: none !important;
-  }
-}
-
-.app-menu-links {
-  @include flexbox;
-  gap: var(--space-m);
-
-  @media (max-width: $breakpoint-phone) {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-s);
-  }
-
-  a {
-    display: block !important;
-    text-decoration: none;
-    color: var(--color-neutral-10);
-    @include font-style(rem(20), 500);
-    @include transition(color);
-
-    @media (max-width: $breakpoint-phone) {
-      @include font-style(var(--font-size-xs));
+    // Full width and reorder on tablet
+    @media (max-width: $breakpoint-tablet) {
+        width: 100%;
+        order: 3;
+        margin-top: var(--space-s);
     }
 
-    &:hover {
-      color: var(--color-primary);
+    // Hidden state
+    &.menu-hidden {
+        display: none !important;
     }
-  }
 }
+
+//-------------------------------------------
+// Language Switcher
+//-------------------------------------------
 
 .language-switcher-wrapper {
-  margin-left: auto;
+    margin-left: auto;
+    margin-right: var(--space-l);
+
+    // Adjust spacing on mobile
+    @media (max-width: $breakpoint-phone) {
+        margin-right: var(--space-s);
+    }
 }
 
-.user-info-wrapper {
-  margin-left: var(--space-xs);
+//-------------------------------------------
+// User Information Display
+//-------------------------------------------
+
+.user-info {
+    &-wrapper {
+        margin-left: var(--space-xs);
+    }
+
+    // Mobile-specific text and icon sizes
+    @media (max-width: $breakpoint-phone) {
+        &__text {
+            font-size: var(--font-size-xs);
+        }
+        
+        &__icon {
+            font-size: var(--font-size-xs);
+        }
+    }
+}
+
+//-------------------------------------------
+// Menu Styling - Second Row
+//-------------------------------------------
+
+@media (min-width: $breakpoint-tablet-horizontal) {
+    .menu-wrapper {
+        padding: var(--space-m) var(--space-s);
+        display: flex;
+        gap: var(--space-l);
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-neutral-3);
+        border-bottom: var(--border-width) var(--border-style) var(--border-color);
+    }
+
+    .menu-wrapper .menu-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu-wrapper .menu-content .app-menu-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-wrapper .menu-content .app-menu-content .app-menu-links {
+        display: flex;
+        gap: var(--space-m);
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-wrapper .menu-content .app-menu-content .app-menu-links > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-wrapper .menu-content .app-menu-content .app-menu-links a {
+        color: var(--color-neutral-8);
+        text-align: center;
+        font-size: var(--font-size-s);
+        transition: var(--transition-base);
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 var(--space-s);
+    }
+
+    .menu-wrapper .menu-content .app-menu-content .app-menu-links a span {
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .menu-wrapper .menu-content .app-menu-content .app-menu-links a:hover {
+        color: var(--color-primary);
+    }
 }

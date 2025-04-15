@@ -4,25 +4,35 @@
 
 /**************************** Flex ****************************/
 
-/* Flex grow */
-.flex-grow-0 { flex-grow: 0; }
-.flex-grow-1 { flex-grow: 1; }
-.flex-grow-2 { flex-grow: 2; }
-.flex-grow-3 { flex-grow: 3; }
-.flex-grow-4 { flex-grow: 4; }
+//-------------------------------------------
+// Flex Grow Utilities
+//-------------------------------------------
 
-/* Flex container */
+// Control space distribution in flex containers
+.flex-grow-0 { flex-grow: 0; }  // No growing
+.flex-grow-1 { flex-grow: 1; }  // Standard growth
+.flex-grow-2 { flex-grow: 2; }  // Double growth
+.flex-grow-3 { flex-grow: 3; }  // Triple growth
+.flex-grow-4 { flex-grow: 4; }  // Quadruple growth
+
+//-------------------------------------------
+// Responsive Flex Container
+//-------------------------------------------
+
 .flex-container-responsive {
     display: flex;
     flex-direction: row;
     align-items: center;
   
+    // Stack items on mobile
     @media (max-width: $breakpoint-tablet) {
-      flex-direction: column;
+        flex-direction: column;
     }
-  }
+}
 
-/* Flex grid */
+//-------------------------------------------
+// Dynamic Grid System
+//-------------------------------------------
 
 .flex-grid {
     display: grid;
@@ -30,22 +40,28 @@
     gap: var(--grid-gap);
     justify-content: center;
 
+    // Responsive column adjustments
     @media (max-width: $breakpoint-tablet-horizontal) {
-        --grid-columns: 3;
+        --grid-columns: 3;  // Three columns on large tablets
     }
 
     @media (max-width: $breakpoint-tablet) {
-        --grid-columns: 2;
+        --grid-columns: 2;  // Two columns on tablets
     }
 
     @media (max-width: $breakpoint-phone) {
-        --grid-columns: 1;
+        --grid-columns: 1;  // Single column on phones
     }
 }
 
+// Grid item sizing
 .flex-grid > * {
     box-sizing: border-box;
 }
+
+//-------------------------------------------
+// Four Column Grid
+//-------------------------------------------
 
 .flex-grid-4 {
     display: grid;
@@ -53,35 +69,66 @@
     gap: var(--grid-gap);
     justify-content: center;
 
+    // Responsive breakpoints
     @media (max-width: $breakpoint-tablet-horizontal) {
-        --grid-columns: 3;
+        --grid-columns: 3;  // Three columns on large tablets
     }
 
     @media (max-width: $breakpoint-tablet) {
-        --grid-columns: 2;
+        --grid-columns: 2;  // Two columns on tablets
     }
 
     @media (max-width: $breakpoint-phone) {
-        --grid-columns: 1;
+        --grid-columns: 1;  // Single column on phones
     }
 }
 
+// Four column grid item sizing
 .flex-grid-4 > * {
     box-sizing: border-box;
 }
 
+//-------------------------------------------
+// Grid Item Utilities
+//-------------------------------------------
+
 .flex-grid-item {
-    width: 100%;
+    width: 100%;  // Full-width grid items
 }
+
+//-------------------------------------------
+// Action Container
+//-------------------------------------------
 
 .container-align-right {
     display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem; 
+    justify-content: flex-end;    // Right alignment
+    flex-direction: row;          // Horizontal layout
+    align-items: center;          // Vertical centering
+    gap: 1rem;                    // Spacing between items
 
+    // Button width override
     button {
         width: auto;
+    }
+}
+
+.flex{
+    &-direction{
+        &-row{
+            &-responsive{
+                flex-direction: row;
+
+                @media (max-width: $breakpoint-phone){
+                    flex-direction: column;
+                }
+
+                &-tablet{
+                    @media (max-width: $breakpoint-tablet){
+                        flex-direction: column;
+                    } 
+                }
+            }
+        }
     }
 }

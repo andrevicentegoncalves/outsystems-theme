@@ -4,8 +4,12 @@
 
 /**************************** Popups ****************************/
 
+//-------------------------------------------
+// Base Popup Styles
+//-------------------------------------------
+
 [data-popup-backdrop] {
-    z-index: var(--z-index-modal);
+    z-index: var(--z-index-modal-backdrop);
 }
 
 .popup {
@@ -15,12 +19,17 @@
     }
 }
 
+//-------------------------------------------
+// Popup Content
+//-------------------------------------------
+
 .popup-template {
     &__content {
         max-height: calc(80vh - 150px);
         overflow-y: auto;
         margin: var(--space-m) 0 var(--space-s) 0;
         
+        // Scrollbar Styling
         &::-webkit-scrollbar {
             width: 4px;
             
@@ -35,6 +44,7 @@
         }
     }
     
+    // Close Icon
     &__icon {
         i {
             position: relative;
@@ -52,7 +62,14 @@
             }
         }
     }
+}
 
+//-------------------------------------------
+// Popup Buttons
+//-------------------------------------------
+
+.popup-template {
+    // Button Container
     &__buttons {
         display: flex;
         width: 100%;
@@ -65,17 +82,20 @@
         @media (min-width: $breakpoint-tablet) {
             flex-direction: row;
             justify-content: flex-end;
-            gap: var(--space-m);
+            gap: var(--space-base);
         }
     }
 
+    // Button Variants
     &__button {
+        // Main Action Button
         &--main {
             .btn {
                 color: var(--color-neutral-9);
             }
         }
 
+        // Cancel Button
         &--cancel {
             .btn {
                 border: 0;
@@ -92,6 +112,7 @@
             }
         }
 
+        // Responsive Button Styles
         &--main, &--cancel {
             @media (max-width: $breakpoint-tablet) {
                 width: 100%;

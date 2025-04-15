@@ -1,30 +1,68 @@
-// Import the Sass math module to use division
+// Import Sass math module for division operations
 @use "sass:math";
 
-// Define the base font size for the project
+//-------------------------------------------
+// Base Configuration
+//-------------------------------------------
+
+// Base font size used for relative unit calculations
+// This value serves as the reference point for rem conversions
 $font-size--base: 16px;
 
+//-------------------------------------------
+// Unit Manipulation Functions
+//-------------------------------------------
 
-// Strips the unit from a number
+// Removes units (px, rem, em) from a number for calculations
+// Parameters:
+//   $value: Number with unit to strip
+// Returns: Number without unit
+// Example: strip-unit(16px) => 16
 @function strip-unit($value) {
-  $abs-value: if($value < 0, $value * -1, $value);
-  $unit: math.div($abs-value, ($abs-value * 0 + 1));
-  @return if($value < 0, $unit * -1, $unit);
+    // Handle negative values by converting to positive first
+    $abs-value: if($value < 0, $value * -1, $value);
+    // Divide by a value with same unit to cancel units
+    $unit: math.div($abs-value, ($abs-value * 0 + 1));
+    // Return original sign
+    @return if($value < 0, $unit * -1, $unit);
 }
 
-// Converts a pixel value to rem 
+//-------------------------------------------
+// Unit Conversion Functions
+//-------------------------------------------
+
+// Converts pixels to rem units based on base font size
+// Parameters:
+//   $pixels: Value in pixels to convert (with or without px unit)
+// Returns: Value in rem units
+// Example: rem(16px) => 1rem
 @function rem($pixels) {
-  $pixels: strip-unit($pixels);
-  @return math.div($pixels, strip-unit($font-size--base)) * 1rem;
+    $pixels: strip-unit($pixels);
+    @return math.div($pixels, strip-unit($font-size--base)) * 1rem;
 }
 
-// Converts a pixel value to em
+// Converts pixels to em units with optional context size
+// Parameters:
+//   $pixels: Value in pixels to convert (with or without px unit)
+//   $context: Base context size (defaults to $font-size--base)
+// Returns: Value in em units
+// Example: em(32px, 16px) => 2em
 @function em($pixels, $context: $font-size--base) {
-  // Ensure both $pixels and $context are unitless
-  @return math.div(strip-unit($pixels), strip-unit($context)) * 1em;
+    // Ensure both values are unitless before division
+    @return math.div(strip-unit($pixels), strip-unit($context)) * 1em;
 }
 
-// Lighten a color by a specified percentage
+//-------------------------------------------
+// Color Manipulation Functions
+//-------------------------------------------
+
+// Safely lightens a color using white mixing
+// Preferred over lighten() as it provides more natural color transitions
+// Parameters:
+//   $color: Base color to lighten
+//   $percent: Amount to lighten by (0-100)
+// Returns: Lightened color
+// Example: lighten-color(#000, 50%) => rgb(127, 127, 127)
 @function lighten-color($color, $percent) {
-  @return mix(white, $color, $percent);
+    @return mix(white, $color, $percent);
 }

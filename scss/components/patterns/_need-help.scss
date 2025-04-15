@@ -4,9 +4,16 @@
 
 /**************************** Need Help ****************************/
 
-// Specific component variables
+//-------------------------------------------
+// Variables
+//-------------------------------------------
+
 $banner-need-help-height: rem(200);
 $banner-need-help-height-phone: rem(265);
+
+//-------------------------------------------
+// Base Container
+//-------------------------------------------
 
 .need-help {
     display: flex;
@@ -17,12 +24,20 @@ $banner-need-help-height-phone: rem(265);
     height: 100%;
     width: 100%;
 
+    //-------------------------------------------
+    // Title
+    //-------------------------------------------
+
     &__title {
         font-size: $font-size-base * 2;
         font-weight: var(--font-weight-thin);
         margin-bottom: var(--space-base);
         color: var(--color-neutral-9);
     }
+
+    //-------------------------------------------
+    // Content Layout
+    //-------------------------------------------
 
     &__content {
         display: flex;
@@ -36,7 +51,7 @@ $banner-need-help-height-phone: rem(265);
             align-items: stretch;
         }
 
-        // For containers without dropdown
+        // Without Dropdown
         &:not(:has(.need-help__dropdown-container)) {
             @media (min-width: $breakpoint-desktop) {
                 width: 50%;
@@ -51,23 +66,15 @@ $banner-need-help-height-phone: rem(265);
                 width: 100%;
             }
 
-
-            .need-help__search-container {
-                flex: 3;
-            }
-
-            .need-help__button {
-                flex: 1;
-            }
+            .need-help__search-container { flex: 3; }
+            .need-help__button { flex: 1; }
 
             @media (max-width: $breakpoint-phone) {
-                .need-help__button {
-                    flex: none;
-                }
+                .need-help__button { flex: none; }
             }
         }
 
-        // For containers with dropdown
+        // With Dropdown
         &:has(.need-help__dropdown-container) {
             @media (min-width: $breakpoint-desktop) {
                 width: 50%;
@@ -82,27 +89,20 @@ $banner-need-help-height-phone: rem(265);
                 width: 100%;
             }
 
-            .need-help__dropdown-container {
-                flex: 1;
-            }
-
-            .need-help__search-container {
-                flex: 2;
-            }
-
-            .need-help__button {
-                flex: 1;
-            }
+            .need-help__dropdown-container { flex: 1; }
+            .need-help__search-container { flex: 2; }
+            .need-help__button { flex: 1; }
 
             @media (max-width: $breakpoint-phone) {
-                .need-help__button {
-                    flex: none;
-                }
+                .need-help__button { flex: none; }
             }
         }
     }
 
-     
+    //-------------------------------------------
+    // Search Component
+    //-------------------------------------------
+
     &__search {
         .form-control[data-input] {
             &:focus {
@@ -111,23 +111,36 @@ $banner-need-help-height-phone: rem(265);
             }
     
             &[type="search"] {
-                &::-webkit-search-cancel-button {
-                    display: none;
-                }
-                
+                &::-webkit-search-cancel-button,
                 &::-webkit-search-decoration {
                     display: none;
                 }
             }
         }
     }
-     
+
+    //-------------------------------------------
+    // Reset Icon
+    //-------------------------------------------
+
+    .input-with-icon.input-with-icon-right .input-with-icon-content-icon{
+        right: 20px;
+        top: 0px;
+    }
+
+    //-------------------------------------------
+    // Container Widths
+    //-------------------------------------------
 
     &__dropdown-container,
     &__search-container,
     &__button {
         width: 100%;
     }
+
+    //-------------------------------------------
+    // Form Controls
+    //-------------------------------------------
 
     .dropdown-container > select.dropdown-display,
     .osui-search .form-control[data-input],
@@ -141,6 +154,10 @@ $banner-need-help-height-phone: rem(265);
         border: none;
     }
 
+    //-------------------------------------------
+    // Search Customization
+    //-------------------------------------------
+
     .osui-search {
         width: 100%;
 
@@ -151,12 +168,15 @@ $banner-need-help-height-phone: rem(265);
             background-size: 20px auto;
             width: 100%;
         }
+
+        .search-tap.form-control[data-input] {
+            background-size: 27px auto !important;
+        }
     }
 
-    // Override size of magnifying glass
-    .osui-search .search-tap.form-control[data-input] {
-        background-size: 27px auto !important;
-    }
+    //-------------------------------------------
+    // Dropdown Customization
+    //-------------------------------------------
 
     &.tablet .dropdown-container:after, 
     &.phone .dropdown-container:after, 
@@ -168,7 +188,10 @@ $banner-need-help-height-phone: rem(265);
     }
 }
 
-// Responsive adjustments for mobile
+//-------------------------------------------
+// Mobile Adaptations
+//-------------------------------------------
+
 @media (max-width: $breakpoint-phone-horizontal) {
     .need-help {
         &__content {
@@ -189,6 +212,10 @@ $banner-need-help-height-phone: rem(265);
         }
     }
 }
+
+//-------------------------------------------
+// Banner Height
+//-------------------------------------------
 
 .banner-need-help-height {
     height: $banner-need-help-height; 

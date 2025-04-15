@@ -4,38 +4,24 @@
 
 /**************************** Typography ****************************/
 
-// Font Face Mixin
-@mixin font-face-generator($family, $path, $weight, $style: normal) {
-  @font-face {
-    font-family: $family;
-    src: url('#{$path}') format('truetype');
-    font-weight: $weight;
-    font-style: $style;
-  }
-}
+//-------------------------------------------
+// Material Icons
+//-------------------------------------------
+@include font-face-generator('Material Icons', '#{$font-path}MaterialIcons-Regular.ttf', normal);
 
-// Font path based on theme
-$font-path: if($is_main, '/TapAgents_TH/', 
-              if($is_pat, '/TapAgents_PAT/', '/TapAgents_TH/')
-            );
-
-$weight-names: (
-  100: 'Thin',
-  300: 'Light',
-  400: 'Regular',
-  700: 'Bold'
-);
-
-// Font Face Declarations
+// Generate Font Faces
 @each $weight, $style in $weight-names {
   @include font-face-generator('Montserrat', '#{$font-path}Montserrat-#{$style}.ttf', $weight);
   @include font-face-generator('Roboto', '#{$font-path}Roboto-#{$style}.ttf', $weight);
   @include font-face-generator('Lato', '#{$font-path}Lato-#{$style}.ttf', $weight);
 }
 
-/* Typography Classes */
+//-------------------------------------------
+// Font Family Classes
+//-------------------------------------------
+
 .font {
-  // Montserrat variations
+  // Montserrat
   &__montserrat {
     font-family: 'Montserrat', sans-serif;
     
@@ -57,7 +43,7 @@ $weight-names: (
     }
   }
 
-  // Roboto variations
+  // Roboto
   &__roboto {
     font-family: 'Roboto', sans-serif;
     
@@ -79,7 +65,7 @@ $weight-names: (
     }
   }
 
-  // Lato variations
+  // Lato
   &__lato {
     font-family: 'Lato', sans-serif;
     
@@ -101,20 +87,23 @@ $weight-names: (
     }
   }
 
-  // Font sizes
+  // Size utilities
   &__size {
     &--xxs { font-size: var(--font-size-xxs); }
     &--xxxs { font-size: var(--font-size-xxxs); }
   }
 
-  // Font weights
+  // Weight utilities
   &__weight {
     &--thin { font-weight: var(--font-weight-thin); }
     &--extra-light { font-weight: var(--font-weight-extra-light); }
   }
 }
 
-/* Content Block */
+//-------------------------------------------
+// Content Styles
+//-------------------------------------------
+
 .content {
   &__text {
     font-family: 'Lato', sans-serif;
@@ -137,7 +126,10 @@ $weight-names: (
   }
 }
 
-/* Button Block */
+//-------------------------------------------
+// Button Typography
+//-------------------------------------------
+
 .button {
   &__text {
     font-family: 'Montserrat', sans-serif;
@@ -157,12 +149,17 @@ $weight-names: (
   }
 }
 
-/* Text Block */
+//-------------------------------------------
+// Text Utilities
+//-------------------------------------------
+
 .text {
+  // Text decoration
   &__underline {
     text-decoration: underline;
   }
 
+  // Truncation
   &__truncate {
     display: block;
     max-width: 100%;
@@ -184,17 +181,15 @@ $weight-names: (
       max-width: 100%;
     }
 
-    /* Multi-line truncate modifier */
     &--multiline {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2; /* Adjust number for more/less lines */
+      -webkit-line-clamp: 2;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal;
     }
 
-    /* Add hover state to show full content */
     &--hover {
       &:hover {
         overflow: visible;
@@ -204,12 +199,14 @@ $weight-names: (
     }
   }
 
+  // Line height
   &__line-height {
     &--reduced {
       line-height: 1;
     }
   }
 
+  // Alignment
   &__align {
     &--left-mobile {
       @media (max-width: $breakpoint-phone) {
