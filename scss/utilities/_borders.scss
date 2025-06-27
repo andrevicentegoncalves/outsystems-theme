@@ -46,6 +46,13 @@
         border-radius: var(--border-radius-extra-soft);  // Extra soft corners
     }
 
+    &-radius-top-extra-soft {
+        border-top-left-radius: var(--border-radius-extra-soft);
+        border-top-right-radius: var(--border-radius-extra-soft);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
     //-------------------------------------------
     // Complete Border Presets
     //-------------------------------------------
@@ -75,4 +82,12 @@
     &.no-border {
         border: none;  // Remove borders from cards
     }
+}
+
+.border-bottom-neutral-4{
+    border-bottom: var(--border-size-s) solid var(--color-neutral-4)
+}
+
+.border-bottom-neutral-4:last-child {
+    border-bottom: none;
 }

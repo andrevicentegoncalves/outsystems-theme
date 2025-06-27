@@ -36,7 +36,6 @@ $is_pat: false;
 @import 'components/submenu-custom';
 @import 'components/tooltip';
 
-
 // Layout
 @import 'layout/layout';
 @import 'layout/header';
@@ -50,3 +49,7 @@ $is_pat: false;
 @import 'utilities/borders';
 @import 'utilities/flex';
 @import 'utilities/utility-classes';
+
+// Animation
+@import 'animations/keyframes';
+@import 'animations/loaders';

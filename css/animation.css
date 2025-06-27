@@ -1,0 +1,149 @@
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 425.59;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -425.59;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes path-fade {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@keyframes trail {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -425.59;
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.plane-animation {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--space-xl);
+}
+.plane-animation .osui-inline-svg svg path {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 425.59;
+  stroke-dashoffset: 425.59;
+  animation: dash 3s linear infinite;
+  stroke: var(--color-neutral-9);
+}
+.plane-animation--small {
+  width: var(--space-m);
+}
+.plane-animation--medium {
+  width: var(--space-xl);
+}
+.plane-animation--large {
+  width: 80px;
+}
+@media (max-width: var(--breakpoint-phone)) {
+  .plane-animation--responsive-small {
+    width: var(--space-m);
+  }
+}
+.plane-animation--primary .osui-inline-svg svg path {
+  stroke: var(--color-primary);
+}
+.plane-animation--white .osui-inline-svg svg path {
+  stroke: var(--color-neutral-0);
+}
+.plane-animation--success .osui-inline-svg svg path {
+  stroke: var(--color-success);
+}
+.plane-animation--danger .osui-inline-svg svg path {
+  stroke: var(--color-danger);
+}
+.plane-animation--warning .osui-inline-svg svg path {
+  stroke: var(--color-warning);
+}
+.plane-animation--info .osui-inline-svg svg path {
+  stroke: var(--color-info);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane-animation .osui-inline-svg svg path {
+    animation-duration: 6s;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .plane-animation .osui-inline-svg svg path {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
+    animation: path-fade 1.4s linear infinite;
+  }
+}

@@ -46,17 +46,18 @@
   --image-star-alliance: #{$image-star-alliance};                            /* Logo size */
   --logo-max-width: #{$logo-max-width};                                      /* Main logo width */
   
-  --image-width-xs: #($image-width-xs);
-  --image-width-s: #($image-width-s);
-  --image-width-m: #($image-width-m);
-  --image-width-l: #($image-width-l);
-  --image-width-display: #($image-width-display);
+  --image-width-xs: #{$image-width-xs};
+  --image-width-s: #{$image-width-s};
+  --image-width-sm: #{$image-width-sm};
+  --image-width-m: #{$image-width-m};
+  --image-width-l: #{$image-width-l};
+  --image-width-display: #{$image-width-display};
 
-  --image-height-xs: #($image-height-xs);
-  --image-height-s: #($image-height-s);
-  --image-height-m: #($image-height-m);
-  --image-height-l: #($image-height-l);
-  --image-height-display: #($image-height-display);
+  --image-height-xs: #{$image-height-xs};
+  --image-height-s: #{$image-height-s};
+  --image-height-m: #{$image-height-m};
+  --image-height-l: #{$image-height-l};
+  --image-height-display: #{$image-height-display};
 
   /* Typography */
   --font-family-base: #{$font-family-base};                                  /* Main font */

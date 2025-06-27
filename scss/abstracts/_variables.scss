@@ -158,13 +158,10 @@ $login-form-width: rem(432);
 $login-background-image: url(/TapPortal_TH/img/TapPortal_TH.Login_Background.jpg);
 
 // Images & Icons
-$image-width-captcha: rem(286);
-$image-height-captcha: rem(40);
-$image-star-alliance: rem(270);
-$logo-max-width: rem(180);
 
 $image-width-xs: rem(152);
 $image-width-s: rem(203);
+$image-width-sm: rem(250);
 $image-width-m: rem(338);
 $image-width-l: rem(474);
 $image-width-display: rem(778);
@@ -174,6 +171,11 @@ $image-height-s: rem(120);
 $image-height-m: rem(200);
 $image-height-l: rem(280);
 $image-height-display: rem(460);
+
+$image-width-captcha: rem(286);
+$image-height-captcha: rem(40);
+$image-star-alliance: rem(270);
+$logo-max-width: rem(180);
 
 // Checkboxes
 $size-checkbox-s: rem(12);
