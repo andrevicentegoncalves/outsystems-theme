@@ -77,3 +77,45 @@
     $props: map-get($typography-scale, $scale);
     @return map-get($props, 'family');
 }
+
+/// Generate a contrasting color (light or dark) based on background luminance
+@function contrast-color($background, $light: white, $dark: black, $threshold: 0.5) {
+    @if lightness($background) > ($threshold * 100%) {
+      @return $dark;
+    } @else {
+      @return $light;
+    }
+  }
+  
+  /// Calculate a tint (mix with white) of a color
+  @function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+  }
+  
+  /// Calculate a shade (mix with black) of a color
+  @function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+  }
+  
+  /// Get a z-index value from a predefined scale
+  @function z-index($layer) {
+    $z-layers: (
+      'base': 1,
+      'dropdown': 1000,
+      'sticky': 1020,
+      'fixed': 1030,
+      'modal-backdrop': 1040,
+      'modal': 1050,
+      'popover': 1060,
+      'tooltip': 1070,
+      'toast': 1080,
+      'loading': 1090
+    );
+    
+    @if map-has-key($z-layers, $layer) {
+      @return map-get($z-layers, $layer);
+    } @else {
+      @warn "Unknown z-index layer: #{$layer}";
+      @return 1;
+    }
+  }

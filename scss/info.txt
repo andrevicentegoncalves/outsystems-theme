@@ -1,0 +1,8 @@
+"Does this store values or provide tools?" → abstracts/
+"Does this style basic HTML elements?" → base/
+"Does this define page structure?" → layout/
+"Is this a reusable UI pattern?" → components/
+"Is this specific to one page?" → pages/
+"Is this a visual theme variation?" → themes/
+"Is this responsive behavior?" → responsive/
+"Is this a utility class?" → utilities/
