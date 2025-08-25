@@ -1,212 +1,260 @@
-@import 'flags';
-@import 'functions';
+// ==========================================================================
+// abstracts/_variables.scss - Core Design System Variables
+// ==========================================================================
 
-//-------------------------------------------
-// Brand Colors
-//-------------------------------------------
+// ==========================================================================
+// 1. COLORS - Design Token System
+// ==========================================================================
 
-$color-primary: #72BE44;
-$color-primary-light: #F1F9EC;
+// Brand Colors (your app's identity)
+$color-primary: #007bff !default;
+$color-secondary: #6c757d !default;
+$color-accent: #28a745 !default;
 
-// Semantic Colors
-$color-success: #28a745;
-$color-danger: #dc3545;
-$color-danger-light: #f7dddb;
-$color-danger-extra-light: #ffecec;
-$color-warning: #ffc107;
-$color-warning-light: #FEFBCD;
-$color-info: #17a2b8;
-$color-info-light: #add8e6;
-$color-info-extra-light: #e5f5fc;
+// Semantic Colors (consistent meaning across themes)
+$color-success: #28a745 !default;
+$color-warning: #ffc107 !default;
+$color-error: #dc3545 !default;
+$color-info: #17a2b8 !default;
 
-// Neutral Scale
-$color-neutral-0: #ffffff;
-$color-neutral-1: #f8f9fa;
-$color-neutral-2: #f1f3f5;
-$color-neutral-3: #e9ecef;
-$color-neutral-4: #dee2e6;
-$color-neutral-5: #ced4da;
-$color-neutral-6: #adb5bd;
-$color-neutral-7: #6a7178;
-$color-neutral-8: #4f575e;
-$color-neutral-9: #272b30;
-$color-neutral-10: #101213;
+// Neutral Colors (OutSystems naming convention)
+$color-neutral-0: #ffffff !default;   // White
+$color-neutral-1: #f8f9fa !default;   // Lightest gray
+$color-neutral-2: #e9ecef !default;   // Very light gray
+$color-neutral-3: #dee2e6 !default;   // Light gray
+$color-neutral-4: #ced4da !default;   // Light medium gray
+$color-neutral-5: #adb5bd !default;   // Medium gray
+$color-neutral-6: #6c757d !default;   // Medium dark gray
+$color-neutral-7: #495057 !default;   // Dark gray
+$color-neutral-8: #343a40 !default;   // Very dark gray
+$color-neutral-9: #212529 !default;   // Almost black
+$color-neutral-10: #000000 !default;  // Black
 
-// Theme Colors
-$color-light: $color-neutral-1;
-$color-dark: $color-neutral-9;
-$color-footer: #333333;
-$color-footer-section: #2C2C2C;
+// Color Maps for Theme System
+$colors-light: (
+  'primary': $color-primary,
+  'secondary': $color-secondary,
+  'accent': $color-accent,
+  'success': $color-success,
+  'warning': $color-warning,
+  'error': $color-error,
+  'info': $color-info,
+  'background': $color-neutral-0,
+  'surface': $color-neutral-0,
+  'text': $color-neutral-9,
+  'text-muted': $color-neutral-6,
+  'border': $color-neutral-3
+) !default;
 
-//-------------------------------------------
-// Typography
-//-------------------------------------------
+$colors-dark: (
+  'primary': lighten($color-primary, 10%),
+  'secondary': lighten($color-secondary, 20%),
+  'accent': $color-accent,
+  'success': lighten($color-success, 10%),
+  'warning': $color-warning,
+  'error': lighten($color-error, 10%),
+  'info': lighten($color-info, 15%),
+  'background': #1a1a1a,
+  'surface': #2d2d2d,
+  'text': $color-neutral-0,
+  'text-muted': $color-neutral-5,
+  'border': #404040
+) !default;
 
-$font-family-base: 'Arial', sans-serif;
-$font-size-xxxs: rem(5);
-$font-size-xxs: rem(10);
-$font-size-xs: rem(12);
-$font-size-s: rem(14);
-$font-size-base: rem(16);
-$font-size-m: rem(24);
-$font-size-l: rem(32);
-$font-size-xl: rem(48);
-$line-height-base: 1.5;
+// ==========================================================================
+// 2. TYPOGRAPHY - Font System
+// ==========================================================================
+
+// Font Families
+$font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$font-family-headings: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !default;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace !default;
 
 // Font Weights
-$font-weight-thin: 100;
-$font-weight-extra-light: 200;
-$font-weight-bold: bold;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
 
-// Icons
-$icon-font-family: 'MegasisIconsFont';
+// Font Sizes (Type Scale)
+$font-size-xs: 0.75rem !default;   // 12px
+$font-size-sm: 0.875rem !default;  // 14px  
+$font-size-base: 1rem !default;    // 16px
+$font-size-lg: 1.125rem !default;  // 18px
+$font-size-xl: 1.25rem !default;   // 20px
+$font-size-2xl: 1.5rem !default;   // 24px
+$font-size-3xl: 1.875rem !default; // 30px
+$font-size-4xl: 2.25rem !default;  // 36px
+$font-size-5xl: 3rem !default;     // 48px
 
-//-------------------------------------------
-// Layout & Spacing
-//-------------------------------------------
+// Line Heights
+$line-height-tight: 1.25 !default;
+$line-height-normal: 1.5 !default;
+$line-height-relaxed: 1.75 !default;
 
-// Container Widths
-$layout-max-width: rem(1440);
-$layout-half-max-width: rem(720);
-$popup-max-width: rem(650);
+// Typography Scale Map
+$typography-scale: (
+  'xs': (
+    'size': $font-size-xs,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-normal,
+    'family': $font-family-primary
+  ),
+  'sm': (
+    'size': $font-size-sm,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-normal,
+    'family': $font-family-primary
+  ),
+  'base': (
+    'size': $font-size-base,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-normal,
+    'family': $font-family-primary
+  ),
+  'lg': (
+    'size': $font-size-lg,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-normal,
+    'family': $font-family-primary
+  ),
+  'xl': (
+    'size': $font-size-xl,
+    'line-height': $line-height-tight,
+    'weight': $font-weight-medium,
+    'family': $font-family-primary
+  ),
+  'h1': (
+    'size': $font-size-4xl,
+    'line-height': $line-height-tight,
+    'weight': $font-weight-bold,
+    'family': $font-family-headings
+  ),
+  'h2': (
+    'size': $font-size-3xl,
+    'line-height': $line-height-tight,
+    'weight': $font-weight-semibold,
+    'family': $font-family-headings
+  ),
+  'h3': (
+    'size': $font-size-2xl,
+    'line-height': $line-height-tight,
+    'weight': $font-weight-semibold,
+    'family': $font-family-headings
+  ),
+  'h4': (
+    'size': $font-size-xl,
+    'line-height': $line-height-tight,
+    'weight': $font-weight-semibold,
+    'family': $font-family-headings
+  ),
+  'h5': (
+    'size': $font-size-lg,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-medium,
+    'family': $font-family-headings
+  ),
+  'h6': (
+    'size': $font-size-base,
+    'line-height': $line-height-normal,
+    'weight': $font-weight-medium,
+    'family': $font-family-headings
+  )
+) !default;
 
-// Grid System
-$grid-columns: 12;
-$grid-columns-standard: 4;
-$grid-gap: 25px;
-$grid-gutter-width: 30px;
+// ==========================================================================
+// 3. SPACING - Consistent Spacing System
+// ==========================================================================
 
-// Breakpoints
-$breakpoint-phone: 480px;
-$breakpoint-phone-horizontal: 767px;
-$breakpoint-tablet: 768px;
-$breakpoint-tablet-horizontal: 1024px;
-$breakpoint-desktop: 1200px;
-
-// Grid Maps
-$grid-breakpoints: (
-  xs: 0,
-  sm: $breakpoint-phone,
-  md: $breakpoint-tablet,
-  lg: $breakpoint-tablet-horizontal,
-  xl: $breakpoint-desktop
-);
-
-$grid-container-max-widths: (
-  sm: $breakpoint-phone-horizontal,
-  md: $breakpoint-tablet-horizontal,
-  lg: $breakpoint-desktop,
-  xl: $layout-max-width
-);
+// Base Spacing Unit (8px grid system)
+$spacing-unit: 0.5rem !default; // 8px
 
 // Spacing Scale
-$space-none: 0;
-$space-xs: rem(4);
-$space-s: rem(8);
-$space-sm: rem(10);
-$space-base: rem(16);
-$space-m: rem(24);
-$space-ls: rem(28);
-$space-l: rem(30);
-$space-lm: rem(35);
-$space-xl: rem(40);
-$space-xxl: rem(48);
-$space-xxxl: rem(96);
+$spacing-0: 0 !default;
+$spacing-1: $spacing-unit * 0.25 !default;  // 2px
+$spacing-2: $spacing-unit * 0.5 !default;   // 4px
+$spacing-3: $spacing-unit !default;         // 8px
+$spacing-4: $spacing-unit * 1.5 !default;   // 12px
+$spacing-5: $spacing-unit * 2 !default;     // 16px
+$spacing-6: $spacing-unit * 3 !default;     // 24px
+$spacing-7: $spacing-unit * 4 !default;     // 32px
+$spacing-8: $spacing-unit * 5 !default;     // 40px
+$spacing-9: $spacing-unit * 6 !default;     // 48px
+$spacing-10: $spacing-unit * 8 !default;    // 64px
+$spacing-12: $spacing-unit * 12 !default;   // 96px
+$spacing-16: $spacing-unit * 16 !default;   // 128px
 
-//-------------------------------------------
-// Components
-//-------------------------------------------
+// Spacing Map for Easy Access
+$spacing: (
+  '0': $spacing-0,
+  '1': $spacing-1,
+  '2': $spacing-2,
+  '3': $spacing-3,
+  '4': $spacing-4,
+  '5': $spacing-5,
+  '6': $spacing-6,
+  '7': $spacing-7,
+  '8': $spacing-8,
+  '9': $spacing-9,
+  '10': $spacing-10,
+  '12': $spacing-12,
+  '16': $spacing-16
+) !default;
 
-// Border Styles
-$border-size-xs: 0.5px;
-$border-size-s: 1px;
-$border-width-selected: 3px;
-$border-width: 0.3px;
-$border-style: solid;
-$border-color: $color-primary;
-$border-radius-soft: 4px;
-$border-radius-extra-soft: 15px;
+// ==========================================================================
+// 4. LAYOUT & SIZING
+// ==========================================================================
 
-// Z-index Stack
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
+// Border Radius
+$border-radius-none: 0 !default;
+$border-radius-sm: 0.125rem !default;  // 2px
+$border-radius-base: 0.25rem !default; // 4px
+$border-radius-md: 0.375rem !default;  // 6px
+$border-radius-lg: 0.5rem !default;    // 8px
+$border-radius-xl: 0.75rem !default;   // 12px
+$border-radius-2xl: 1rem !default;     // 16px
+$border-radius-full: 50% !default;
 
-// Effects
-$transition-base: all 0.2s ease-in-out;
-$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-$truncate-width: 100%;
+// Box Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05) !default;
+$shadow-base: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06) !default;
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.06) !default;
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05) !default;
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04) !default;
 
-// Opacity Levels
-$banner-overlay-opacity: 0.4;
-$opacity-s: 40%;
-$opacity-m: 60%;
-$opacity-l: 80%;
-$opacity-xl: 90%;
-$opaque: 1;
+// Z-Index Scale
+$z-dropdown: 1000 !default;
+$z-sticky: 1020 !default;
+$z-fixed: 1030 !default;
+$z-modal-backdrop: 1040 !default;
+$z-modal: 1050 !default;
+$z-popover: 1060 !default;
+$z-tooltip: 1070 !default;
+$z-toast: 1080 !default;
 
-//-------------------------------------------
-// Feature-Specific
-//-------------------------------------------
+// ==========================================================================
+// 5. COMPONENT DEFAULTS
+// ==========================================================================
 
-// Login
-$login-form-width: rem(432);
-$login-background-image: url(/TapPortal_TH/img/TapPortal_TH.Login_Background.jpg);
+// Buttons
+$button-padding-x: $spacing-4 !default;
+$button-padding-y: $spacing-2 !default;
+$button-font-size: $font-size-base !default;
+$button-line-height: $line-height-normal !default;
+$button-border-radius: $border-radius-base !default;
+$button-font-weight: $font-weight-medium !default;
 
-// Images & Icons
+// Forms
+$input-padding-x: $spacing-3 !default;
+$input-padding-y: $spacing-2 !default;
+$input-font-size: $font-size-base !default;
+$input-line-height: $line-height-normal !default;
+$input-border-radius: $border-radius-base !default;
+$input-border-width: 1px !default;
 
-$image-width-xs: rem(152);
-$image-width-s: rem(203);
-$image-width-sm: rem(250);
-$image-width-m: rem(338);
-$image-width-l: rem(474);
-$image-width-display: rem(778);
+// Cards
+$card-padding: $spacing-6 !default;
+$card-border-radius: $border-radius-lg !default;
+$card-border-width: 1px !default;
 
-$image-height-xs: rem(90);
-$image-height-s: rem(120);
-$image-height-m: rem(200);
-$image-height-l: rem(280);
-$image-height-display: rem(460);
-
-$image-width-captcha: rem(286);
-$image-height-captcha: rem(40);
-$image-star-alliance: rem(270);
-$logo-max-width: rem(180);
-
-// Checkboxes
-$size-checkbox-s: rem(12);
-
-// Banner
-$banner-height: rem(400);
-$banner-height-phone: rem(309);
-
-// Bottom Tabs
-$bottom-tab-width: 170px;
-$bottom-tab-height: 60px;
-
-// Positioning Reset
-$position-top-none: 0;
-$position-right-none: 0;
-$position-bottom-none: 0;
-$position-left-none: 0;
-
-// Flip Card
-$flip-card-height: 240px;
-$flip-card-expanded-height: 480px;
-$flip-card-transition-time: 0.6s;
-
-$font-path: if($is_main, '/TapPortal_TH/', 
-               if($is_pat, '/TapPortal_PAT/', '/TapPortal_TH/')
-             );
-
-// Font weight mapping
-$weight-names: (
-  100: 'Thin',
-  300: 'Light',
-  400: 'Regular',
-  700: 'Bold'
-);

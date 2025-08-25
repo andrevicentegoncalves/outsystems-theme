@@ -1,9 +1,0 @@
-@import '../abstracts/functions';
-@import '../abstracts/variables';
-@import '../abstracts/mixins';
-
-/**************************** Info Bar ****************************/
-
-.info-bar:has(.hidden) {
-    display: none;
-}

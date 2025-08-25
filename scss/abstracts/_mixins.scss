@@ -1,343 +1,665 @@
-// =============================================================================
-// Typography System
-// Mixins for managing fonts, text styles, and typography-related functionality
-// =============================================================================
+// ==========================================================================
+// abstracts/_mixins.scss - Essential Mixins
+// ==========================================================================
 
-// Implements a consistent typography system using predefined font families
-// Handles various weights (thin, light, regular, bold) for Roboto, Lato, and Montserrat
-// Usage: @include apply-font('roboto', 'bold');
-@mixin apply-font($font-family, $font-weight) {
-  @if $font-family == 'roboto' {
-      @if $font-weight == 'thin' {
-          font-family: 'Roboto', sans-serif;
-          font-weight: 100;
-      } @else if $font-weight == 'light' {
-          font-family: 'Roboto', sans-serif;
-          font-weight: 300;
-      } @else if $font-weight == 'regular' {
-          font-family: 'Roboto', sans-serif;
-          font-weight: 400;
-      } @else if $font-weight == 'bold' {
-          font-family: 'Roboto', sans-serif;
-          font-weight: 700;
-      }
-  } @else if $font-family == 'lato' {
-      @if $font-weight == 'thin' {
-          font-family: 'Lato', sans-serif;
-          font-weight: 100;
-      } @else if $font-weight == 'light' {
-          font-family: 'Lato', sans-serif;
-          font-weight: 300;
-      } @else if $font-weight == 'regular' {
-          font-family: 'Lato', sans-serif;
-          font-weight: 400;
-      } @else if $font-weight == 'bold' {
-          font-family: 'Lato', sans-serif;
-          font-weight: 700;
-      }
-  } @else if $font-family == 'montserrat' {
-      @if $font-weight == 'thin' {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 100;
-      } @else if $font-weight == 'light' {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 300;
-      } @else if $font-weight == 'regular' {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 400;
-      } @else if $font-weight == 'bold' {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 700;
-      }
-  }
-}
+// ==========================================================================
+// 1. RESPONSIVE MIXINS
+// ==========================================================================
 
-// Implements consistent typography using predefined base variables
-// Ensures uniform text appearance and maintains vertical rhythm
-// Usage: @include font-style(16px, 1.5);
-@mixin font-style($size: $font-size-base, $line-height: $line-height-base) {
-  font-size: $size;
-  line-height: $line-height;
-}
-
-@mixin font-face-generator($family, $path, $weight, $style: normal) {
-  @font-face {
-    font-family: $family;
-    src: url('#{$path}') format('truetype');
-    font-weight: $weight;
-    font-style: $style;
-  }
-}
-
-// Handles text overflow with ellipsis and optional mobile adaptation
-// Ensures consistent text truncation across different screen sizes
-// Usage: @include truncate(200px, 150px);
-@mixin truncate($width: $truncate-width, $mobile-width: null) {
-  max-width: $width;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @if $mobile-width {
-    @media (max-width: $breakpoint-phone) {
-      max-width: $mobile-width;
+/// Generate a media query for the specified breakpoint and up
+/// @param {String} $breakpoint - The breakpoint name (xs, sm, md, lg, xl, 2xl)
+/// @example
+///   .container {
+///     width: 100%;
+///     @include respond-to('md') {
+///       width: 750px;
+///     }
+///   }
+@mixin respond-to($breakpoint) {
+    $size: map-get($breakpoints, $breakpoint);
+    
+    @if $size {
+    @media (min-width: $size) {
+        @content;
     }
-  }
+    } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+    }
 }
 
-// =============================================================================
-// Layout & Grid System
-// Mixins for creating responsive layouts and grid structures
-// =============================================================================
-
-// Creates a customizable flexbox container with configurable alignment and direction
-// Useful for creating complex layouts with minimal code
-// Usage: @include flexbox(column, flex-start, center);
-@mixin flexbox($direction: row, $justify: center, $align: center) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+/// Generate a media query between two breakpoints
+/// @param {String} $min - The minimum breakpoint name
+/// @param {String} $max - The maximum breakpoint name
+/// @example
+///   .tablet-only {
+///     @include respond-between('md', 'lg') {
+///       display: block;
+///     }
+///   }
+@mixin respond-between($min, $max) {
+    $min-size: map-get($breakpoints, $min);
+    $max-size: map-get($breakpoints, $max);
+    
+    @if $min-size and $max-size {
+    @media (min-width: $min-size) and (max-width: ($max-size - 1px)) {
+        @content;
+    }
+    }
 }
 
-// Quick implementation of the most common flexbox pattern - centered content
-// Perfect for modal windows, hero sections, and centered content layouts
-// Usage: @include flex-center;
+/// Generate a media query for the specified breakpoint and down (mobile-first exceptions)
+/// @param {String} $breakpoint - The breakpoint name
+/// @example
+///   .mobile-menu {
+///     @include respond-to-max('md') {
+///       display: block;
+///     }
+///   }
+@mixin respond-to-max($breakpoint) {
+    $size: map-get($breakpoints, $breakpoint);
+    
+    @if $size {
+    @media (max-width: ($size - 1px)) {
+        @content;
+    }
+    }
+}
+
+// ==========================================================================
+// 2. TYPOGRAPHY MIXINS
+// ==========================================================================
+
+/// Apply typography scale with font family, size, weight, and line-height
+/// @param {String} $scale - The typography scale name (xs, sm, base, lg, xl, h1-h6)
+/// @example
+///   .title {
+///     @include typography('h1');
+///   }
+///   .body-text {
+///     @include typography('base');
+///   }
+@mixin typography($scale) {
+    $props: map-get($typography-scale, $scale);
+    
+    @if $props {
+    font-family: map-get($props, 'family');
+    font-size: map-get($props, 'size');
+    line-height: map-get($props, 'line-height');
+    font-weight: map-get($props, 'weight');
+    }
+}
+
+/// Apply heading styles with typography scale plus consistent margins
+/// @param {String} $level - The heading level (h1, h2, h3, h4, h5, h6)
+/// @example
+///   .page-title {
+///     @include heading('h1');
+///   }
+///   .section-title {
+///     @include heading('h2');
+///   }
+@mixin heading($level: 'h1') {
+    @include typography($level);
+    margin-top: 0;
+    margin-bottom: spacing('4');
+    color: var(--text-primary, $color-neutral-9);
+}
+
+/// Truncate text with ellipsis on a single line
+/// @example
+///   .card-title {
+///     @include text-truncate;
+///   }
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/// Truncate text to a specific number of lines with ellipsis
+/// @param {Number} $lines - Number of lines to show before truncating
+/// @example
+///   .description {
+///     @include text-truncate-lines(3);
+///   }
+@mixin text-truncate-lines($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// ==========================================================================
+// 3. LAYOUT MIXINS
+// ==========================================================================
+
+/// Center content both horizontally and vertically using flexbox
+/// @example
+///   .modal-content {
+///     @include flex-center;
+///   }
 @mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-// Shorthand for vertical stack layout using flexbox
-// Useful for form groups and card content
-// Usage: @include flex-column;
+/// Distribute content with space between using flexbox
+/// @example
+///   .header {
+///     @include flex-between;
+///   }
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/// Stack content vertically using flexbox
+/// @example
+///   .sidebar {
+///     @include flex-column;
+///   }
 @mixin flex-column {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-// Creates a complete set of responsive column classes for specified breakpoints
-// Enables flexible grid layouts that adapt to different screen sizes
-// Usage: @include generate-grid-columns($breakpoints, 12);
-@mixin generate-grid-columns($breakpoints, $grid-columns) {
-    @each $breakpoint, $min-width in $breakpoints {
-      @media (min-width: $min-width) {
-        @for $i from 1 through $grid-columns {
-          .row .col-#{$breakpoint}-#{$i} { 
-            grid-column: span $i;
-          }
-        }
-      }
+/// Center an absolutely positioned element both horizontally and vertically
+/// @example
+///   .overlay-content {
+///     @include absolute-center;
+///   }
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/// Make an absolutely positioned element fill its container
+/// @example
+///   .full-overlay {
+///     @include absolute-fill;
+///   }
+@mixin absolute-fill {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+// ==========================================================================
+// 4. COMPONENT MIXINS
+// ==========================================================================
+
+/// Generate button variant with custom colors and hover states
+/// @param {Color} $bg-color - Background color
+/// @param {Color} $text-color - Text color
+/// @param {Color} $border-color - Border color (defaults to background color)
+/// @example
+///   .btn-primary {
+///     @include button-variant($color-primary, white);
+///   }
+///   .btn-success {
+///     @include button-variant($color-success, white, darken($color-success, 10%));
+///   }
+@mixin button-variant($bg-color, $text-color: white, $border-color: $bg-color) {
+    background-color: $bg-color;
+    color: $text-color;
+    border-color: $border-color;
+    
+    &:hover,
+    &:focus {
+    background-color: darken($bg-color, 7%);
+    border-color: darken($border-color, 10%);
+    color: $text-color;
+    }
+    
+    &:active {
+    background-color: darken($bg-color, 10%);
+    border-color: darken($border-color, 12%);
     }
 }
 
-// Generates non-responsive column classes for basic grid layouts
-// Useful for static layouts or as fallback for older browsers
-// Usage: @include default-grid-columns(12);
-@mixin default-grid-columns($grid-columns) {
-  @for $i from 1 through $grid-columns {
-    .col-#{$i} {
-      grid-column: span $i;
-    }
-  }
+/// Generate button size with consistent padding, font-size, and border-radius
+/// @param {Size} $padding-y - Vertical padding
+/// @param {Size} $padding-x - Horizontal padding  
+/// @param {Size} $font-size - Font size
+/// @param {Size} $border-radius - Border radius
+/// @example
+///   .btn-sm {
+///     @include button-size(spacing('2'), spacing('3'), $font-size-sm, $border-radius-sm);
+///   }
+///   .btn-lg {
+///     @include button-size(spacing('4'), spacing('6'), $font-size-lg, $border-radius-lg);
+///   }
+@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+    border-radius: $border-radius;
 }
 
-// Creates responsive grid system with custom breakpoint columns and IE support
-// Implements modern CSS Grid with legacy browser fallbacks
-// Usage: @include create-grid('main', (xs: 1, sm: 2, md: 3, lg: 4));
-@mixin create-grid($class, $columns) {
-  .grid-#{$class} {
-    display: grid;
-    gap: $grid-gap;
-
-    @each $breakpoint, $column-count in $columns {
-      @if $breakpoint == 'xs' {
-        grid-template-columns: repeat($column-count, minmax(0, 1fr));
-        -ms-grid-columns: repeat($column-count, 1fr); 
-      } @else {
-        @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
-          grid-template-columns: repeat(map-get($columns, $breakpoint), minmax(0, 1fr));
-          -ms-grid-columns: repeat(map-get($columns, $breakpoint), 1fr); 
-        }
-      }
+/// Apply card elevation (box-shadow) with predefined levels
+/// @param {Number} $level - Elevation level (1-5)
+/// @example
+///   .card {
+///     @include card-elevation(2);
+///   }
+///   .modal {
+///     @include card-elevation(5);
+///   }
+@mixin card-elevation($level: 1) {
+    @if $level == 1 {
+    box-shadow: $shadow-sm;
+    } @else if $level == 2 {
+    box-shadow: $shadow-base;
+    } @else if $level == 3 {
+    box-shadow: $shadow-md;
+    } @else if $level == 4 {
+    box-shadow: $shadow-lg;
+    } @else if $level == 5 {
+    box-shadow: $shadow-xl;
     }
-  }
 }
 
-// =============================================================================
-// Responsive Design
-// Mixins for managing breakpoints and responsive behavior
-// =============================================================================
+// ==========================================================================
+// 5. UTILITY MIXINS
+// ==========================================================================
 
-// Manages media queries using predefined device breakpoints
-// Ensures consistent responsive behavior across the application
-// Usage: @include responsive(md) { .element { width: 50%; } }
-@mixin responsive($breakpoint) {
-  @if $breakpoint == xs {
-    @content;
-  }
-  @else if $breakpoint == sm {
-    @media (min-width: #{$breakpoint-phone}) {
-      @content;
-    }
-  }
-  @else if $breakpoint == md {
-    @media (min-width: #{$breakpoint-tablet}) {
-      @content;
-    }
-  }
-  @else if $breakpoint == lg {
-    @media (min-width: #{$breakpoint-tablet-horizontal}) {
-      @content;
-    }
-  }
-  @else if $breakpoint == xl {
-    @media (min-width: #{$breakpoint-desktop}) {
-      @content;
-    }
-  }
+/// Hide element visually but keep it accessible to screen readers
+/// @example
+///   .sr-only-text {
+///     @include screen-reader-only;
+///   }
+@mixin screen-reader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-// Creates responsive container with preset breakpoints
-// Adapts from desktop multi-column to single column mobile
-// Usage: @include create-responsive-grid-container(4, 2, 1);
-@mixin create-responsive-grid-container($items, $tablet-items: 2, $phone-items: 1) {
-  display: grid;
-  grid-template-columns: repeat($items, 1fr);
-  gap: var(--space-m);
-
-  @media (max-width: $breakpoint-desktop) {
-    grid-template-columns: repeat($tablet-items, 1fr);
-    gap: var(--space-base);
-  }
-
-  @media (max-width: $breakpoint-tablet) {
-    grid-template-columns: repeat($phone-items, 1fr);
-    gap: var(--space-base);
-  }
-
-  @media (max-width: $breakpoint-phone) {
-    grid-template-columns: 1fr;
-  }
-
-  &__item {
-    width: 100%;
-
-    .form-control {
-      width: 100%;
+/// Clear floats using the clearfix hack
+/// @example
+///   .container {
+///     @include clearfix;
+///   }
+@mixin clearfix {
+    &::after {
+    content: "";
+    display: table;
+    clear: both;
     }
+}
 
+/// Add smooth transitions to properties
+/// @param {String|List} $properties - CSS properties to transition (default: all)
+/// @param {Time} $duration - Transition duration (default: 0.3s)
+/// @param {String} $easing - Transition timing function (default: ease)
+/// @example
+///   .button {
+///     @include transition(background-color, 0.2s, ease-in-out);
+///   }
+///   .card {
+///     @include transition((transform, box-shadow), 0.3s);
+///   }
+@mixin transition($properties: all, $duration: 0.3s, $easing: ease) {
+    transition: $properties $duration $easing;
+}
+
+// ==========================================================================
+// 6. ANIMATION & LOADING MIXINS
+// ==========================================================================
+
+/// Create a CSS spinner/loading animation
+/// @param {Number} $size [2rem] - Size of the spinner
+/// @param {Color} $color [$color-primary] - Color of the spinner
+/// @param {Number} $thickness [2px] - Border thickness
+/// @param {Time} $duration [1s] - Animation duration
+/// @example
+///   .loading-spinner {
+///     @include spinner();
+///   }
+///   .small-loader {
+///     @include spinner(1rem, $color-success, 1px, 0.8s);
+///   }
+@mixin spinner($size: 2rem, $color: $color-primary, $thickness: 2px, $duration: 1s) {
+    width: $size;
+    height: $size;
+    border: $thickness solid rgba($color, 0.2);
+    border-top: $thickness solid $color;
+    border-radius: 50%;
+    animation: spin $duration linear infinite;
+    
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+}
+
+/// Create a pulsing animation (for loading states)
+/// @param {Time} $duration [2s] - Animation duration
+/// @param {Number} $min-opacity [0.5] - Minimum opacity
+/// @param {Number} $max-opacity [1] - Maximum opacity
+/// @param {String} $direction [normal] - Animation direction (normal, reverse)
+/// @example
+///   .loading-text {
+///     @include pulse();
+///   }
+///   .attention-text {
+///     @include pulse(1.5s, 0.3, 0.7, reverse);
+///   }
+@mixin pulse($duration: 2s, $min-opacity: 0.5, $max-opacity: 1, $direction: normal) {
+    @if $direction == reverse {
+    animation: pulseReverse $duration ease-in-out infinite alternate;
+    
+    @keyframes pulseReverse {
+        0% { opacity: $max-opacity; }
+        100% { opacity: $min-opacity; }
+    }
+    } @else {
+    animation: pulse $duration ease-in-out infinite alternate;
+    
+    @keyframes pulse {
+        0% { opacity: $min-opacity; }
+        100% { opacity: $max-opacity; }
+    }
+    }
+}
+
+/// Create a skeleton loading placeholder
+/// @param {Color} $base-color [#e2e8f0] - Base skeleton color
+/// @param {Color} $shimmer-color [#f8fafc] - Shimmer highlight color
+/// @param {Time} $duration [2s] - Animation duration
+/// @param {String} $direction [right] - Shimmer direction (right, left)
+/// @example
+///   .skeleton-text {
+///     @include skeleton();
+///     height: 1rem;
+///     border-radius: 4px;
+///   }
+///   .skeleton-reverse {
+///     @include skeleton(#e2e8f0, #f8fafc, 2s, left);
+///   }
+@mixin skeleton($base-color: #e2e8f0, $shimmer-color: #f8fafc, $duration: 2s, $direction: right) {
+    background: linear-gradient(90deg, $base-color 25%, $shimmer-color 50%, $base-color 75%);
+    background-size: 200% 100%;
+    
+    @if $direction == left {
+    animation: shimmerLeft $duration ease-in-out infinite;
+    } @else {
+    animation: shimmerRight $duration ease-in-out infinite;
+    }
+    
+    @keyframes shimmerRight {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+    }
+    
+    @keyframes shimmerLeft {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+    }
+}
+
+/// Create a fade-in animation
+/// @param {Time} $duration [0.3s] - Animation duration
+/// @param {String} $easing [ease-out] - Animation timing function
+/// @param {Number} $delay [0s] - Animation delay
+/// @example
+///   .modal {
+///     @include fade-in();
+///   }
+///   .delayed-content {
+///     @include fade-in(0.5s, ease-in, 0.2s);
+///   }
+@mixin fade-in($duration: 0.3s, $easing: ease-out, $delay: 0s) {
+    opacity: 0;
+    animation: fadeIn $duration $easing $delay forwards;
+    
+    @keyframes fadeIn {
+    to { opacity: 1; }
+    }
+}
+
+/// Create a slide-in animation from specified direction
+/// @param {String} $direction [up] - Direction (up, down, left, right)
+/// @param {Number} $distance [20px] - Distance to slide
+/// @param {Time} $duration [0.3s] - Animation duration
+/// @param {String} $easing [ease-out] - Animation timing function
+/// @example
+///   .slide-up {
+///     @include slide-in(up);
+///   }
+///   .slide-left {
+///     @include slide-in(left, 30px, 0.4s);
+///   }
+@mixin slide-in($direction: up, $distance: 20px, $duration: 0.3s, $easing: ease-out) {
+    $translate-from: translateY($distance);
+    
+    @if $direction == down {
+    $translate-from: translateY(-$distance);
+    } @else if $direction == left {
+    $translate-from: translateX($distance);
+    } @else if $direction == right {
+    $translate-from: translateX(-$distance);
+    }
+    
+    transform: $translate-from;
+    opacity: 0;
+    animation: slideIn#{capitalize($direction)} $duration $easing forwards;
+    
+    @keyframes slideIn#{capitalize($direction)} {
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    }
+}
+
+// ==========================================================================
+// 7. FORM & INPUT MIXINS
+// ==========================================================================
+
+/// Style form inputs with consistent appearance
+/// @param {Color} $border-color [$color-neutral-3] - Border color
+/// @param {Color} $focus-color [$color-primary] - Focus border color
+/// @param {Number} $border-radius [$border-radius-base] - Border radius
+/// @example
+///   .form-input {
+///     @include input-style();
+///   }
+///   .custom-input {
+///     @include input-style($color-neutral-4, $color-success, 8px);
+///   }
+@mixin input-style($border-color: $color-neutral-3, $focus-color: $color-primary, $border-radius: $border-radius-base) {
+    padding: $input-padding-y $input-padding-x;
+    border: $input-border-width solid $border-color;
+    border-radius: $border-radius;
+    font-size: $input-font-size;
+    line-height: $input-line-height;
+    background-color: var(--input-bg, white);
+    color: var(--input-text, $color-neutral-9);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    
+    &:focus {
+    outline: none;
+    border-color: $focus-color;
+    box-shadow: 0 0 0 3px rgba($focus-color, 0.1);
+    }
+    
+    &::placeholder {
+    color: var(--input-placeholder, $color-neutral-5);
+    }
+    
+    &:disabled {
+    background-color: var(--input-disabled-bg, $color-neutral-1);
+    color: var(--input-disabled-text, $color-neutral-5);
+    cursor: not-allowed;
+    }
+}
+
+/// Create a floating label effect for inputs
+/// @example
+///   .form-field {
+///     @include floating-label();
+///   }
+@mixin floating-label() {
+    position: relative;
+    
+    input {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+        transform: translateY(-0.75rem) scale(0.85);
+        color: var(--label-focus-color, $color-primary);
+    }
+    }
+    
     label {
-      margin-bottom: var(--space-s);
+    position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    transform-origin: left top;
+    color: var(--label-color, $color-neutral-5);
     }
-  }
 }
 
-// Adapts container padding for mobile screens
-// Includes minimum height to prevent collapsed layouts
-// Usage: @include mobile-padding;
-@mixin mobile-padding {
-  @media (max-width: $breakpoint-phone) {
-      padding: $space-s;
-      min-height: 80px;
-  }
+// ==========================================================================
+// 8. ACCESSIBILITY & UTILITY MIXINS
+// ==========================================================================
+
+/// Create a focus ring that meets accessibility standards
+/// @param {Color} $color [$color-primary] - Focus ring color
+/// @param {Number} $width [3px] - Focus ring width
+/// @param {Number} $offset [2px] - Offset from element
+/// @example
+///   .btn {
+///     @include focus-ring();
+///   }
+///   .custom-focus {
+///     @include focus-ring($color-success, 2px, 1px);
+///   }
+@mixin focus-ring($color: $color-primary, $width: 3px, $offset: 2px) {
+    &:focus-visible {
+    outline: $width solid $color;
+    outline-offset: $offset;
+    }
+    
+    // Fallback for browsers that don't support :focus-visible
+    &:focus:not(:focus-visible) {
+    outline: none;
+    }
 }
 
-// =============================================================================
-// Visual Effects & Animations
-// Mixins for shadows, transitions, and animations
-// =============================================================================
-
-// Applies predefined box shadows for depth and elevation
-// Maintains consistent shadow appearance across components
-// Usage: @include box-shadow($custom-shadow);
-@mixin box-shadow($shadow: $box-shadow) {
-  box-shadow: $shadow;
+/// Apply styles only for reduced motion preference
+/// @example
+///   .animated-element {
+///     animation: slideIn 0.3s ease;
+///     
+///     @include reduced-motion {
+///       animation: none;
+///     }
+///   }
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+    @content;
+    }
 }
 
-// Creates fluid transitions with customizable properties and timing
-// Enhances UI interactions and state changes
-// Usage: @include transition(opacity, 0.3s, ease-out);
-@mixin transition($property: all, $duration: 0.2s, $timing: ease-in-out) {
-  transition: $property $duration $timing;
+/// Apply styles only for high contrast preference
+/// @example
+///   .button {
+///     @include high-contrast {
+///       border: 2px solid;
+///     }
+///   }
+@mixin high-contrast {
+    @media (prefers-contrast: high) {
+    @content;
+    }
 }
 
-// Creates loading shimmer effect with customizable timing
-// Used for content placeholder animations
-// Usage: @include glow-animation(2s, 0.8);
-@mixin glow-animation($speed: 3s, $opacity: 0.9) { 
-  animation: glow $speed linear infinite;
-  background: linear-gradient(to right, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(0, 0, 0, 0.3) 50%, 
-    rgba(255, 255, 255, 0) 100%);
-  bottom: 0;
-  content: "";
-  left: 0;
-  opacity: $opacity;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-// Enables hardware acceleration for smoother animations
-// Reduces jank in transitions and transforms
-// Usage: @include gpu-accelerate;
-@mixin gpu-accelerate {
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform;
-}
-
-// =============================================================================
-// Component Utilities
-// Mixins for common component patterns and behaviors
-// =============================================================================
-
-// Applies standard styling for component containers
-// Includes border-radius, shadow, and box-sizing reset
-// Usage: @include base-component;
-@mixin base-component {
-  border-radius: $border-radius-soft;
-  background-color: $color-neutral-0;
-  box-shadow: $box-shadow;
-  box-sizing: border-box;
-}
-
-// Enforces consistent text alignment in complex components
-// Prevents inheritance issues with nested elements
-// Usage: @include text-alignment;
-@mixin text-alignment {
-  .value {
-      text-align: left !important;
-      * { text-align: left !important; }
-  }
-  
-  .merged-text {
-      text-align: center !important;
-      * { text-align: center !important; }
-  }
-}
-
-// Simplifies absolute positioning with optional edge offsets
-// Standardizes positioning across components using predefined variables
-// Usage: @include absolute(0, 0, null, 0);
-@mixin absolute($top: $position-top-none, $right: $position-right-none, $bottom: $position-bottom-none, $left: $position-left-none) {
-  position: absolute;
-  top: $top;
-  right: $right;
-  bottom: $bottom;
-  left: $left;
-}
-
-// Prepares parent containers for truncated child elements
-// Maintains layout integrity when text is truncated
-// Usage: @include truncate-parent;
-@mixin truncate-parent {
-  overflow: hidden;
-  flex: 1;
-  display: flex;  
-  align-items: center; 
+/// Create a tooltip with pure CSS
+/// @param {String} $position [top] - Position (top, bottom, left, right)
+/// @param {Color} $bg-color [black] - Tooltip background
+/// @param {Color} $text-color [white] - Tooltip text color
+/// @example
+///   .tooltip-trigger {
+///     @include tooltip(top, $color-neutral-8, white);
+///   }
+@mixin tooltip($position: top, $bg-color: black, $text-color: white) {
+    position: relative;
+    cursor: help;
+    
+    &::before,
+    &::after {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    
+    // Tooltip content
+    &::before {
+    content: attr(data-tooltip);
+    background: $bg-color;
+    color: $text-color;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: z-index('tooltip');
+    
+    @if $position == top {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+    } @else if $position == bottom {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+    } @else if $position == left {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%) translateX(-8px);
+    } @else if $position == right {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%) translateX(8px);
+    }
+    }
+    
+    // Tooltip arrow
+    &::after {
+    content: '';
+    border: 6px solid transparent;
+    
+    @if $position == top {
+        bottom: 100%;
+        left: 50%;
+        border-top-color: $bg-color;
+        transform: translateX(-50%) translateY(6px);
+    } @else if $position == bottom {
+        top: 100%;
+        left: 50%;
+        border-bottom-color: $bg-color;
+        transform: translateX(-50%) translateY(-6px);
+    }
+    }
+    
+    &:hover::before,
+    &:hover::after {
+    opacity: 1;
+    }
 }

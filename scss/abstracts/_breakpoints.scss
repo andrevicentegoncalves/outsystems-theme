@@ -1,0 +1,30 @@
+// ==========================================================================
+// abstracts/_breakpoints.scss - Responsive Breakpoints
+// ==========================================================================
+
+// Mobile-First Breakpoint System 
+$breakpoint-xs: 0 !default;       // Extra small devices
+$breakpoint-sm: 576px !default;   // Small devices (landscape phones)
+$breakpoint-md: 768px !default;   // Medium devices (tablets)
+$breakpoint-lg: 992px !default;   // Large devices (desktops)
+$breakpoint-xl: 1200px !default;  // Extra large devices
+$breakpoint-2xl: 1400px !default; // XXL devices
+
+// Breakpoint Map
+$breakpoints: (
+  'xs': $breakpoint-xs,
+  'sm': $breakpoint-sm,
+  'md': $breakpoint-md,
+  'lg': $breakpoint-lg,
+  'xl': $breakpoint-xl,
+  '2xl': $breakpoint-2xl
+) !default;
+
+// Container Max Widths
+$container-max-widths: (
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1140px,
+  '2xl': 1320px
+) !default;

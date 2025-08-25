@@ -1,68 +1,79 @@
-// Import Sass math module for division operations
-@use "sass:math";
 
-//-------------------------------------------
-// Base Configuration
-//-------------------------------------------
+// ==========================================================================
+// abstracts/_functions.scss - Utility Functions
+// ==========================================================================
 
-// Base font size used for relative unit calculations
-// This value serves as the reference point for rem conversions
-$font-size--base: 16px;
+// Converts pixels to rem
 
-//-------------------------------------------
-// Unit Manipulation Functions
-//-------------------------------------------
+/// Convert px to rem with validation and flexible input handling
+/// @param {Number} $pixels - The pixel value to convert (can include 'px' unit or be unitless)
+/// @param {Number} $base [16px] - The base font size for conversion
+/// @return {Number} The converted rem value
+/// @throws Error if $pixels is not a number or $base is zero/negative
+///   font-size: rem(24px);        // Returns 1.5rem
+///   margin: rem(16);             // Returns 1rem (unitless input)
+///   padding: rem(12, 14px);      // Returns 0.857rem (custom base)
+///   padding: rem(8px 16px 24px); // Returns 0.5rem 1rem 1.5rem
 
-// Removes units (px, rem, em) from a number for calculations
-// Parameters:
-//   $value: Number with unit to strip
-// Returns: Number without unit
-// Example: strip-unit(16px) => 16
-@function strip-unit($value) {
-    // Handle negative values by converting to positive first
-    $abs-value: if($value < 0, $value * -1, $value);
-    // Divide by a value with same unit to cancel units
-    $unit: math.div($abs-value, ($abs-value * 0 + 1));
-    // Return original sign
-    @return if($value < 0, $unit * -1, $unit);
+
+@function rem($pixels, $base: 16px) {
+  // Validate inputs
+  @if type-of($pixels) != 'number' {
+    @error "rem() function expects a number, received #{type-of($pixels)}: #{$pixels}";
+  }
+  
+  @if type-of($base) != 'number' {
+    @error "rem() function expects a number for $base, received #{type-of($base)}: #{$base}";
+  }
+  
+  @if $base <= 0 {
+    @error "rem() function expects a positive $base value, received: #{$base}";
+  }
+  
+  // Strip units from both values for calculation
+  $pixels-value: strip-unit($pixels);
+  $base-value: strip-unit($base);
+  
+  // Return calculated rem value
+  @return ($pixels-value / $base-value) * 1rem;
 }
 
-//-------------------------------------------
-// Unit Conversion Functions
-//-------------------------------------------
-
-// Converts pixels to rem units based on base font size
-// Parameters:
-//   $pixels: Value in pixels to convert (with or without px unit)
-// Returns: Value in rem units
-// Example: rem(16px) => 1rem
-@function rem($pixels) {
-    $pixels: strip-unit($pixels);
-    @return math.div($pixels, strip-unit($font-size--base)) * 1rem;
+// Strip unit from number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
 }
 
-// Converts pixels to em units with optional context size
-// Parameters:
-//   $pixels: Value in pixels to convert (with or without px unit)
-//   $context: Base context size (defaults to $font-size--base)
-// Returns: Value in em units
-// Example: em(32px, 16px) => 2em
-@function em($pixels, $context: $font-size--base) {
-    // Ensure both values are unitless before division
-    @return math.div(strip-unit($pixels), strip-unit($context)) * 1em;
+// Get spacing value by key
+@function spacing($key) {
+    @return map-get($spacing, $key);
 }
 
-//-------------------------------------------
-// Color Manipulation Functions
-//-------------------------------------------
+// Get color from theme map
+@function color($color-name, $theme: 'light') {
+    $color-map: if($theme == 'dark', $colors-dark, $colors-light);
+    @return map-get($color-map, $color-name);
+}
 
-// Safely lightens a color using white mixing
-// Preferred over lighten() as it provides more natural color transitions
-// Parameters:
-//   $color: Base color to lighten
-//   $percent: Amount to lighten by (0-100)
-// Returns: Lightened color
-// Example: lighten-color(#000, 50%) => rgb(127, 127, 127)
-@function lighten-color($color, $percent) {
-    @return mix(white, $color, $percent);
+// Get typography properties
+@function font-size($scale) {
+    $props: map-get($typography-scale, $scale);
+    @return map-get($props, 'size');
+}
+
+@function line-height($scale) {
+    $props: map-get($typography-scale, $scale);
+    @return map-get($props, 'line-height');
+}
+
+@function font-weight($scale) {
+    $props: map-get($typography-scale, $scale);
+    @return map-get($props, 'weight');
+}
+
+@function font-family($scale) {
+    $props: map-get($typography-scale, $scale);
+    @return map-get($props, 'family');
 }
